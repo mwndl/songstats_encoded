@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informações da Música</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="search-container">
+        <input type="text" placeholder="Paste a Spotify URL, ID or ISRC code" id="spotify-link">
+        <button type="submit" id="search-btn">Search</button>
+    </div>      
+    <div class="top">
+        <div class="music-cover"></div>
+        <div class="music-details">
+            <h2><a href="#">Track_Name</a></h2>
+            <p><a href="#">Artist 1</a> feat.  <a href="#">Artist 2</a></p>
+            <p><a href="#">Album_Name</a></p>
+            <p>Released on dd/mm/yyyy</p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="track-info">
+            <div class="track-id">
+              <p>Track ID:</p>
+              <div class="input-group">
+                <input type="text" placeholder="Not Available" value="" readonly>
+                <button class="copy-btn">Copy</button>
+              </div>
+            </div>
+            <div class="isrc">
+              <p>ISRC:</p>
+              <div class="input-group">
+                <input type="text" placeholder="Not Available" value="" readonly>
+                <button class="copy-btn">Copy</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="main_2">
+        <p>Length: mm:ss</p>
+        <p>Has Lyrics: {Yes/No}</p>
+        <p>Is Synced: {Yes/No}</p>
+        <p>Album Position: {Track_Number} of {Total_Album}</p>
+        <p>Available in {count} countries. <a href="#">See list</a></p>
+    </div>   
+    <div class="main_3">
+        <div>
+            <p>Preview</p>
+        </div>
+        <div class="music-player">
+            <audio controls class="audio-player">
+                <source src="#" type="audio/mpeg">
+            </audio>
+        </div>    
+    </div>  
+  </div>
+</body>
+<script>
+        const searchBtn = document.getElementById('search-btn');
+        const spotifyLink = document.getElementById('spotify-link');
+        const trackIdInput = document.querySelector('.track-id input');
+        const isrcInput = document.querySelector('.isrc input');
+
+        searchBtn.addEventListener('click', () => {
+        const inputVal = spotifyLink.value.trim();
+
+        // regex for Spotify track URLs
+        const trackUrlRegex = /^(https?:\/\/)?open\.spotify\.com\/track\/([a-zA-Z0-9]{22})$/;
+
+        // regex for Spotify track IDs
+        const trackIdRegex = /^([a-zA-Z0-9]{22})$/;
+
+        // regex for ISRCs
+        const isrcRegex = /^[a-zA-Z]{2}[a-zA-Z0-9]{3}\d{7}$/;
+
+        if (trackUrlRegex.test(inputVal)) {
+            const trackId = inputVal.match(trackUrlRegex)[2];
+            trackIdInput.value = trackId;
+            isrcInput.value = '';
+        } else if (trackIdRegex.test(inputVal)) {
+            trackIdInput.value = inputVal;
+            isrcInput.value = '';
+        } else if (isrcRegex.test(inputVal)) {
+            isrcInput.value = inputVal;
+            trackIdInput.value = '';
+        } else {
+            alert('Invalid input. Please enter a Spotify track URL, track ID, or ISRC.');
+        }
+        });
+</script>
+</html>
