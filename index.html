@@ -15,9 +15,9 @@
     <div class="top">
         <div class="music-cover"></div>
         <div class="music-details">
-            <h2><a href="#">Track_Name</a></h2>
+            <h2><a href="#">Title of the Song</a></h2>
             <p><a href="#">Artist 1</a> feat.  <a href="#">Artist 2</a></p>
-            <p><a href="#">Album_Name</a></p>
+            <p><a href="#">Album</a></p>
             <p>Released on dd/mm/yyyy</p>
         </div>
     </div>
@@ -41,8 +41,8 @@
     </div>
     <div class="main_2">
         <p>Length: mm:ss</p>
-        <p>Has Lyrics: {Yes/No}</p>
-        <p>Is Synced: {Yes/No}</p>
+        <p>Has Lyrics: Yes/No</p>
+        <p>Is Synced: Yes/No</p>
         <p>Album Position: {Track_Number} of {Total_Album}</p>
         <p>Available in {count} countries. <a href="#">See list</a></p>
     </div>   
@@ -87,7 +87,7 @@
             isrcInput.value = inputVal;
             trackIdInput.value = '';
         } else {
-            alert('Invalid input. Please enter a Spotify track URL, track ID, or ISRC.');
+            alert('Invalid input: Please enter a valid Spotify URL or a ISRC.');
         }
         });
 </script>
