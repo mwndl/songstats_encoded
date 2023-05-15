@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Stats</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="search-container">
+          <input type="text" placeholder="Paste a track link from Spotify" id="spotify-link">
+          <button type="submit" id="search-btn">Search</button>
+      </div>      
+      <div class="top">
+          <div class="music-cover" id="music_cover"></div>
+          <div class="music-details">
+              <h2><a href="#" id="song_name" target="_blank">-</a></h2>
+              <p><a href="#" id="artist_name" target="_blank">-</a><p>
+              <p><a href="#" id="album_name" target="_blank">-</a></p>
+              <p id="release_date">-</p>
+          </div>
+      </div>
+      <div class="main">
+        <div class="track-info">
+            <div class="track-id">
+              <p>Track ID:</p>
+              <div class="input-group">
+                <input type="text" placeholder="Not Available" class="track-input" id="track-input" value="" readonly>
+                <button class="copy-btn" id="copy-bnt-id">Copy</button>
+              </div>
+            </div>
+            <div class="isrc">
+              <p>ISRC:</p>
+              <div class="input-group">
+                <input type="text" placeholder="Not Available" class="isrc-input" id="isrc-input" value="" readonly>
+                <button class="copy-btn" id="copy-btn-isrc">Copy</button>
+              </div>
+            </div>
+        </div>
+      </div>    
+      <div class="main_2">
+          <p id="lyrics">-</p>
+          <p id="sync">-</p>
+          <p id="duration">-</p>
+          <p id="album_position">-</p>
+          <p id="countries_counter">-</p>
+      </div>   
+      <div class="main_3">
+          <div class="music-player">
+              <audio controls class="audio-player" id="player">
+                  <source src="#" id="song_preview" type="audio/mp3">
+              </audio>
+          </div>    
+      </div>  
+    </div>
+  </body>
+  <script src="script_lyrics.js"></script>
+</html>
