@@ -17,26 +17,26 @@
           <div class="top">
               <div class="music-cover" id="music_cover"></div>
               <div class="music-details">
-                  <h2><a href="#" id="song_name" target="_blank">-</a></h2>
-                  <p><a href="#" id="artist_name" target="_blank">-</a><p>
-                  <p><a href="#" id="album_name" target="_blank">-</a></p>
-                  <p id="release_date">-</p>
+                  <h2><a href="#" id="song_name" target="_blank"></a></h2>
+                  <p><a href="#" id="artist_name" target="_blank"></a><p>
+                  <p><a href="#" id="album_name" target="_blank"></a></p>
+                  <p id="release_date"></p>
               </div>
           </div>
           <div class="main">
             <div class="track-info">
-                <div class="track-id">
-                  <p>Track ID:</p>
-                  <div class="input-group">
-                    <input type="text" placeholder="Not Available" class="track-input" id="track-input" value="" readonly>
-                    <button class="copy-btn" id="copy-bnt-id">Copy</button>
-                  </div>
-                </div>
                 <div class="isrc">
                   <p>ISRC:</p>
                   <div class="input-group">
                     <input type="text" placeholder="Not Available" class="isrc-input" id="isrc-input" value="" readonly>
                     <button class="copy-btn" id="copy-btn-isrc">Copy</button>
+                  </div>
+                </div>
+                <div class="track-id">
+                  <p>Track ID:</p>
+                  <div class="input-group">
+                    <input type="text" placeholder="Not Available" class="track-input" id="track-input" value="" readonly>
+                    <button class="copy-btn" id="copy-bnt-id">Copy</button>
                   </div>
                 </div>
             </div>
@@ -46,9 +46,14 @@
               <p id="sync">-</p>
               <p id="duration">-</p>
               <p id="album_position">-</p>
-              <p id="countries_counter">-</p>
           </div>   
           <div class="main_3">
+            <a id="countries_list">
+              <p id="countries_counter">-</p>
+            </a>
+            <p id="user-country">-</p>
+          </div>
+          <div class="main_4">
               <div class="music-player">
                   <audio controls class="audio-player" id="player">
                       <source src="#" id="song_preview" type="audio/mp3">
@@ -67,65 +72,79 @@
                 <h2><a href="#" id="song_name-mxm" target="_blank">-</a></h2>
                 <p><a href="#" id="artist_name-mxm" target="_blank">-</a><p>
                 <p><a href="#" id="album_name-mxm" target="_blank">-</a></p>
-                <p id="release_date">-</p>
+                <p id="release_date"></p>
             </div>
           </div> 
+          <div class="main_2-group">
+            <div class="main_2-1-group">
+              <div class="main_2-1">
+                <p>Lyrics</p>
+                <p>Sync</p>
+                <p>Word-Sync</p>
+                <p>Structure</p>
+                <p>Performer Tag</p>
+                <p>Instrumental</p>
+                <p>Restriction</p>
+                <p>Explicit</p>
+              </div> 
+              <div class="main-2-1-status">
+                <div class="status status-green"></div>
+                <div class="status status-green"></div>
+                <div class="status status-red"></div>
+                <div class="status status-green"></div>
+                <div class="status status-green"></div>
+                <div class="status status-red"></div>
+                <div class="status status-red"></div>
+                <div class="status status-red"></div>
+              </div>
+            </div>  
+            <div class="main_2-2-group">
+              <div class="main_2-2">
+                <p>Last Editor: <a>user</a></p>
+                <p>Last Syncer: <a>user</a></p>
+                <p>Status: Community Verified</p>
+                <p>Last update: dd/mm/yyyy</p>
+              </div> 
+              <div class="main_2-3">
+                <p id="mxm-abstrack">Abstrack:</p>
+                <p>Lyrics ID:</p>
+                <p>Artist ID:</p>
+                <p>Album ID:</p>
+              </div>
+            </div>  
+        </div>
           <div class="main">
             <div class="track-info">
-                <div class="track-id">
-                  <p>Track ID:</p>
-                  <div class="input-group">
-                    <input type="text" placeholder="Not Available" class="track-input" id="track-input-mxm" value="" readonly>
-                    <button class="copy-btn" id="copy-bnt-mxm-id">Copy</button>
-                  </div>
-                </div>
                 <div class="isrc">
                   <p>ISRC:</p>
                   <div class="input-group">
-                    <input type="text" placeholder="Not Available" class="isrc-input" id="isrc-input-mxm" value="" readonly>
+                    <input type="text" placeholder="Not Available" class="isrc-input" id="isrc-input-mxm-isrc" value="" readonly>
                     <button class="copy-btn" id="copy-btn-mxm-isrc">Copy</button>
+                  </div>
+                </div>
+                <div class="track-id">
+                  <p>Spotify:</p>
+                  <div class="input-group">
+                    <input type="text" placeholder="Not Available" class="track-input" id="track-input-mxm-spotify" value="" readonly>
+                    <button class="copy-btn" id="copy-bnt-mxm-id">Copy</button>
+                  </div>
+                </div>
+                <div class="track-id">
+                  <p>Apple:</p>
+                  <div class="input-group">
+                    <input type="text" placeholder="Not Available" class="track-input" id="track-input-mxm-apple" value="" readonly>
+                    <button class="copy-btn" id="copy-bnt-mxm-id">Copy</button>
+                  </div>
+                </div>
+                <div class="track-id">
+                  <p>Amazon:</p>
+                  <div class="input-group">
+                    <input type="text" placeholder="Not Available" class="track-input" id="track-input-mxm-amazon" value="" readonly>
+                    <button class="copy-btn" id="copy-bnt-mxm-id">Copy</button>
                   </div>
                 </div>
             </div>
           </div>  
-          <div class="main_2-group">
-              <div class="main_2-1-group">
-                <div class="main_2-1">
-                  <p>Lyrics</p>
-                  <p>Sync</p>
-                  <p>Word-Sync</p>
-                  <p>Structure</p>
-                  <p>Performer Tag</p>
-                  <p>Instrumental</p>
-                  <p>Restriction</p>
-                </div> 
-                <div class="main-2-1-status">
-                  <div class="status status-gray"></div>
-                  <div class="status status-gray"></div>
-                  <div class="status status-gray"></div>
-                  <div class="status status-gray"></div>
-                  <div class="status status-gray"></div>
-                  <div class="status status-gray"></div>
-                  <div class="status status-gray"></div>
-                </div>
-              </div>  
-              <div class="main_2-2-group">
-                <div class="main_2-2">
-                  <p>Last Editor:</p>
-                  <p>Last Syncer:</p>
-                  <p>Status: </p>
-                </div> 
-                <div class="main_2-3">
-                  <p>Abstrack:</p>
-                  <p>Lyrics ID:</p>
-                  <p>Artist ID:</p>
-                  <p>Album ID:</p>
-                </div>
-              </div>  
-          </div>
-          <div class="main_3-alt">
-            <p>Last update: dd/mm/yyyy - hh:mm:ss</p>
-          </div>
         </div>
     </div>
   </body>

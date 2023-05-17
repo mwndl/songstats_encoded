@@ -25,7 +25,8 @@
   
   .containers {
     width: 100%;
-    padding: 20px;
+    margin-top: 20px;
+    padding: 0px;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
@@ -34,8 +35,7 @@
   .container-1,
   .container-2 {
     width: 500px;
-    height: 645px;
-    margin: 25px 15px;
+    margin: 10px 15px;
     padding: 20px;
     background-color: #fff;
     border-radius: 20px;
@@ -91,9 +91,9 @@
   }
     
   .music-cover {
-    width: 40%;
+    width: 35%;
     height: 0;
-    padding-bottom: 40%;
+    padding-bottom: 35%;
     background-color: #ccc;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -120,7 +120,7 @@
     .main {
     margin: 0px auto 10px;
     max-width: 500px;
-    padding: 15px 20px;
+    padding: 10px 20px;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -147,13 +147,12 @@
     .track-id p,
     .isrc p {
     margin-right: 90px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     }
 
     .input-group {
         display: flex;
         margin-left: auto;
-        margin-bottom: 5px;
       }
       
       .input-group input[type="text"] {
@@ -204,9 +203,22 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     color: #333;
+    align-items: center;
   }
 
   .main_3 {
+    margin: 0px auto 10px;
+    height: 65px;
+    max-width: 500px;
+    padding: 12px 18px 12px 18px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    align-items: center;
+  }
+
+  .main_4 {
     margin: 0px auto;
     height: 89px;
     max-width: 500px;
@@ -239,8 +251,8 @@
     justify-content: center;
     width: 100%;
     padding: 10px 10px;
-    height: 160px;
-    margin: 10px 5px;
+    height: 179px;
+    margin: 10px 15px 10px 0px;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -249,7 +261,7 @@
 
   .main_2-1 {
     flex: 1;
-    height: 160px;
+    height: 175px;
     padding: 20px 3px;
     width: 100px;
     text-align: left;
@@ -257,9 +269,10 @@
   }
 
   .main-2-1-status {
+    margin-top: 2px;
     display: flex;
     flex-direction: column;
-    height: 160px;
+    height: 178px;
     width: 10px;
     justify-content: space-between;
     padding: 24px 20px 20px;
@@ -278,7 +291,7 @@
 
   .status-red {
     background-color: red;
-    box-shadow: 0 0 0px red;
+    box-shadow: 0 0 2px red;
   }
 
   .status-green {
@@ -292,7 +305,7 @@
     text-align: left;
     font-size: 14px;
     align-items: center;
-    height: 75px;
+    height: 92px;
     padding: 14px 20px;
   }
 
@@ -306,8 +319,8 @@
   }
 
   .main_3-alt {
-    margin: 5px auto;
-    height: 45px;
+    margin: 0px auto;
+    height: 50px;
     max-width: 500px;
     padding: 15px 20px 20px 20px;
     background-color: #fff;
