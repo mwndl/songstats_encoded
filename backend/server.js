@@ -5,8 +5,8 @@ const PORT = 3000;
 const path = require('path');
 
 // Spotify API credentials
-const clientId = '51a45f01c96645e386611edf4a345b50';
-const clientSecret = '263caac23eab4b49bc7f46a94124c75f';
+const clientId = process.env.SPOTIFY_CLIENT_ID;
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const authEndpoint = 'https://accounts.spotify.com/api/token';
 
 let accessToken = '';
@@ -73,7 +73,7 @@ app.get('/api/lyrics/search/:link', async (req, res) => {
 // Endpoint to search data from the Musixmatch API
 app.get('/api/musixmatch/search/:isrc', async (req, res) => {
   const { isrc } = req.params;
-  const musixmatchApiKey = '7b39eab525b522700782c7f20e8a213a';
+  const musixmatchApiKey = process.env.MUSIXMATCH_API_KEY;
   const apiUrl = `https://api.musixmatch.com/ws/1.1/track.get?apikey=${musixmatchApiKey}&track_isrc=/${isrc}`;
 
   try {
@@ -87,7 +87,7 @@ app.get('/api/musixmatch/search/:isrc', async (req, res) => {
 });
 
 // Middleware para servir arquivos estáticos da pasta 'public'
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
