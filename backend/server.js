@@ -87,7 +87,7 @@ app.get('/api/musixmatch/search/:isrc', async (req, res) => {
 });
 
 // Middleware para servir arquivos estáticos da pasta 'public'
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
