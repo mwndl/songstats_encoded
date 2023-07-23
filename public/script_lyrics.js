@@ -131,7 +131,7 @@ window.addEventListener('load', () => {
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send request to server.js API for Spotify search
-    fetch(`/api/spotify/search/${trackId}`)
+    fetch(`https://datamatch-sm.onrender.com/api/spotify/search/${trackId}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
@@ -224,7 +224,7 @@ window.addEventListener('load', () => {
         }
 
         // Send request to server.js API for Spotify Lyrics search
-        fetch(`/api/lyrics/search/${encodeURIComponent(songURL)}`)
+        fetch(`https://datamatch-sm.onrender.com/api/lyrics/search/${encodeURIComponent(songURL)}`)
           .then((response) => response.json())
           .then(data => {
             if (data.error) {
@@ -243,7 +243,7 @@ window.addEventListener('load', () => {
           });
 
         // Send request to server.js API for Musixmatch search
-        fetch(`/api/musixmatch/search/${isrc}`)
+        fetch(`https://datamatch-sm.onrender.com/api/musixmatch/search/${isrc}`)
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
