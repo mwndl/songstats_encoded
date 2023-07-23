@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const PORT = 3000;
 const path = require('path');
 
 // Spotify API credentials
@@ -89,6 +88,6 @@ app.get('/api/musixmatch/search/:isrc', async (req, res) => {
 // Middleware para servir arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(process.env.PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
