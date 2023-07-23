@@ -3,8 +3,11 @@ window.addEventListener('load', () => {
   const searchBtn = document.querySelector('#search-btn');
   const search_input = document.querySelector('#search_input');
 
-  const view_lyrics_button = document.querySelector('#view_lyrics_button') 
-  const hide_lyrics_button = document.querySelector('#hide_lyrics_button')
+  const div_country_local = document.querySelector('#div_country_local')
+  const country_local_status = document.querySelector('#country_local_status')
+  const country_local_text = document.querySelector('#country_local_text')
+
+  const view_lyrics_button = document.querySelector('#view_lyrics_button')
   const view_lyrics_text = document.querySelector('#view_lyrics_text')
   const view_lyrics_arrow = document.querySelector('#view_lyrics_arrow')
   const lyrics_container = document.querySelector('#lyrics_container')
@@ -51,14 +54,27 @@ window.addEventListener('load', () => {
   const stats_mxm_explicit = document.querySelector('#is_explicit')
   const stats_mxm_instrumental = document.querySelector('#is_instrumental')
 
-  const div_lyrics_preview = document.querySelector('#div-lyrics-preview')
+  const div_lyrics_preview = document.querySelector('#div_lyrics_preview')
   const mxm_lyrics_preview = document.querySelector('#lyrics_preview')
+
+  // Função para salvar o país no navegador
+  const saveCountry = (countryCode) => {
+    if (countryCode && countryCode.length === 2) {
+      localStorage.setItem('selected_country', countryCode);
+      alert(`Your country was saved as ${countryCode}.`);
+      search_input.value = ""
+    } else {
+      alert('Invalid command, try again');
+      search_input.value = ""
+    }
+  };
 
   // Function to handle search
   const handleSearch = () => {
     const inputVal = search_input.value.trim();
 
     const trackUrlRegex = /^(https?:\/\/open\.spotify\.com\/(?:intl-[a-z]{2}\/)?)?track\/(.+)$/;
+    const studioUrlRegex = /(?:&|\?)player=spotify&(?:.*&)?track_id=([^&\s]+)/;
     const idRegex = /^[a-zA-Z0-9]{22}$/;
     const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}\d{2}\d{5}$/;
     const pushForm = "push";
@@ -66,9 +82,25 @@ window.addEventListener('load', () => {
     let trackId = '';
     let isrc = '';
 
+   // Verificar se o comando "set_market_<country_code>" foi digitado
+    const setCountryRegex = /^set_market_([A-Z]{2})$/;
+    const setCountryMatch = inputVal.match(setCountryRegex);
+    if (setCountryMatch) {
+      const countryCode = setCountryMatch[1];
+      saveCountry(countryCode);
+      return;
+    }
+
     if (trackUrlRegex.test(inputVal)) {
       const url = new URL(inputVal);
       trackId = url.pathname.split('/').pop();
+
+    } else if (studioUrlRegex.test(inputVal)) {
+      const match = inputVal.match(studioUrlRegex);
+      if (match) {
+        trackId = match[1];
+      }
+
     } else if (idRegex.test(inputVal)) {
       trackId = inputVal;
     } else if (inputVal === pushForm) {
@@ -89,12 +121,13 @@ window.addEventListener('load', () => {
       alert('Sorry! Please enter a valid Spotify track URL or ID. 🎶');
       return;
     }
-    search_input.value = ""
-
+    country_local_status.className = "status-3 status-gray"
+    search_input.value = "";
     // Botão 'X' do container de push
     const close_lyricspusher = () => {
       pusher_container.style = "display:none";
     };
+
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send request to server.js API for Spotify search
@@ -132,6 +165,24 @@ window.addEventListener('load', () => {
           return { name: artist.name, url: artist.external_urls.spotify };
         });
 
+        // Função para verificar se o país está disponível na lista de países da faixa
+        const checkCountryAvailability = (countryCode) => {
+          const availableMarkets = data.available_markets;
+          if (availableMarkets.includes(countryCode)) {
+            country_local_status.className = "status-3 status-green";
+            country_local_status.style = ""
+            country_local_text.textContent = `${countryCode}`
+            country_local_text.style = ""
+            div_country_local.title = `This track is available in your country`
+          } else {
+            country_local_status.className = "status-3 status-red";
+            country_local_status.style = ""
+            country_local_text.textContent = `${countryCode}`
+            country_local_text.style = ""
+            div_country_local.title = `This track is available in your country`
+          }
+        };
+
         // Format artists as HTML anchor tags
         const artistsLinks = artists.map(
           (artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`
@@ -154,7 +205,11 @@ window.addEventListener('load', () => {
         songPreviewInput.src = songPreview;
         player_button.className = "play-button"
         
-        document.body.style.background = data.gradient;
+        // Verificar se o país salvo está disponível para a faixa pesquisada
+        const selectedCountry = localStorage.getItem('selected_country');
+        if (selectedCountry) {
+          checkCountryAvailability(selectedCountry);
+        }
 
         if (songPreview) {
           songPreviewInput.src = songPreview;
@@ -279,22 +334,6 @@ window.addEventListener('load', () => {
               view_lyrics_text.id = "view_lyrics_button";
             }
 
-            // Adiciona um ouvinte de evento para o clique no botão
-            view_lyrics_button.addEventListener('click', () => {
-              if (lyrics_container.style.display === 'none') {
-                lyrics_container.style.display = '';
-                view_lyrics_text.textContent = "Hide Lyrics";
-                view_lyrics_text.id = "hide_lyrics_button";
-                view_lyrics_arrow.textContent = "<";
-                pusher_container.style = "display:none"
-              } else {
-                lyrics_container.style.display = "none";
-                view_lyrics_text.textContent = "View Lyrics";
-                view_lyrics_text.id = "view_lyrics_button";
-                view_lyrics_arrow.textContent = ">";
-              }
-            });
-
           })
           .catch((error) => {
             console.error(error);
@@ -304,6 +343,22 @@ window.addEventListener('load', () => {
         alert(`Error: ${error.message}`);
       });
   };
+
+    function toggleLyrics() {
+      if (lyrics_container.style.display === 'none') {
+          lyrics_container.style.display = '';
+          view_lyrics_text.textContent = 'Hide Lyrics';
+          view_lyrics_arrow.textContent = '<'
+          pusher_container.style = "display:none";
+      } else {
+          lyrics_container.style.display = 'none';
+          view_lyrics_text.textContent = 'View Lyrics';
+          view_lyrics_arrow.textContent = '>'
+      }
+  }
+
+  view_lyrics_button.addEventListener('click', toggleLyrics);
+
 
   // Add event listener for search button
   searchBtn.addEventListener('click', handleSearch);
