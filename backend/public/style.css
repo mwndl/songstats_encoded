@@ -12,7 +12,6 @@ body {
 
 body {
   display: block;
-  margin: 8px;
 }
 
 a {
@@ -28,20 +27,22 @@ a:hover {
 
 .containers {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1450px;
     height: 720px;
-    width: 1450px;
-    margin: 30px auto;
+    margin: 5px auto;
 }
 
 .container_1 {
-  max-width: 700px;
+  width: 700px;
   height: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: auto;
+  margin: 5px auto 5px;
   padding: 20px;
   border-radius: 20px;
 }
@@ -53,7 +54,7 @@ a:hover {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: auto;
+  margin: 5px auto 5px;
   padding: 20px;
   border-radius: 20px;
 }
@@ -66,7 +67,7 @@ a:hover {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: auto;
+  margin: 5px auto 5px;
   border-radius: 20px;
 }
 
@@ -152,7 +153,7 @@ a:hover {
 .refresh_symbol {
   width: 14px;
   height: 14px;
-  background-image: url(refresh_symbol.png);
+  background-image: url(/images/refresh_symbol.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -169,6 +170,7 @@ a:hover {
   padding: 10px;
   border-radius: 10px;
   margin: 0px auto 15px;
+  user-select: none;
 }
 
 .search-container input[type="text"] {
@@ -243,30 +245,41 @@ h2 {
   margin: 0px 25px 30px;
 }
 
-.view_lyrics_button {
+.msc_top {
   height: 30px;
   width: 100%;
   display: flex;
+  justify-content: space-between; /* Adicionar espaçamento entre os elementos */
+  align-items: center; /* Alinhar verticalmente ao centro */
+}
+
+.view_lyrics_button {
+  display: flex;
+  height: 30px;
   align-items: center;
-  justify-content: right;
-  margin-right: -16px;
   font-size: 16px;
   cursor: pointer;
   color: rgb(136, 136, 136);
   background: none;
-  border-width: initial;
-  border-style: none;
-  border-color: initial;
-  border-image: initial;
+  border: none; /* Simplificar as propriedades de borda */
+  user-select: none;
 }
 
-.view_lyrics_button span {
-  margin-right: 5px;
-}
-
-.view_lyrics_button .arrow-symbol {
-  color: rgb(136, 136, 136);
+.view_lyrics_button span.arrow-symbol {
   font-size: 12px;
+  margin-left: 5px; /* Ajustar a margem à esquerda do símbolo da seta */
+  user-select: none;
+}
+
+.country_local {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  font-size: 16px;
+  color: rgb(136, 136, 136);
+  background: none;
+  border: none; /* Simplificar as propriedades de borda */
+  user-select: none;
 }
 
 .play-button {
@@ -345,7 +358,7 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   height: 120px;
-  margin: 0px 0px 15px;
+  margin: 0px 0px 22px;
 }
 
 .main {
@@ -449,6 +462,7 @@ h2 {
   align-self: center;
   padding: 15px 20px;
   border-radius: 20px;
+  user-select: none;
 }
 
 /* Stats */
@@ -472,6 +486,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   margin: auto;
+  user-select: none;
 }
 
 .song-stats-div {
@@ -508,6 +523,16 @@ h2 {
   max-width: 10px;
 }
 
+.status-3 {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0px 6px 0px;
+  align-items: right;
+  max-width: 10px;
+}
+
 .status-gray {
   background-color: rgb(212, 212, 212);
 }
@@ -520,6 +545,11 @@ h2 {
 .status-blue {
   background-color: #0077c2;
   box-shadow: 0 0 2px #0077c2;
+}
+
+.status-green {
+  background-color: #4CAF50;
+  box-shadow: 0 0 2px #4CAF50;
 }
 
 .main_2-div {
