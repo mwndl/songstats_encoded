@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song Stats</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <script src="axios.min.js"></script>
     <script src="script_lyrics.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vibrant.js/1.1.0/Vibrant.min.js"></script>
   </head>
   <body>
+    <p id="countries_available"></p>
     <div class="containers">
       <div class="container_1">
         <div class="search-container">
@@ -30,17 +32,26 @@
             </div>
           </div>
           <div class="div-music-details">
-            <div class="view_lyrics_button">
-              <button class="view_lyrics_button" id="view_lyrics_button" style="display:none">
-                <span id="view_lyrics_text">View Lyrics</span>
-                <span id="view_lyrics_arrow" class="arrow-symbol">></span>
-              </button>
+            <div class="msc_top">
+              <div class="country_local" id="div_country_local" title="">
+                <p id="country_local_status" class="status-3 status-gray" style="display:none"></p>
+                <p id="country_local_text" class="country_local" style="display:none"></p>
+              </div>
+              <div class="view_lyrics_button" id="div_lyrics_preview">
+                <button class="view_lyrics_button" id="view_lyrics_button" style="display:none">
+                  <span id="view_lyrics_text">View Lyrics</span>
+                  <span id="view_lyrics_arrow" class="arrow-symbol">></span>
+                </button>
+              </div>
             </div>
             <div class="music-details">
               <h2><a href="#" id="song_name" target="_blank"></a></h2>
               <p><p id="artist_name"></p></p>
               <p><a href="#" id="album_name" target="_blank"></a></p>
-              <p id="release_date" style="font-size: 16px; margin-top: 5px;"></p>
+              <p id="release_date" style="font-size: 16px; margin-top: 5px;user-select: none;"></p>
+            </div>
+            <div id="track_status">
+
             </div>
           </div>
         </div>      
@@ -48,13 +59,13 @@
           <div class="main">
             <div class="track-info">
               <div class="track-id">
-                <p>Spotify ID:</p>
+                <p style="user-select: none;">Spotify ID:</p>
                 <div class="input-group-ids">
                   <input type="text" placeholder="Not Available" class="track-input" id="track-input" value="" readonly>
                 </div>
               </div>
               <div class="isrc">
-                <p>ISRC:</p>
+                <p style="user-select: none;">ISRC:</p>
                 <div class="input-group-ids">
                   <input type="text" placeholder="Not Available" class="isrc-input" id="isrc-input" value="" readonly>
                 </div>
@@ -119,25 +130,25 @@
           <div class="main_2-right">
             <div class="track-info">
               <div class="track-id">
-                <p>Lyrics:</p>
+                <p style="user-select: none;">Lyrics:</p>
                 <div class="input-group-urls">
                   <input type="text" placeholder="Not Available" class="lyrics-url-track-input" id="mxm_lyrics_url" value="" readonly title="">
                 </div>
               </div>
               <div class="isrc">
-                <p>Artist:</p>
+                <p style="user-select: none;">Artist:</p>
                 <div class="input-group-urls">
                   <input type="text" placeholder="Not Available" class="artist-url-isrc-input" id="mxm_artist_url" value="" readonly title="">
                 </div>
               </div>
               <div class="isrc">
-                <p>Album:</p>
+                <p style="user-select: none;">Album:</p>
                 <div class="input-group-urls">
                   <input type="text" placeholder="Not Available" class="album-url-input" id="mxm_album_url" value="" readonly title="">
                 </div>
               </div>
               <div class="isrc">
-                <p>Abstrack:</p>
+                <p style="user-select: none;">Abstrack:</p>
                 <div class="input-group-urls">
                   <input type="text" placeholder="Not Available" class="abstrack-input" id="mxm_abstrack" value="" readonly>
                 </div>
@@ -157,7 +168,7 @@
         </div>
       </div>
       <div class="container_3" style="display:none" id="pusher_container">
-        <iframe class="lyrics_pusher" id="lyrics_pusher" src="" style="border:none;background:transparent;border-radius:20px;" width="100%" height="700px" style="font-size: 20px"></iframe>
+        <iframe class="lyrics_pusher" id="lyrics_pusher" src="" style="border:none;background:transparent;border-radius:20px;" width="100%" height="100%" style="font-size: 20px"></iframe>
         <button class="close_button" id="close_button_pusher"></button>
         <button class="refresh_button" id="refresh_button">
           <div class="refresh_symbol"></div>
