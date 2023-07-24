@@ -69,7 +69,7 @@ window.addEventListener('load', () => {
     }
   };
 
-  const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
+  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c';
 
   // Function to handle search
   const handleSearch = () => {
@@ -134,7 +134,7 @@ window.addEventListener('load', () => {
     
 
     // Send request to server.js API for Spotify search
-    fetch(`https://datamatch-sm.onrender.com/api/spotify/search/${trackId}?token=8KuA9GwNbaJYvTD8U6h64beb6d6dd56c`)
+    fetch(`https://datamatch-sm.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
@@ -227,7 +227,7 @@ window.addEventListener('load', () => {
         }
 
         // Send request to server.js API for Spotify Lyrics search
-        fetch(`https://datamatch-sm.onrender.com/api/lyrics/search/${encodeURIComponent(songURL)}?token=8KuA9GwNbaJYvTD8U6h64beb6d6dd56c`)
+        fetch(`https://datamatch-sm.onrender.com/api/lyrics/search/${encodeURIComponent(songURL)}?token=${accessToken}`)
           .then((response) => response.json())
           .then(data => {
             if (data.error) {
@@ -246,7 +246,7 @@ window.addEventListener('load', () => {
           });
 
         // Send request to server.js API for Musixmatch search
-        fetch(`https://datamatch-sm.onrender.com/api/musixmatch/search/${isrc}?token=8KuA9GwNbaJYvTD8U6h64beb6d6dd56c`)
+        fetch(`https://datamatch-sm.onrender.com/api/musixmatch/search/${isrc}?token=${accessToken}`)
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
