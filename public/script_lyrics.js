@@ -3,17 +3,17 @@ window.addEventListener('load', () => {
   const searchBtn = document.querySelector('#search-btn');
   const search_input = document.querySelector('#search_input');
 
-  const div_country_local = document.querySelector('#div_country_local')
-  const country_local_status = document.querySelector('#country_local_status')
-  const country_local_text = document.querySelector('#country_local_text')
+  const div_country_local = document.querySelector('#div_country_local');
+  const country_local_status = document.querySelector('#country_local_status');
+  const country_local_text = document.querySelector('#country_local_text');
 
-  const view_lyrics_button = document.querySelector('#view_lyrics_button')
-  const view_lyrics_text = document.querySelector('#view_lyrics_text')
-  const view_lyrics_arrow = document.querySelector('#view_lyrics_arrow')
-  const lyrics_container = document.querySelector('#lyrics_container')
-  const pusher_container = document.querySelector('#pusher_container')
-  const lyrics_pusher = document.querySelector('#lyrics_pusher')
-  const close_button_pusher = document.querySelector('#close_button_pusher')
+  const view_lyrics_button = document.querySelector('#view_lyrics_button');
+  const view_lyrics_text = document.querySelector('#view_lyrics_text');
+  const view_lyrics_arrow = document.querySelector('#view_lyrics_arrow');
+  const lyrics_container = document.querySelector('#lyrics_container');
+  const pusher_container = document.querySelector('#pusher_container');
+  const lyrics_pusher = document.querySelector('#lyrics_pusher');
+  const close_button_pusher = document.querySelector('#close_button_pusher');
 
   // DOM elements - SPOTIFY
   const imageInput = document.querySelector('#music_cover');
@@ -29,33 +29,33 @@ window.addEventListener('load', () => {
   const albumPosition = document.querySelector('#album_position');
   const songPreviewInput = document.querySelector('#song_preview');
   const countriesCounterInput = document.querySelector('#countries_counter');
-  const popularityInput = document.querySelector('#popularity')
+  const popularityInput = document.querySelector('#popularity');
 
-  const player_button = document.querySelector('#player_button')
+  const player_button = document.querySelector('#player_button');
   const audio = document.querySelector('#player');
 
   const trackIdInput = document.querySelector('#track-input');
   const isrcInput = document.querySelector('#isrc-input');
 
   // Get DOM elements - MUSIXMATCH
-  const mxm_lyrics_url = document.querySelector('#mxm_lyrics_url')
-  const mxm_artist_url = document.querySelector('#mxm_artist_url')
-  const mxm_album_url = document.querySelector('#mxm_album_url')
+  const mxm_lyrics_url = document.querySelector('#mxm_lyrics_url');
+  const mxm_artist_url = document.querySelector('#mxm_artist_url');
+  const mxm_album_url = document.querySelector('#mxm_album_url');
   const abstrack_mxm = document.querySelector('#mxm_abstrack');
-  const popularity_mxm = document.querySelector('#popularity_mxm')
+  const popularity_mxm = document.querySelector('#popularity_mxm');
 
-  const mxm_lyricsname = document.querySelector('#mxm_lyrics_url')
-  const mxm_artistname = document.querySelector('#mxm_artist_url')
-  const mxm_albumname = document.querySelector('#mxm_album_url')
+  const mxm_lyricsname = document.querySelector('#mxm_lyrics_url');
+  const mxm_artistname = document.querySelector('#mxm_artist_url');
+  const mxm_albumname = document.querySelector('#mxm_album_url');
 
-  const stats_mxm_lyrics = document.querySelector('#has_lyrics')
-  const stats_mxm_linesync = document.querySelector('#has_sync')
-  const stats_mxm_wordsync = document.querySelector('#has_wordsync')
-  const stats_mxm_explicit = document.querySelector('#is_explicit')
-  const stats_mxm_instrumental = document.querySelector('#is_instrumental')
+  const stats_mxm_lyrics = document.querySelector('#has_lyrics');
+  const stats_mxm_linesync = document.querySelector('#has_sync');
+  const stats_mxm_wordsync = document.querySelector('#has_wordsync');
+  const stats_mxm_explicit = document.querySelector('#is_explicit');
+  const stats_mxm_instrumental = document.querySelector('#is_instrumental');
 
-  const div_lyrics_preview = document.querySelector('#div_lyrics_preview')
-  const mxm_lyrics_preview = document.querySelector('#lyrics_preview')
+  const div_lyrics_preview = document.querySelector('#div_lyrics_preview');
+  const mxm_lyrics_preview = document.querySelector('#lyrics_preview');
 
   // Função para salvar o país no navegador
   const saveCountry = (countryCode) => {
@@ -117,7 +117,7 @@ window.addEventListener('load', () => {
       view_lyrics_arrow.textContent = ">";
       return;
     } else if (isrcRegex.test(inputVal)) {
-      alert('ISRC search is not feature at the moment.');
+      alert("ISRC search isn't a feature at the moment.");
       return;
     } else {
       alert('Sorry! Please enter a valid Spotify track URL or ID. 🎶');
