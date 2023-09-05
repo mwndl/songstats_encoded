@@ -1,5 +1,4 @@
-window.addEventListener('load', () => {
-
+window.addEventListener('DOMContentLoaded', () => {
   const searchBtn = document.querySelector('#search-btn');
   const search_input = document.querySelector('#search_input');
 
@@ -37,7 +36,7 @@ window.addEventListener('load', () => {
   const trackIdInput = document.querySelector('#track-input');
   const isrcInput = document.querySelector('#isrc-input');
 
-  const spotifyPreview = document.querySelector('#spotify_preview')
+  const spotifyPreview = document.querySelector('#spotify_iframe_preview')
 
   // Get DOM elements - MUSIXMATCH
   const mxm_lyrics_url = document.querySelector('#mxm_lyrics_url');
@@ -160,6 +159,7 @@ window.addEventListener('load', () => {
         const albumTotalN = data.album.total_tracks;
         const numMarkets = data.available_markets.length;
         const popularity = data.popularity;
+        const spotifyPreviewSrc = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`
 
         const releaseDate = data.album.release_date.toString().padStart(2, '0');
 
@@ -209,7 +209,7 @@ window.addEventListener('load', () => {
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
         songPreviewInput.src = songPreview;
         player_button.className = "play-button";
-        spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`;
+        spotifyPreview.src = spotifyPreviewSrc;
         
         // Verificar se o país salvo está disponível para a faixa pesquisada
         const selectedCountry = localStorage.getItem('selected_country');
