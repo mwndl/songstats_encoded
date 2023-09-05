@@ -37,6 +37,8 @@ window.addEventListener('load', () => {
   const trackIdInput = document.querySelector('#track-input');
   const isrcInput = document.querySelector('#isrc-input');
 
+  const spotifyPreview = document.querySelector('#spotify_preview')
+
   // Get DOM elements - MUSIXMATCH
   const mxm_lyrics_url = document.querySelector('#mxm_lyrics_url');
   const mxm_artist_url = document.querySelector('#mxm_artist_url');
@@ -188,7 +190,7 @@ window.addEventListener('load', () => {
 
         // Format artists as HTML anchor tags
         const artistsLinks = artists.map(
-          (artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`
+          (artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`;
         );
 
         // Update DOM elements with Spotify data
@@ -206,7 +208,8 @@ window.addEventListener('load', () => {
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
         songPreviewInput.src = songPreview;
-        player_button.className = "play-button"
+        player_button.className = "play-button";
+        spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`;
         
         // Verificar se o país salvo está disponível para a faixa pesquisada
         const selectedCountry = localStorage.getItem('selected_country');
