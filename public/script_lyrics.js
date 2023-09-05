@@ -190,7 +190,7 @@ window.addEventListener('load', () => {
 
         // Format artists as HTML anchor tags
         const artistsLinks = artists.map(
-          (artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`;
+          (artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`
         );
 
         // Update DOM elements with Spotify data
@@ -378,4 +378,4 @@ window.addEventListener('load', () => {
   });
 
   // ...
-});
+})
