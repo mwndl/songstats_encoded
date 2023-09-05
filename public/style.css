@@ -8,9 +8,6 @@
 
 body {
   background-color: rgb(0, 119, 194);
-}
-
-body {
   display: block;
 }
 
@@ -31,30 +28,30 @@ a:hover {
     align-items: flex-start;
     justify-content: center;
     max-width: 1450px;
-    height: 720px;
+    max-height: 740px;
     margin: 5px auto;
 }
 
 .container_1 {
   width: 700px;
-  height: 100%;
+  max-height: 730px;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: 5px auto 5px;
-  padding: 20px;
-  border-radius: 20px;
+  margin: 5px 15px;
+  padding: 16px 18px;
+  border-radius: 18px;
 }
 
 .container_2 {
   width: 700px;
-  height: 100%;
+  height: 730px;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: 5px auto 5px;
+  margin-top: 5px;
   padding: 20px;
   border-radius: 20px;
 }
@@ -62,12 +59,12 @@ a:hover {
 .container_3 {
   position: relative;
   width: 700px;
-  height: 100%;
+  max-height: 730px;
+  margin-top: 5px;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: 5px auto 5px;
   border-radius: 20px;
 }
 
@@ -201,18 +198,18 @@ a:hover {
   align-items: center;
   font-size: 20px;
   width: 100%;
+  height: 220px;
   margin: auto;
+  margin-bottom: 15px;
 }
 
 .music-cover {
-  width: 40%;
-  height: 0;
-  padding-bottom: 40%;
+  width: 220px;
+  height: 220px;
+  padding-bottom: 33%;
   background-color: #ccc;
   border-radius: 10px;
-  margin-bottom: 30px;
   position: relative;
-  margin-right: 20px;
   background-size: cover;
   background-position: left;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -235,14 +232,14 @@ h2 {
 }
 
 .div-music-details {
-  height: 264px;
-  width: 50%;
+  height: 100%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   position: relative;
-  margin: 0px 25px 30px;
+  margin: 0px 25px 25px;
 }
 
 .msc_top {
@@ -358,7 +355,7 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   height: 120px;
-  margin: 0px 0px 22px;
+  margin: 0px 0px 12px;
 }
 
 .main {
@@ -470,7 +467,8 @@ h2 {
 .main_2-div {
   display: flex;
   justify-content: space-between;
-  height: 185px;
+  height: 180px;
+
 }
 
 .song-stats-div-1 {
@@ -478,11 +476,11 @@ h2 {
   justify-content: space-between;
   width: 250px;
   height: 110px;
-  margin: auto auto 20px;
+  margin: auto auto 15px;
 }
 
 .all-stats {
-  height: 185px;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
   margin: auto;
@@ -635,5 +633,14 @@ h2 {
 .music-player audio {
   width: 100%;
   max-width: 700px;
+}
+
+.spotify_preview {
+  width: 100%;
+  height: 80px;
+  border-radius: 12px;
+  background-color: #4e4e4e94;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 15px 0px 3px;
 }
 
