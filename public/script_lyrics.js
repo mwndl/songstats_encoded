@@ -361,9 +361,11 @@ window.addEventListener('load', () => {
           view_lyrics_arrow.textContent = '>'
       }
   }
+    /* Disabled 
 
-  view_lyrics_button.addEventListener('click', toggleLyrics);
+   view_lyrics_button.addEventListener('click', toggleLyrics);
 
+   */
 
   // Add event listener for search button
   searchBtn.addEventListener('click', handleSearch);
