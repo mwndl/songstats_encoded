@@ -159,11 +159,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const albumTotalN = data.album.total_tracks;
         const numMarkets = data.available_markets.length;
         const popularity = data.popularity;
-        const spotifyPreviewSrc = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`
 
         const releaseDate = data.album.release_date.toString().padStart(2, '0');
 
         const songPreview = data.preview_url;
+
+        const spotifyPreviewSrc = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`
 
         // Collect all artist names and URLs
         const artists = data.artists.map((artist) => {
