@@ -196,29 +196,40 @@ window.addEventListener('load', () => {
         );
 
         // Update DOM elements with Spotify data
+
+        /* Desativado após integração de novo player 
+        
         titleInput.textContent = title;
         trackUrlInput.href = songURL;
         artistInput.innerHTML = artistsLinks.join(", ");
         albumInput.textContent = album;
         albumUrlInput.href = albumURL;
         imageInput.style.backgroundImage = `url(${image})`;
+
+        */
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
+        /*
         releaseDateInput.textContent = releaseDate;
+        */
         durationInput.textContent = duration;
         albumPosition.textContent = `Album Position: ${albumPositionN} of ${albumTotalN}`;
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
+        /*
         songPreviewInput.src = songPreview;
+        */
         spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
+        /*
         player_button.className = "play-button"
+        */
         
         // Verificar se o país salvo está disponível para a faixa pesquisada
         const selectedCountry = localStorage.getItem('selected_country');
         if (selectedCountry) {
           checkCountryAvailability(selectedCountry);
         }
-
+        /*
         if (songPreview) {
           songPreviewInput.src = songPreview;
           audio.volume = 0.5;
@@ -230,6 +241,7 @@ window.addEventListener('load', () => {
           player_button.style = "display:none"
           audio.load();
         }
+        */
 
         // Send request to server.js API for Spotify Lyrics search
         fetch(`https://datamatch-sm.onrender.com/api/lyrics/search/${encodeURIComponent(songURL)}?token=${accessToken}`)
@@ -351,7 +363,7 @@ window.addEventListener('load', () => {
         alert(`Error: ${error.message}`);
       });
   };
-
+    /*
     function toggleLyrics() {
       if (lyrics_container.style.display === 'none') {
           lyrics_container.style.display = '';
@@ -363,8 +375,7 @@ window.addEventListener('load', () => {
           view_lyrics_text.textContent = 'View Lyrics';
           view_lyrics_arrow.textContent = '>'
       }
-  }
-    /* Disabled 
+    } 
 
    view_lyrics_button.addEventListener('click', toggleLyrics);
 
