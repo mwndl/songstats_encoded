@@ -337,8 +337,9 @@ window.addEventListener('load', () => {
               stats_mxm_instrumental.className = "status-1 status-red";
             }
 
+            /*
             // Ativa ou desativa o preview das letras
-
+          
             if (mxm_has_lyrics === 1) {
               div_lyrics_preview.style = ""
               mxm_lyrics_preview.src = `//musixmatch.com/lyrics/${mxm_artist_id}/${mxm_abstrack}/embed?theme=white`
@@ -353,6 +354,7 @@ window.addEventListener('load', () => {
             } else {
               view_lyrics_text.id = "view_lyrics_button";
             }
+            */
 
           })
           .catch((error) => {
