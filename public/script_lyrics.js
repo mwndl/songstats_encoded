@@ -145,13 +145,13 @@ window.addEventListener('load', () => {
         // Process and display Spotify data
         /*
         const title = data.name;
-        const songURL = data.external_urls.spotify;
         const artist = data.artists[0].name;
         const artistURL = data.artists[0].external_urls.spotify;
         const album = data.album.name;
         const albumURL = data.album.external_urls.spotify;
         const image = data.album.images[0].url;
         */
+        const songURL = data.external_urls.spotify;
         const spotifyID = data.id;
         const isrc = data.external_ids.isrc;
         const durationMs = data.duration_ms;
