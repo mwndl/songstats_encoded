@@ -143,6 +143,7 @@ window.addEventListener('load', () => {
       .then((data) => {
         console.log(data)
         // Process and display Spotify data
+        /*
         const title = data.name;
         const songURL = data.external_urls.spotify;
         const artist = data.artists[0].name;
@@ -150,6 +151,7 @@ window.addEventListener('load', () => {
         const album = data.album.name;
         const albumURL = data.album.external_urls.spotify;
         const image = data.album.images[0].url;
+        */
         const spotifyID = data.id;
         const isrc = data.external_ids.isrc;
         const durationMs = data.duration_ms;
@@ -172,6 +174,7 @@ window.addEventListener('load', () => {
           return { name: artist.name, url: artist.external_urls.spotify };
         });
 
+        /*
         // Função para verificar se o país está disponível na lista de países da faixa
         const checkCountryAvailability = (countryCode) => {
           const availableMarkets = data.available_markets;
@@ -189,6 +192,7 @@ window.addEventListener('load', () => {
             div_country_local.title = `This track is available in your country`
           }
         };
+        */
 
         // Format artists as HTML anchor tags
         const artistsLinks = artists.map(
@@ -196,7 +200,7 @@ window.addEventListener('load', () => {
         );
 
         // Update DOM elements with Spotify data
-
+        
         /* Desativado após integração de novo player 
         
         titleInput.textContent = title;
@@ -209,6 +213,7 @@ window.addEventListener('load', () => {
         */
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
+        spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
         /*
         releaseDateInput.textContent = releaseDate;
         */
@@ -218,9 +223,6 @@ window.addEventListener('load', () => {
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
         /*
         songPreviewInput.src = songPreview;
-        */
-        spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
-        /*
         player_button.className = "play-button"
         */
         
