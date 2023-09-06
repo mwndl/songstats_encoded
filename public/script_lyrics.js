@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const searchBtn = document.querySelector('#search-btn');
   const search_input = document.querySelector('#search_input');
 
@@ -207,7 +207,8 @@ window.addEventListener('DOMContentLoaded', () => {
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
         songPreviewInput.src = songPreview;
-        player_button.className = "play-button";
+        spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
+        player_button.className = "play-button"
         
         // Verificar se o país salvo está disponível para a faixa pesquisada
         const selectedCountry = localStorage.getItem('selected_country');
@@ -342,7 +343,6 @@ window.addEventListener('DOMContentLoaded', () => {
           .catch((error) => {
             console.error(error);
           });
-          spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
       })
       .catch((error) => {
         alert(`Error: ${error.message}`);
