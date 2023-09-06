@@ -1,4 +1,6 @@
 window.addEventListener('load', () => {
+  const animationStarter = document.querySelector('#background_animation_starter')
+
   const searchBtn = document.querySelector('#search-btn');
   const search_input = document.querySelector('#search_input');
 
@@ -143,15 +145,13 @@ window.addEventListener('load', () => {
       .then((data) => {
         console.log(data)
         // Process and display Spotify data
-        /*
         const title = data.name;
+        const songURL = data.external_urls.spotify;
         const artist = data.artists[0].name;
         const artistURL = data.artists[0].external_urls.spotify;
         const album = data.album.name;
         const albumURL = data.album.external_urls.spotify;
         const image = data.album.images[0].url;
-        */
-        const songURL = data.external_urls.spotify;
         const spotifyID = data.id;
         const isrc = data.external_ids.isrc;
         const durationMs = data.duration_ms;
@@ -174,7 +174,6 @@ window.addEventListener('load', () => {
           return { name: artist.name, url: artist.external_urls.spotify };
         });
 
-        /*
         // Função para verificar se o país está disponível na lista de países da faixa
         const checkCountryAvailability = (countryCode) => {
           const availableMarkets = data.available_markets;
@@ -192,7 +191,6 @@ window.addEventListener('load', () => {
             div_country_local.title = `This track is available in your country`
           }
         };
-        */
 
         // Format artists as HTML anchor tags
         const artistsLinks = artists.map(
@@ -200,7 +198,7 @@ window.addEventListener('load', () => {
         );
 
         // Update DOM elements with Spotify data
-        
+
         /* Desativado após integração de novo player 
         
         titleInput.textContent = title;
@@ -213,7 +211,6 @@ window.addEventListener('load', () => {
         */
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
-        spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
         /*
         releaseDateInput.textContent = releaseDate;
         */
@@ -223,6 +220,9 @@ window.addEventListener('load', () => {
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
         /*
         songPreviewInput.src = songPreview;
+        */
+        spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
+        /*
         player_button.className = "play-button"
         */
         
@@ -244,6 +244,21 @@ window.addEventListener('load', () => {
           audio.load();
         }
         */
+
+        animationStarter.innerHTML = `
+        @keyframes animate {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+            border-radius: 0;
+          }
+          100% {
+            transform: translateY(-1000px) rotate(720deg);
+            opacity: 0;
+            border-radius: 50%;
+          }
+        }
+      `;
 
         // Send request to server.js API for Spotify Lyrics search
         fetch(`https://datamatch-sm.onrender.com/api/lyrics/search/${encodeURIComponent(songURL)}?token=${accessToken}`)
@@ -339,9 +354,8 @@ window.addEventListener('load', () => {
               stats_mxm_instrumental.className = "status-1 status-red";
             }
 
-            /*
             // Ativa ou desativa o preview das letras
-          
+
             if (mxm_has_lyrics === 1) {
               div_lyrics_preview.style = ""
               mxm_lyrics_preview.src = `//musixmatch.com/lyrics/${mxm_artist_id}/${mxm_abstrack}/embed?theme=white`
@@ -356,7 +370,6 @@ window.addEventListener('load', () => {
             } else {
               view_lyrics_text.id = "view_lyrics_button";
             }
-            */
 
           })
           .catch((error) => {
