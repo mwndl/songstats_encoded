@@ -127,18 +127,6 @@
               </div>
             </div> 
           </div>
-          <script>
-            const iframe = document.querySelector('iframe');
-            
-            // Oculta a capa do álbum
-            iframe.setAttribute('data-hide-cover', true);
-            
-            // Oculta o mini player
-            iframe.setAttribute('data-hide-mini-player', true);
-            
-            // Inicia o player de áudio
-            spotify.player.play(iframe.getAttribute('src'));
-            </script>
         </div>
         <div class="container_2" style="display:none" id="lyrics_container">
           <div id="div-lyrics-preview">
@@ -171,60 +159,63 @@
       </ul>
     </div >
   </body>
-  <script>
-    var playButton = document.getElementById('player_button');
-    var audioPlayer = document.getElementById('player');
+    <script>
 
-    playButton.addEventListener('click', function() {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            playButton.classList.remove('play-button');
-            playButton.classList.add('pause-button');
-        } else {
-            audioPlayer.pause();
-            playButton.classList.remove('pause-button');
-            playButton.classList.add('play-button');
-        }
-    });
-    audioPlayer.addEventListener('ended', function() {
-      playButton.classList.remove('pause-button');
-      playButton.classList.add('play-button');
-    });
+      /* disabled
+      
+      var playButton = document.getElementById('player_button');
+      var audioPlayer = document.getElementById('player');
 
-    // Botão close_button_pusher 
-    const closeButtonPusher = document.getElementById('close_button_pusher');
-    const pusher_container = document.getElementById('pusher_container');
-    
-    const hideLyricsPusher = () => {
-      pusher_container.style = "display:none";
-    };
-    closeButtonPusher.addEventListener('click', hideLyricsPusher);
+      playButton.addEventListener('click', function() {
+          if (audioPlayer.paused) {
+              audioPlayer.play();
+              playButton.classList.remove('play-button');
+              playButton.classList.add('pause-button');
+          } else {
+              audioPlayer.pause();
+              playButton.classList.remove('pause-button');
+              playButton.classList.add('play-button');
+          }
+      });
+      audioPlayer.addEventListener('ended', function() {
+        playButton.classList.remove('pause-button');
+        playButton.classList.add('play-button');
+      });
 
-    // Botão refresh pusher
-    const lyricsPusher = document.getElementById('lyrics_pusher');
-    const refreshButton = document.getElementById('refresh_button');
+      */
 
-    const restartIframe = () => {
-      lyricsPusher.src = lyricsPusher.src;
-    };
+      // Botão close_button_pusher 
+      const closeButtonPusher = document.getElementById('close_button_pusher');
+      const pusher_container = document.getElementById('pusher_container');
+      
+      const hideLyricsPusher = () => {
+        pusher_container.style = "display:none";
+      };
+      closeButtonPusher.addEventListener('click', hideLyricsPusher);
 
-    // Adiciona um ouvinte de evento de clique ao botão de refresh
-    refreshButton.addEventListener('click', restartIframe);
+      // Botão refresh pusher
+      const lyricsPusher = document.getElementById('lyrics_pusher');
+      const refreshButton = document.getElementById('refresh_button');
 
-    // Animação de fundo //
-    // Função para gerar números aleatórios entre 0 e 1
-    function getRandom() {
-        return Math.random();
-    }
+      const restartIframe = () => {
+        lyricsPusher.src = lyricsPusher.src;
+      };
 
-    // Seleciona todos os elementos .circles li e adiciona a classe .random-position com valores aleatórios
-    const circles = document.querySelectorAll('.circles li');
-    circles.forEach((circle) => {
-        circle.style.setProperty('--random-x', getRandom());
-        circle.style.setProperty('--random-delay', getRandom() * 10 + 's');
-        circle.classList.add('random-position');
-});
+      // Adiciona um ouvinte de evento de clique ao botão de refresh
+      refreshButton.addEventListener('click', restartIframe);
 
+      // Animação de fundo //
+      // Função para gerar números aleatórios entre 0 e 1
+      function getRandom() {
+          return Math.random();
+      }
 
-</script>
+      // Seleciona todos os elementos .circles li e adiciona a classe .random-position com valores aleatórios
+      const circles = document.querySelectorAll('.circles li');
+      circles.forEach((circle) => {
+          circle.style.setProperty('--random-x', getRandom());
+          circle.style.setProperty('--random-delay', getRandom() * 10 + 's');
+          circle.classList.add('random-position');
+      });
+  </script>
 </html>
