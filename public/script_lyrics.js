@@ -124,7 +124,10 @@ window.addEventListener('load', () => {
       alert('Sorry! Please enter a valid Spotify track URL or ID. 🎶');
       return;
     }
+
+    /* disabled
     country_local_status.className = "status-3 status-gray"
+    */
     search_input.value = "";
     // Botão 'X' do container de push
     const close_lyricspusher = () => {
