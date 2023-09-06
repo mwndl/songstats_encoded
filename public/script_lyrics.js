@@ -164,8 +164,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const songPreview = data.preview_url;
 
-        const spotifyPreviewSrc = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`
-
         // Collect all artist names and URLs
         const artists = data.artists.map((artist) => {
           return { name: artist.name, url: artist.external_urls.spotify };
@@ -210,7 +208,6 @@ window.addEventListener('DOMContentLoaded', () => {
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
         songPreviewInput.src = songPreview;
         player_button.className = "play-button";
-        spotifyPreview.src = spotifyPreviewSrc;
         
         // Verificar se o país salvo está disponível para a faixa pesquisada
         const selectedCountry = localStorage.getItem('selected_country');
@@ -345,6 +342,7 @@ window.addEventListener('DOMContentLoaded', () => {
           .catch((error) => {
             console.error(error);
           });
+          spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`;
       })
       .catch((error) => {
         alert(`Error: ${error.message}`);
