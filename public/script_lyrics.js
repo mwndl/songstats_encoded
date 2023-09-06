@@ -342,7 +342,7 @@ window.addEventListener('DOMContentLoaded', () => {
           .catch((error) => {
             console.error(error);
           });
-          spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator`;
+          spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
       })
       .catch((error) => {
         alert(`Error: ${error.message}`);
