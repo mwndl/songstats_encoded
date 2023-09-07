@@ -156,7 +156,7 @@ body{
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
   margin: 0;
   padding: 0;
 }
@@ -265,13 +265,14 @@ input:-webkit-autofill::selection {
 }
 
 .container_1 {
+  position: relative;
   width: 700px;
   max-height: 730px;
   background-color: #222222;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: 5px 15px;
+  margin: auto;
   padding: 16px 18px;
   border-radius: 18px;
 }
@@ -283,7 +284,7 @@ input:-webkit-autofill::selection {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin-top: 5px;
+  margin: auto;
   padding: 20px;
   border-radius: 20px;
 }
@@ -292,8 +293,7 @@ input:-webkit-autofill::selection {
   position: relative;
   width: 700px;
   max-height: 730px;
-  margin-top: 5px;
-  background-color: #222222;
+  margin: auto;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
