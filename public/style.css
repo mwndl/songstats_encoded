@@ -280,7 +280,6 @@ input:-webkit-autofill::selection {
 .container_2 {
   width: 700px;
   height: 730px;
-  background-color: #222222;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
