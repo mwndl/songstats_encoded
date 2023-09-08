@@ -145,8 +145,8 @@ window.addEventListener('load', () => {
       .then((data) => {
         console.log(data)
 
-        spotifyData = message.body.spotify;
-        mxmData = message.body.musixmatch;
+        spotifyData = body.spotify;
+        mxmData = body.musixmatch;
 
         // Spotify data
         const title = spotifyData.track_data.track_name;
