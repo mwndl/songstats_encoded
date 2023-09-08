@@ -144,7 +144,8 @@ window.addEventListener('load', () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-
+        
+        let spotifyData, mxmData;
         spotifyData = data.message.body.spotify;
         mxmData = data.message.body.musixmatch;
 
@@ -175,8 +176,8 @@ window.addEventListener('load', () => {
 
         const songPreview = spotifyData.track_data.preview_url;
 
-        const spotify_lyrics = spotifyData.track_data.lyrics_stats.has_lyrics;
-        const spotify_sync = spotifyData.track_data.lyrics_stats.has_sync;
+        const spot_lyrics = spotifyData.track_data.lyrics_stats.has_lyrics;
+        const spot_sync = spotifyData.track_data.lyrics_stats.has_sync;
 
         // Musixmatch Data
         const mxm_abstrack = mxmData.track_data.commontrack_id;
@@ -198,17 +199,17 @@ window.addEventListener('load', () => {
         const mxm_restricted = mxmData.track_data.restricted;
         
         // Definição de valores
-        if (spotify_lyrics === false) {
+        if (spot_lyrics === false) {
             spotify_lyrics.className = "status-2 status-gray";
-        } else if (spotify_lyrics === true) {
+        } else if (spot_lyrics === true) {
             spotify_lyrics.className = "status-2 status-blue";
         } else {
             spotify_lyrics.className = "status-2 status-red";
         }
         
-        if (spotify_sync === false) {
+        if (spot_sync === false) {
             spotify_sync.className = "status-2 status-gray";
-        } else if (spotify_sync === true) {
+        } else if (spot_sync === true) {
             spotify_sync.className = "status-2 status-blue";
         } else {
             spotify_sync.className = "status-2 status-red";
