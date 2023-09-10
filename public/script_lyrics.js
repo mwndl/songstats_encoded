@@ -157,9 +157,9 @@ window.addEventListener('load', () => {
         const artistID = spotifyData.artists_data.artists[0].artist_id;
         const artistURL = `https://open.spotify.com/artist/${artistID}`;
         const album = spotifyData.album_data.album_id;
-        const albumID = spotifyData.album_data.artists[0].artist_id;
+        const albumID = spotifyData.album_data.album_id;
         const albumURL = `https://open.spotify.com/album/${albumID}`;
-        const image = spotifyData.album_data.images[0].url;
+        const image = spotifyData.album_data.images.url;
         const isrc = spotifyData.track_data.isrc;
         const durationMs = spotifyData.track_data.duration_ms;
 
