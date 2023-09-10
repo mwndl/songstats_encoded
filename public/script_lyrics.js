@@ -155,7 +155,6 @@ window.addEventListener('load', () => {
     fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         
         let spotifyData, mxmData;
         spotifyData = data.message.body.spotify;
@@ -203,12 +202,12 @@ window.addEventListener('load', () => {
         const mxm_artist_name = mxmData.artist_data.artist_name;
         const mxm_album_name = mxmData.album_data.album_name;
 
-        const mxm_has_lyrics = mxmData.track_data.has_lyrics;
-        const mxm_has_linesync = mxmData.track_data.has_line_sync;
-        const mxm_has_richsync = mxmData.track_data.has_word_sync;
-        const mxm_instrumental = mxmData.track_data.instrumental;
-        const mxm_explicit = mxmData.track_data.explicit;
-        const mxm_restricted = mxmData.track_data.restricted;
+        const mxm_has_lyrics = mxmData.track_data.stats.has_lyrics;
+        const mxm_has_linesync = mxmData.track_data.stats.has_line_sync;
+        const mxm_has_richsync = mxmData.track_data.stats.has_word_sync;
+        const mxm_instrumental = mxmData.track_data.stats.instrumental;
+        const mxm_explicit = mxmData.track_data.stats.explicit;
+        const mxm_restricted = mxmData.track_data.stats.restricted;
         
         // Definição de valores
         if (spot_lyrics === false) {
@@ -237,7 +236,7 @@ window.addEventListener('load', () => {
         mxm_albumname.title = mxm_album_name
 
         popularity_mxm.textContent = `Musixmatch Rating: ${mxm_lyrics_rating}%`;
-
+        
         if (mxm_has_lyrics === 0) {
             stats_mxm_lyrics.className = "status-1 status-gray";
         } else if (mxm_has_lyrics === 1) {
