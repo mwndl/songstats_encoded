@@ -89,6 +89,65 @@ window.addEventListener('load', () => {
     }
   };
 
+  // Notifications
+
+  function notificationInvalidPatern() {
+      message.textContent = "Please enter a valid Spotify track URL or ID. 🎶";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500);
+      }, 4000); // Tempo de exibição
+  };
+  function notificationIsrcUnavailable() {
+      message.textContent = "Oops! ISRC search is not a feature at the moment. 👀";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+  function notificationCountrySaved() {
+      message.textContent = "Perfect! Your country is now local saved.";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+  function notificationCountryError() {
+      message.textContent = "Invalid command, please try again.";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+
+    function generalServerError() {
+      message.textContent = "Sorry, we're experiencing server issues at the moment. 😥";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Token 3: Public / Limited
 
   // Function to handle search
@@ -159,8 +218,15 @@ window.addEventListener('load', () => {
     
 
     // Send a Lyrics request to the internal API
-    fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
-      .then((response) => response.json())
+    fetch(`https://songstats.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
+      .then((response) => {
+        if (response.status === 500) {
+          // Se o status da resposta for 500, chame generalServerError()
+          generalServerError();
+          throw new Error("Erro na solicitação fetch");
+        }
+        return response.json();
+      })
       .then((data) => {
         
         let spotifyData, mxmData;
@@ -397,69 +463,29 @@ window.addEventListener('load', () => {
         */
 
         animationStarter.innerHTML = `
-        @keyframes animate {
-          0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-            border-radius: 0;
+          @keyframes animate {
+            0% {
+              transform: translateY(0) rotate(0deg);
+              opacity: 1;
+              border-radius: 0;
+            }
+            100% {
+              transform: translateY(-1000px) rotate(720deg);
+              opacity: 0;
+              border-radius: 50%;
+            }
           }
-          100% {
-            transform: translateY(-1000px) rotate(720deg);
-            opacity: 0;
-            border-radius: 50%;
-          }
-        }
-      `;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+        `;
+        })
+        .catch((error) => {
+          console.error("Ocorreu um erro na solicitação fetch:", error);
+          alert("Ocorreu um erro na solicitação fetch. Verifique o console para detalhes.");
+        });
+      } catch (error) {
+        console.error("Ocorreu um erro inesperado:", error);
+        alert("Ocorreu um erro inesperado. Verifique o console para detalhes.");
+      }
   };
-
-  function notificationInvalidPatern() {
-      message.textContent = "Please enter a valid Spotify track URL or ID. 🎶";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500);
-      }, 4000); // Tempo de exibição
-  };
-  function notificationIsrcUnavailable() {
-      message.textContent = "Oops! ISRC search is not a feature at the moment. 👀";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function notificationCountrySaved() {
-      message.textContent = "Perfect! Your country is now local saved.";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function notificationCountryError() {
-      message.textContent = "Invalid command, please try again.";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
 
   
     /* DESATIVADO MOMENTANEAMENTE!
