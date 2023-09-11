@@ -892,3 +892,32 @@ h2 {
   user-select: none;
 }
 
+/* Notificação inferior */
+
+#notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.notification-content p {
+  width: 100%;
+  color: #2a2a2a;
+  opacity: 100;
+  margin: 15px;
+  user-select: none;
+}
+
+.hidden {
+  display: none;
+}
+
