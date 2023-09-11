@@ -67,6 +67,10 @@ window.addEventListener('load', () => {
   const stats_mxm_explicit = document.querySelector('#is_explicit');
   const stats_mxm_instrumental = document.querySelector('#is_instrumental');
 
+  // Get Notification Pop-Up elements
+  const notification = document.getElementById("notification");
+  const message = document.getElementById("notification-message");
+
   /* DESATIVADO MOMENTANEAMENTE
   const div_lyrics_preview = document.querySelector('#div_lyrics_preview');
   const mxm_lyrics_preview = document.querySelector('#lyrics_preview');
@@ -76,10 +80,10 @@ window.addEventListener('load', () => {
   const saveCountry = (countryCode) => {
     if (countryCode && countryCode.length === 2) {
       localStorage.setItem('selected_country', countryCode);
-      alert(`Your country was saved as ${countryCode}.`);
+      notificationCountrySaved();
       search_input.value = ""
     } else {
-      alert('Invalid command, try again');
+      notificationCountryError('Invalid command, try again');
       search_input.value = ""
     }
   };
@@ -94,13 +98,15 @@ window.addEventListener('load', () => {
     const studioUrlRegex = /(?:&|\?)player=spotify&(?:.*&)?track_id=([^&\s]+)/;
     const idRegex = /^[a-zA-Z0-9]{22}$/;
     const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}\d{2}\d{5}$/;
-    const pushForm = "push";
+    
+    const pushForm = "/push";
 
     let trackId = '';
     let isrc = '';
+    
 
    // Verificar se o comando "set_market_<country_code>" foi digitado
-    const setCountryRegex = /^set_market_([A-Z]{2})$/;
+    const setCountryRegex = /^\/set_country\/([A-Z]{2})$/;
     const setCountryMatch = inputVal.match(setCountryRegex);
     if (setCountryMatch) {
       const countryCode = setCountryMatch[1];
@@ -132,10 +138,10 @@ window.addEventListener('load', () => {
       view_lyrics_arrow.textContent = ">";
       return;
     } else if (isrcRegex.test(inputVal)) {
-      alert("ISRC search isn't a feature at the moment.");
+      notificationIsrcUnavailable();
       return;
     } else {
-      alert('Sorry! Please enter a valid Spotify track URL or ID. 🎶');
+      notificationInvalidPatern()
       return;
     }
 
@@ -400,6 +406,52 @@ window.addEventListener('load', () => {
         console.error(error);
       });
   };
+
+  function notificationInvalidPatern() {
+      message.textContent = "Please enter a valid Spotify track URL or ID. 🎶";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500);
+      }, 4000); // Tempo de exibição
+  };
+  function notificationIsrcUnavailable() {
+      message.textContent = "Oops! ISRC search is not a feature at the moment. 👀";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+  function notificationCountrySaved() {
+      message.textContent = "Perfect! Your country is now local saved.";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+  function notificationCountryError() {
+      message.textContent = "Invalid command, please try again.";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+
   
     /* DESATIVADO MOMENTANEAMENTE!
     
