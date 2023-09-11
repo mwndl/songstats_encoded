@@ -179,6 +179,7 @@ window.addEventListener('load', () => {
         const albumURL = `https://open.spotify.com/album/${albumID}`;
         const image = spotifyData.album_data.images.url;
         const songPreview = spotifyData.track_data.preview_url;
+        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
 
         */
         
@@ -192,9 +193,15 @@ window.addEventListener('load', () => {
         const albumTotalN = spotifyData.album_data.total_tracks;
         const numMarkets = spotifyData.track_data.available_markets.length;
         const popularity = spotifyData.track_data.popularity;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
         const spot_lyrics = spotifyData.track_data.lyrics_stats.has_lyrics;
         const spot_sync = spotifyData.track_data.lyrics_stats.has_sync;
+
+        const album_color_1 = spotifyData.album_data.color_theme.color_1;
+        const album_color_2 = spotifyData.album_data.color_theme.color_2;
+        const album_color_3 = spotifyData.album_data.color_theme.color_3;
+        const album_color_4 = spotifyData.album_data.color_theme.color_4;
+        const album_color_5 = spotifyData.album_data.color_theme.color_5;
+        console.log(album_color_1, album_color_2, album_color_3, album_color_3, album_color_4, album_color_5)
 
         // Musixmatch Data
         const mxm_abstrack = mxmData.track_data.commontrack_id;
