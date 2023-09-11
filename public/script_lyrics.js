@@ -135,8 +135,7 @@ window.addEventListener('load', () => {
           }, 500); 
       }, 4000); // Tempo de exibição
   }
-
-    function generalServerError() {
+  function generalServerError() {
       message.textContent = "Sorry, we're experiencing server issues at the moment. 😥";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
@@ -147,8 +146,30 @@ window.addEventListener('load', () => {
           }, 500); 
       }, 4000); // Tempo de exibição
   }
+  function invalidToken() {
+      message.textContent = "The token you're using is invalid";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 3000); // Tempo de exibição
+  }
+  function tooManyRequests() {
+      message.textContent = "Too many requests, please try again later or use another token";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
 
-  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Token 3: Public / Limited
+  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56'; // Token 3: Public / Limited
 
   // Function to handle search
   const handleSearch = () => {
@@ -220,10 +241,15 @@ window.addEventListener('load', () => {
     // Send a Lyrics request to the internal API
     fetch(`https://songstats.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
       .then((response) => {
-        if (response.status === 500) {
-          // Se o status da resposta for 500, chame generalServerError()
+        if (response.status === 403) {
+          invalidToken();
+          throw new Error("Error 403 - You're using a invalid token");
+        } else if (response.status === 429) {
+          tooManyRequests();
+          throw new Error("Erro 429 - Too many requests");
+        } else if (response.status === 500) {
           generalServerError();
-          throw new Error("Erro na solicitação fetch");
+          throw new Error("Error 500 - Server unavailable");
         }
         return response.json();
       })
