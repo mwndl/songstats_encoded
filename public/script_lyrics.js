@@ -252,15 +252,19 @@ window.addEventListener('load', () => {
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
-            generalServerError(); // Chame a função de notificação diretamente
+            generalServerError();
+            console.log("Internal Server Error (500)");
           } else if (response.status === 403) {
-            invalidToken(); // Chame a função de notificação diretamente
+            invalidToken(); 
+            console.log("Access denied (403)");
           } else if (response.status === 404) {
-            trackNotFound(); // Chame a função de notificação diretamente
+            trackNotFound();
+            console.log("Resource not found (404)");
           } else if (response.status === 429) {
-            tooManyRequests(); // Chame a função de notificação diretamente
+            tooManyRequests(); 
+            console.log("Too many requests (429)");
           } else {
-            throw new Error(`Unknown error: ${response.status}`);
+            console.log(`Unknown error: ${response.status}`);
           }
         }
         return response.json();
