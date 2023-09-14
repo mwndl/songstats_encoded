@@ -302,7 +302,7 @@ window.addEventListener('load', () => {
         
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
+        const release_date = spotifyData.album_data.release_date.toString().padStart(2, '0');
         const formattedReleaseDate = `Release Date: ${releaseDate}`;
         
         
@@ -316,7 +316,6 @@ window.addEventListener('load', () => {
         const albumTotalN = spotifyData.album_data.total_tracks;
         const numMarkets = spotifyData.track_data.available_markets.length;
         const popularity = spotifyData.track_data.popularity;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
         const spot_lyrics = spotifyData.track_data.lyrics_stats.has_lyrics;
         const spot_sync = spotifyData.track_data.lyrics_stats.has_sync;
 
