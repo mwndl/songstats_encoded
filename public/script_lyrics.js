@@ -270,7 +270,6 @@ window.addEventListener('load', () => {
         return response.json();
       })
       .then((data) => {
-      .then((response) => {
         
         let spotifyData, mxmData;
         spotifyData = data.message.body.spotify;
