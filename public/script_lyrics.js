@@ -29,15 +29,12 @@ window.addEventListener('load', () => {
   const artistUrlInput = document.querySelector('#artist_name');
   const albumInput = document.querySelector('#album_name');
   const albumUrlInput = document.querySelector('#album_name');
-  */
-  
-  /* DESATIVADO MOMENTANEAMENTE
-  const releaseDateInput = document.querySelector('#release_date');
-  */
-  
-  const spotifyPreview = document.querySelector('#spotify_iframe_preview');
-  
   const durationInput = document.querySelector('#duration');
+  */
+
+  const spotifyPreview = document.querySelector('#spotify_iframe_preview');
+
+  const releaseDateInput = document.querySelector('#release_date');
   const albumPosition = document.querySelector('#album_position');
   const songPreviewInput = document.querySelector('#song_preview');
   const countriesCounterInput = document.querySelector('#countries_counter');
@@ -148,7 +145,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function generalServerError() {
-      message.textContent = "Sorry, we are experiencing issues on our end 😥";
+      message.textContent = "Sorry, we can't process your request at the moment 😥";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -305,10 +302,16 @@ window.addEventListener('load', () => {
         
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
+        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
+        const formattedReleaseDate = `Release Date: ${releaseDate}`;
+        
+        
+        /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
         const durationMs = spotifyData.track_data.duration_ms;
         const durationMinutes = Math.floor(durationMs / 60000);
         const durationSeconds = Math.floor((durationMs % 60000) / 1000);
         const duration = `Length: ${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`;
+        */
         const albumPositionN = spotifyData.track_data.disc_position;
         const albumTotalN = spotifyData.album_data.total_tracks;
         const numMarkets = spotifyData.track_data.available_markets.length;
@@ -488,7 +491,7 @@ window.addEventListener('load', () => {
         spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
-        durationInput.textContent = duration;
+        releaseDateInput.textContent = formattedReleaseDate;
         albumPosition.textContent = `Album Position: ${albumPositionN} of ${albumTotalN}`;
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
