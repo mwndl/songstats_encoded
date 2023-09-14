@@ -261,7 +261,6 @@ window.addEventListener('load', () => {
     // Send a Lyrics request to the internal API
     fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
       .then((response) => {
-        clearTimeout(timeoutId);
         if (!response.ok) {
           if (response.status === 500) {
             generalServerError();
