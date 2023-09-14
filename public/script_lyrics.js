@@ -180,6 +180,17 @@ window.addEventListener('load', () => {
           }, 500); 
       }, 4000); // Tempo de exibição
   }
+  function startingServerNotification() {
+      message.textContent = "Our server was taking a nap. Wait a just few seconds while we wake him up for you! 😴";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
 
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
   // Function to handle search
@@ -249,7 +260,12 @@ window.addEventListener('load', () => {
 
     // Send a Lyrics request to the internal API
     fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
+      // Inicie um temporizador de 4 segundos
+    const timeoutId = setTimeout(startingServerNotification, 4000);
+    
+    request
       .then((response) => {
+        clearTimeout(timeoutId);
         if (!response.ok) {
           if (response.status === 500) {
             generalServerError();
