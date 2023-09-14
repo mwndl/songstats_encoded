@@ -213,7 +213,7 @@ window.addEventListener('load', () => {
     const pushForm = "/push";
     const lyricsIframe = "/lyrics"
     const openStudio = "/studio"
-    const openLyrics = "/mxm"
+    const openMxm = "/mxm"
     let trackId = '';
     let isrc = '';
 
