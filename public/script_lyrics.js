@@ -260,10 +260,6 @@ window.addEventListener('load', () => {
 
     // Send a Lyrics request to the internal API
     fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
-      // Inicie um temporizador de 4 segundos
-    const timeoutId = setTimeout(startingServerNotification, 4000);
-    
-    request
       .then((response) => {
         clearTimeout(timeoutId);
         if (!response.ok) {
