@@ -169,7 +169,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
 
-  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56'; // Token 3: Public / Limited
+  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Token 3: Public / Limited
   // Function to handle search
   const handleSearch = () => {
     const inputVal = search_input.value.trim();
