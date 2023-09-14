@@ -91,8 +91,20 @@ window.addEventListener('load', () => {
 
   // Notifications
 
+  function trackNotFound() {
+      message.textContent = "We couldn't find the track you are looking for 😥";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500);
+      }, 4000); // Tempo de exibição
+  };
+
   function notificationInvalidPatern() {
-      message.textContent = "Please enter a valid Spotify track URL or ID. 🎶";
+      message.textContent = "Please enter a valid Spotify track URL or ID 🎶";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -103,7 +115,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   };
   function notificationIsrcUnavailable() {
-      message.textContent = "Oops! ISRC search is not a feature at the moment. 👀";
+      message.textContent = "Oops! ISRC search is not a feature at the moment 👀";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -114,7 +126,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function notificationCountrySaved() {
-      message.textContent = "Perfect! Your country is now local saved.";
+      message.textContent = "Perfect! Your country is now local saved";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -125,7 +137,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function notificationCountryError() {
-      message.textContent = "Invalid command, please try again.";
+      message.textContent = "Invalid command, please try again";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -136,7 +148,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function generalServerError() {
-      message.textContent = "Sorry, we're experiencing server issues at the moment. 😥";
+      message.textContent = "Sorry, we are experiencing issues on our end 😥";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -147,7 +159,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function invalidToken() {
-      message.textContent = "The token you're using is invalid";
+      message.textContent = "The token you are using is invalid or has expired 🚧";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -155,10 +167,10 @@ window.addEventListener('load', () => {
           setTimeout(() => {
               notification.classList.add("hidden");
           }, 500); 
-      }, 3000); // Tempo de exibição
+      }, 4000); // Tempo de exibição
   }
   function tooManyRequests() {
-      message.textContent = "Too many requests, please try again later or use another token";
+      message.textContent = "Too many requests, please try again later";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -169,7 +181,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
 
-  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Token 3: Public / Limited
+  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
   // Function to handle search
   const handleSearch = () => {
     const inputVal = search_input.value.trim();
@@ -237,7 +249,27 @@ window.addEventListener('load', () => {
 
     // Send a Lyrics request to the internal API
     fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          // Tratamento de erro para códigos diferentes de 200
+          if (response.status === 500) {
+            throw new Error("Internal Server Error (500)");
+            invalidToken()
+          } else if (response.status === 403) {
+            throw new Error("Access denied (403)");
+            invalidToken()
+          } else if (response.status === 404) {
+            throw new Error("Resource not found (404)");
+            trackNotFound()
+          } else if (response.status === 429) {
+            throw new Error("Too many requests (429)");
+            tooManyRequests()
+          } else {
+            throw new Error(`Unknown error: ${response.status}`);
+          }
+        }
+        return response.json();
+      })
       .then((data) => {
         
         let spotifyData, mxmData;
