@@ -277,7 +277,7 @@ input:-webkit-autofill::selection {
 .container_1 {
   position: relative;
   width: 700px;
-  max-height: 730px;
+  height: 730px;
   background-color: #222222;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
@@ -302,6 +302,7 @@ input:-webkit-autofill::selection {
   position: relative;
   width: 700px;
   max-height: 730px;
+  background-color: #ffffff;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
@@ -709,9 +710,7 @@ h2 {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   text-align: center;
   color: rgb(51, 51, 51);
-  margin-right: auto;
   width: 250px;
-  margin-left: 15px;
   height: 100%;
   align-self: center;
   padding: 15px 20px;
