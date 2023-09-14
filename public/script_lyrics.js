@@ -254,7 +254,7 @@ window.addEventListener('load', () => {
           // Tratamento de erro para códigos diferentes de 200
           if (response.status === 500) {
             throw new Error("Internal Server Error (500)");
-            invalidToken()
+            generalServerError()
           } else if (response.status === 403) {
             throw new Error("Access denied (403)");
             invalidToken()
