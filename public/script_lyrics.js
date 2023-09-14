@@ -302,8 +302,9 @@ window.addEventListener('load', () => {
         
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
-        const formattedReleaseDate = `Release Date: ${releaseDate}`;
+        const releaseDate = spotifyData.album_data.release_date.toString().padStart(10, '0');
+        const dateParts = releaseDate.split('-');
+        const formattedReleaseDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
         
         
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
@@ -490,7 +491,7 @@ window.addEventListener('load', () => {
         spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
-        releaseDateInput.textContent = formattedReleaseDate;
+        releaseDateInput.textContent = `Released on ${formattedReleaseDate}`;
         albumPosition.textContent = `Album Position: ${albumPositionN} of ${albumTotalN}`;
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
