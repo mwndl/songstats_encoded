@@ -40,14 +40,14 @@ body{
 
 
 .area {
-    background: #4e54c8;
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
+    background-size: 500% 500%;
+    background-image: linear-gradient(45deg, #767bff, #6755c7, #554aa7);
 }
 
 .circles{
@@ -267,7 +267,7 @@ input:-webkit-autofill::selection {
 .container_1 {
   position: relative;
   width: 700px;
-  max-height: 730px;
+  height: 730px;
   background-color: #222222;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
@@ -292,6 +292,7 @@ input:-webkit-autofill::selection {
   position: relative;
   width: 700px;
   max-height: 730px;
+  background-color: #ffffff;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
@@ -435,7 +436,7 @@ input.search-container::-webkit-autofill {
   font-size: 20px;
   width: 100%;
   height: 232px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   border-radius: 12px;
 }
 
@@ -445,9 +446,12 @@ input.search-container::-webkit-autofill {
   align-items: center;
   font-size: 20px;
   width: 100%;
-  height: 15px;
-  margin-bottom: 18px;
+  height: 45px;
+  margin-bottom: 20px;
   border-radius: 12px;
+  background-color: #282828;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+  padding: 15px 20px;
 }
 
 .music-cover {
@@ -602,20 +606,20 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   height: 120px;
-  margin: 0px 0px 12px;
+  margin: 0px 0px 15px;
 }
 
 .main {
   background-color: #282828;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+  padding: 15px 20px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 395px;
-  padding: 15px 20px;
-  border-radius: 20px;
 }
 
 .track-info {
@@ -699,9 +703,7 @@ h2 {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   text-align: center;
   color: rgb(51, 51, 51);
-  margin-right: auto;
   width: 250px;
-  margin-left: 15px;
   height: 100%;
   align-self: center;
   padding: 15px 20px;
@@ -890,5 +892,34 @@ h2 {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   margin: 15px 0px 3px;
   user-select: none;
+}
+
+/* Notificação inferior */
+
+#notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.notification-content p {
+  width: 100%;
+  color: #2a2a2a;
+  opacity: 100;
+  margin: 15px;
+  user-select: none;
+}
+
+.hidden {
+  display: none;
 }
 
