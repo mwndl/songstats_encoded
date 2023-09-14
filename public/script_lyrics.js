@@ -123,7 +123,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function notificationCountrySaved() {
-      message.textContent = "Perfect! Your country is now local saved";
+      message.textContent = "Perfect! Your country is now local saved 🌍";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -156,7 +156,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function invalidToken() {
-      message.textContent = "The token you are using is invalid or has expired 🚧";
+      message.textContent = "The token you're using is invalid or has expired 🔑";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -167,7 +167,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function tooManyRequests() {
-      message.textContent = "Too many requests, please try again later";
+      message.textContent = "Too many requests, please try again later ⛔";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -178,7 +178,18 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function startingServerNotification() {
-      message.textContent = "Our server was taking a nap. Wait a just few seconds while we wake him up for you! 😴";
+      message.textContent = "Our server was sleeping. Wait a just few seconds while we wake him up for you! 😴";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+  function unavailableFeature() {
+      message.textContent = "This feature is currently unavailable or under development 🔧";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -201,6 +212,8 @@ window.addEventListener('load', () => {
     
     const pushForm = "/push";
     const lyricsIframe = "/lyrics"
+    const openStudio = "/studio"
+    const openLyrics = "/mxm"
     let trackId = '';
     let isrc = '';
 
@@ -232,10 +245,19 @@ window.addEventListener('load', () => {
       search_input.value = "";
       return;
     } else if (inputVal === lyricsIframe) {
+      unavailableFeature()
+      /* DEVELOPMENT
       lyrics_container.style = "";
       lyrics_preview.src = mxm_preview;
       pusher_container.style = "display:none";
       search_input.value = "";
+      */
+      return;
+    } else if (inputVal === openStudio) {
+      unavailableFeature()
+      return;
+    } else if (inputVal === openMxm) {
+      unavailableFeature()
       return;
     } else if (isrcRegex.test(inputVal)) {
       notificationIsrcUnavailable();
