@@ -170,7 +170,6 @@ window.addEventListener('load', () => {
   }
 
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56'; // Token 3: Public / Limited
-
   // Function to handle search
   const handleSearch = () => {
     const inputVal = search_input.value.trim();
@@ -181,10 +180,8 @@ window.addEventListener('load', () => {
     const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}\d{2}\d{5}$/;
     
     const pushForm = "/push";
-
     let trackId = '';
     let isrc = '';
-    
 
    // Verificar se o comando "set_market_<country_code>" foi digitado
     const setCountryRegex = /^\/set_country\/([A-Z]{2})$/;
@@ -239,20 +236,8 @@ window.addEventListener('load', () => {
     
 
     // Send a Lyrics request to the internal API
-    fetch(`https://songstats.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
-      .then((response) => {
-        if (response.status === 403) {
-          invalidToken();
-          throw new Error("Error 403 - You're using a invalid token");
-        } else if (response.status === 429) {
-          tooManyRequests();
-          throw new Error("Erro 429 - Too many requests");
-        } else if (response.status === 500) {
-          generalServerError();
-          throw new Error("Error 500 - Server unavailable");
-        }
-        return response.json();
-      })
+    fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
+      .then((response) => response.json())
       .then((data) => {
         
         let spotifyData, mxmData;
@@ -286,6 +271,7 @@ window.addEventListener('load', () => {
         const albumTotalN = spotifyData.album_data.total_tracks;
         const numMarkets = spotifyData.track_data.available_markets.length;
         const popularity = spotifyData.track_data.popularity;
+        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
         const spot_lyrics = spotifyData.track_data.lyrics_stats.has_lyrics;
         const spot_sync = spotifyData.track_data.lyrics_stats.has_sync;
 
@@ -489,30 +475,24 @@ window.addEventListener('load', () => {
         */
 
         animationStarter.innerHTML = `
-          @keyframes animate {
-            0% {
-              transform: translateY(0) rotate(0deg);
-              opacity: 1;
-              border-radius: 0;
-            }
-            100% {
-              transform: translateY(-1000px) rotate(720deg);
-              opacity: 0;
-              border-radius: 50%;
-            }
+        @keyframes animate {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+            border-radius: 0;
           }
-        `;
-        })
-        .catch((error) => {
-          console.error("Ocorreu um erro na solicitação fetch:", error);
-          alert("Ocorreu um erro na solicitação fetch. Verifique o console para detalhes.");
-        });
-      } catch (error) {
-        console.error("Ocorreu um erro inesperado:", error);
-        alert("Ocorreu um erro inesperado. Verifique o console para detalhes.");
-      }
+          100% {
+            transform: translateY(-1000px) rotate(720deg);
+            opacity: 0;
+            border-radius: 50%;
+          }
+        }
+      `;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
-
   
     /* DESATIVADO MOMENTANEAMENTE!
     
