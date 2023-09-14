@@ -251,19 +251,14 @@ window.addEventListener('load', () => {
     fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
       .then((response) => {
         if (!response.ok) {
-          // Tratamento de erro para códigos diferentes de 200
           if (response.status === 500) {
-            throw new Error("Internal Server Error (500)");
-            generalServerError()
+            generalServerError(); // Chame a função de notificação diretamente
           } else if (response.status === 403) {
-            throw new Error("Access denied (403)");
-            invalidToken()
+            invalidToken(); // Chame a função de notificação diretamente
           } else if (response.status === 404) {
-            throw new Error("Resource not found (404)");
-            trackNotFound()
+            trackNotFound(); // Chame a função de notificação diretamente
           } else if (response.status === 429) {
-            throw new Error("Too many requests (429)");
-            tooManyRequests()
+            tooManyRequests(); // Chame a função de notificação diretamente
           } else {
             throw new Error(`Unknown error: ${response.status}`);
           }
@@ -271,6 +266,7 @@ window.addEventListener('load', () => {
         return response.json();
       })
       .then((data) => {
+      .then((response) => {
         
         let spotifyData, mxmData;
         spotifyData = data.message.body.spotify;
