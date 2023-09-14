@@ -200,6 +200,7 @@ window.addEventListener('load', () => {
     const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}\d{2}\d{5}$/;
     
     const pushForm = "/push";
+    const lyricsIframe = "/lyrics"
     let trackId = '';
     let isrc = '';
 
@@ -229,14 +230,16 @@ window.addEventListener('load', () => {
       lyrics_pusher.src = `https://musixmatch.typeform.com/to/tFQDvIsp?typeform-s`;
       lyrics_container.style = "display:none";
       search_input.value = "";
-
-      lyrics_container.style.display = "none";
-      view_lyrics_text.textContent = "View Lyrics";
-      view_lyrics_text.id = "view_lyrics_button";
-      view_lyrics_arrow.textContent = ">";
+      return;
+    } else if (inputVal === lyricsIframe) {
+      lyrics_container.style = "";
+      lyrics_preview.src = mxm_preview;
+      pusher_container.style = "display:none";
+      search_input.value = "";
       return;
     } else if (isrcRegex.test(inputVal)) {
       notificationIsrcUnavailable();
+      search_input.value = "";
       return;
     } else {
       notificationInvalidPatern()
