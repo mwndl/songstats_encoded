@@ -259,7 +259,7 @@ input:-webkit-autofill::selection {
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    max-width: 2450px;
+    max-width: 1550px;
     height: 95vh;
     margin: 5px auto;
 }
