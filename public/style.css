@@ -7,16 +7,223 @@
 }
 
 body {
-  background-color: rgb(0, 119, 194);
-}
-
-body {
   display: block;
 }
 
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: 'Exo', sans-serif;
+}
+
+/* INICIO DA ANIMAÇÃO */
+
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+
+.context {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    
+}
+
+.context h1{
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+}
+
+
+.area {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-size: 500% 500%;
+    background-image: linear-gradient(45deg, rgb(55, 94, 102), rgb(178, 114, 92), rgb(204, 173, 148), rgb(195, 188, 172), rgb(156, 44, 4));
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 7s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(2) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(3) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(4) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(5) {
+  left: 10%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 3s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 90px;
+  height: 90px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 130px;
+  height: 130px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 50px;
+  height: 50px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 100px;
+  height: 100px;
+  animation-delay: 0s;
+  animation-duration: 15s;
+}
+
+/* Adicione esta classe para gerar aleatoriamente os quadradinhos */
+.random-position {
+  left: calc(100% * var(--random-x));
+  animation-delay: var(--random-delay);
+}
+
+html, body {
+  height: 100%;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  background: linear-gradient($computationalFogTop 25%, $nodeStreak 50%, $nodeStreak 50%, $computationalFogBot 100%);
+  height: 100%;
+}
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0 auto;
+  perspective: $visualDistortionZapper;
+  perspective-origin: 50% 50%;
+}
+
+.top-plane, .bottom-plane {
+  width: 200%;
+  height: 130%;
+  position: absolute;
+  bottom: -30%;
+  left: -50%;
+  background-image: -webkit-linear-gradient($nodeStreak 2px, transparent 2px), -webkit-linear-gradient(left, $nodeStreak 2px, transparent 2px);
+  background-size: 100px 100px, 100px 100px;
+  background-position: -1px -1px, -1px -1px;
+  animation: planeMoveTop $nanoVelocity infinite linear;
+}
+
+.bottom-plane {
+  transform: rotateX(-85deg);
+  top: -30%;
+  animation: planeMoveBot $nanoVelocity infinite linear;
+}
+
+@keyframes planeMoveTop {
+  from {
+    background-position: 0px -100px, 0px 0px;
+  }
+  to {
+    background-position: 0px 0px, 100px 0px;
+  }
+}
+
+@keyframes planeMoveBot {
+  from {
+    background-position: 0px 0px, 0px 0px;
+  }
+  to {
+    background-position: 0px -100px, 100px 0px;
+  }
+}
+
+@media (max-height: 350px) {
+  .wrap {
+    perspective: $visualDistortionZapper - 150;
+  }
+}
+
+
+/* FIM DA ANIMAÇÃO */
+
 a {
   text-decoration: none;
-  color: #000;
+  color: #ffffff;
   box-shadow: none;
   transition: box-shadow 0.2s ease-in-out;
 }
@@ -25,36 +232,58 @@ a:hover {
   box-shadow: 0 1px 0 0 #888;
 }
 
+p {
+  color: #cacaca;
+}
+
+::selection {
+  color: #0077ff;
+}
+
+/* Cor de fundo do autocomplete */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #404040 inset;
+}
+
+/* Cor do texto do autocomplete */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #cacaca !important;
+}
+
+input:-webkit-autofill::selection {
+  background-color: #268bff !important;
+}
+
 .containers {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
     max-width: 1450px;
-    height: 720px;
+    height: 95vh;
     margin: 5px auto;
 }
 
 .container_1 {
+  position: relative;
   width: 700px;
-  height: 100%;
-  background-color: rgb(255, 255, 255);
+  height: 730px;
+  background-color: #222222;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: 5px auto 5px;
-  padding: 20px;
-  border-radius: 20px;
+  margin: auto;
+  padding: 16px 18px;
+  border-radius: 18px;
 }
 
 .container_2 {
   width: 700px;
-  height: 100%;
-  background-color: rgb(255, 255, 255);
+  height: 730px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: 5px auto 5px;
+  margin: auto;
   padding: 20px;
   border-radius: 20px;
 }
@@ -62,12 +291,12 @@ a:hover {
 .container_3 {
   position: relative;
   width: 700px;
-  height: 100%;
-  background-color: rgb(255, 255, 255);
+  max-height: 730px;
+  background-color: #ffffff;
+  margin: auto;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
-  margin: 5px auto 5px;
   border-radius: 20px;
 }
 
@@ -77,7 +306,7 @@ a:hover {
   right: 10px;
   width: 40px;
   height: 40px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.494) 1px 3px 12px;
   display: flex;
   cursor: pointer;
@@ -106,7 +335,7 @@ a:hover {
   position: absolute;
   width: 20px;
   height: 2px;
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
 }
 
 .close_button::after {
@@ -123,13 +352,13 @@ a:hover {
   position: absolute;
   width: 20px;
   height: 2px;
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
 }
 
 .refresh_button {
   width: 30px;
   height: 30px;
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.494) 1px 3px 12px;
   display: flex;
   cursor: pointer;
@@ -164,7 +393,7 @@ a:hover {
 .search-container {
   display: flex;
   align-items: center;
-  background-color: rgb(241, 241, 241);
+  background-color: #404040;
   box-sizing: border-box;
   width: 100%;
   padding: 10px;
@@ -178,15 +407,20 @@ a:hover {
   border: none;
   background-color: transparent;
   font-size: 16px;
-  color: #333;
+  color: #ffffff;
 }
+input.search-container::-webkit-autofill {
+  /* Define a cor de fundo de destaque para preenchimento automático */
+  background-color: #282828;
+}
+
 .search-container input[type="text"]:focus {
   outline: none;
 }
 .search-container button[type="submit"] {
   background-color: transparent;
   border: none;
-  color: #333;
+  color: #f0f0f0;
   font-size: 16px;
   margin-left: 10px;
   cursor: pointer;
@@ -201,18 +435,32 @@ a:hover {
   align-items: center;
   font-size: 20px;
   width: 100%;
-  margin: auto;
+  height: 232px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+}
+
+.top_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  width: 100%;
+  height: 45px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #282828;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+  padding: 15px 20px;
 }
 
 .music-cover {
-  width: 40%;
-  height: 0;
-  padding-bottom: 40%;
+  width: 220px;
+  height: 220px;
+  padding-bottom: 33%;
   background-color: #ccc;
   border-radius: 10px;
-  margin-bottom: 30px;
   position: relative;
-  margin-right: 20px;
   background-size: cover;
   background-position: left;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -235,14 +483,14 @@ h2 {
 }
 
 .div-music-details {
-  height: 264px;
-  width: 50%;
+  height: 100%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   position: relative;
-  margin: 0px 25px 30px;
+  margin: 0px 25px 25px;
 }
 
 .msc_top {
@@ -346,7 +594,7 @@ h2 {
   transform: translate(-50%, -50%);
   width: 6px;
   height: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
   border-radius: 3px;
 }
 
@@ -358,20 +606,20 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   height: 120px;
-  margin: 0px 0px 22px;
+  margin: 0px 0px 20px;
 }
 
 .main {
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+  padding: 15px 20px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 395px;
-  padding: 15px 20px;
-  border-radius: 20px;
 }
 
 .track-info {
@@ -409,9 +657,9 @@ h2 {
 
 .input-group-ids input[type="text"] {
   border: none;
-  background-color: #f1f1f1;
+  background-color: #303030;
   font-size: 18px;
-  color: #333;
+  color: #ffffff;
   padding: 8px;
   border-radius: 10px;
   text-align: center;
@@ -451,13 +699,11 @@ h2 {
 }
 
 .main_1-right {
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   text-align: center;
   color: rgb(51, 51, 51);
-  margin-right: auto;
   width: 250px;
-  margin-left: 15px;
   height: 100%;
   align-self: center;
   padding: 15px 20px;
@@ -470,7 +716,8 @@ h2 {
 .main_2-div {
   display: flex;
   justify-content: space-between;
-  height: 185px;
+  height: 180px;
+
 }
 
 .song-stats-div-1 {
@@ -478,11 +725,11 @@ h2 {
   justify-content: space-between;
   width: 250px;
   height: 110px;
-  margin: auto auto 20px;
+  margin: auto auto 15px;
 }
 
 .all-stats {
-  height: 185px;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
   margin: auto;
@@ -534,7 +781,7 @@ h2 {
 }
 
 .status-gray {
-  background-color: rgb(212, 212, 212);
+  background-color: #393939;
 }
 
 .status-red {
@@ -563,7 +810,7 @@ h2 {
   justify-content: center;
   width: 250px;
   padding: 10px 10px;
-  background-color: #fff;
+  background-color: #282828;
   border-radius: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   text-align: left;
@@ -575,7 +822,7 @@ h2 {
   justify-content: center;
   width: 250px;
   padding: 10px 10px;
-  background-color: #fff;
+  background-color: #282828;
   border-radius: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   text-align: left;
@@ -583,7 +830,7 @@ h2 {
 }
 
 .main_2-right {
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   text-align: center;
   color: rgb(51, 51, 51);
@@ -604,9 +851,9 @@ h2 {
 
 .input-group-urls input[type="text"] {
   border: none;
-  background-color: #f1f1f1;
+  background-color: #303030;
   font-size: 18px;
-  color: #333;
+  color:  #ffffff;
   padding: 7px;
   border-radius: 10px;
   text-align: center;
@@ -635,5 +882,44 @@ h2 {
 .music-player audio {
   width: 100%;
   max-width: 700px;
+}
+
+.spotify_preview {
+  width: 100%;
+  height: 232px;
+  border-radius: 12px;
+  background-color: #282828;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 15px 0px 3px;
+  user-select: none;
+}
+
+/* Notificação inferior */
+
+#notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.notification-content p {
+  width: 100%;
+  color: #2a2a2a;
+  opacity: 100;
+  margin: 15px;
+  user-select: none;
+}
+
+.hidden {
+  display: none;
 }
 

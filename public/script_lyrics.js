@@ -29,15 +29,12 @@ window.addEventListener('load', () => {
   const artistUrlInput = document.querySelector('#artist_name');
   const albumInput = document.querySelector('#album_name');
   const albumUrlInput = document.querySelector('#album_name');
-  */
-  
-  /* DESATIVADO MOMENTANEAMENTE
-  const releaseDateInput = document.querySelector('#release_date');
-  */
-  
-  const spotifyPreview = document.querySelector('#spotify_iframe_preview');
-  
   const durationInput = document.querySelector('#duration');
+  */
+
+  const spotifyPreview = document.querySelector('#spotify_iframe_preview');
+
+  const releaseDateInput = document.querySelector('#release_date');
   const albumPosition = document.querySelector('#album_position');
   const songPreviewInput = document.querySelector('#song_preview');
   const countriesCounterInput = document.querySelector('#countries_counter');
@@ -91,8 +88,20 @@ window.addEventListener('load', () => {
 
   // Notifications
 
+  function trackNotFound() {
+      message.textContent = "We couldn't find the track you are looking for 😥";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500);
+      }, 4000); // Tempo de exibição
+  };
+
   function notificationInvalidPatern() {
-      message.textContent = "Please enter a valid Spotify track URL or ID. 🎶";
+      message.textContent = "Please enter a valid Spotify track URL or ID 🎶";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -103,7 +112,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   };
   function notificationIsrcUnavailable() {
-      message.textContent = "Oops! ISRC search is not a feature at the moment. 👀";
+      message.textContent = "Oops! ISRC search is not a feature at the moment 👀";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -114,7 +123,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function notificationCountrySaved() {
-      message.textContent = "Perfect! Your country is now local saved.";
+      message.textContent = "Perfect! Your country is now local saved 🌍";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -125,7 +134,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function notificationCountryError() {
-      message.textContent = "Invalid command, please try again.";
+      message.textContent = "Invalid command, please try again";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -136,7 +145,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function generalServerError() {
-      message.textContent = "Sorry, we're experiencing server issues at the moment. 😥";
+      message.textContent = "Sorry, we can't process your request at the moment 😥";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -147,7 +156,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
   function invalidToken() {
-      message.textContent = "The token you're using is invalid";
+      message.textContent = "The token you're using is invalid or has expired 🔑";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -155,10 +164,32 @@ window.addEventListener('load', () => {
           setTimeout(() => {
               notification.classList.add("hidden");
           }, 500); 
-      }, 3000); // Tempo de exibição
+      }, 4000); // Tempo de exibição
   }
   function tooManyRequests() {
-      message.textContent = "Too many requests, please try again later or use another token";
+      message.textContent = "Too many requests, please try again later ⛔";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+  function startingServerNotification() {
+      message.textContent = "Our server was sleeping. Wait a just few seconds while we wake him up for you! 😴";
+      notification.style.opacity = 1;
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.classList.add("hidden");
+          }, 500); 
+      }, 4000); // Tempo de exibição
+  }
+  function unavailableFeature() {
+      message.textContent = "This feature is currently unavailable or under development 🔧";
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -169,7 +200,7 @@ window.addEventListener('load', () => {
       }, 4000); // Tempo de exibição
   }
 
-  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56'; // Token 3: Public / Limited
+  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
   // Function to handle search
   const handleSearch = () => {
     const inputVal = search_input.value.trim();
@@ -180,6 +211,9 @@ window.addEventListener('load', () => {
     const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}\d{2}\d{5}$/;
     
     const pushForm = "/push";
+    const lyricsIframe = "/lyrics"
+    const openStudio = "/studio"
+    const openMxm = "/mxm"
     let trackId = '';
     let isrc = '';
 
@@ -209,14 +243,25 @@ window.addEventListener('load', () => {
       lyrics_pusher.src = `https://musixmatch.typeform.com/to/tFQDvIsp?typeform-s`;
       lyrics_container.style = "display:none";
       search_input.value = "";
-
-      lyrics_container.style.display = "none";
-      view_lyrics_text.textContent = "View Lyrics";
-      view_lyrics_text.id = "view_lyrics_button";
-      view_lyrics_arrow.textContent = ">";
+      return;
+    } else if (inputVal === lyricsIframe) {
+      unavailableFeature()
+      /* DEVELOPMENT
+      lyrics_container.style = "";
+      lyrics_preview.src = mxm_preview;
+      pusher_container.style = "display:none";
+      search_input.value = "";
+      */
+      return;
+    } else if (inputVal === openStudio) {
+      unavailableFeature()
+      return;
+    } else if (inputVal === openMxm) {
+      unavailableFeature()
       return;
     } else if (isrcRegex.test(inputVal)) {
       notificationIsrcUnavailable();
+      search_input.value = "";
       return;
     } else {
       notificationInvalidPatern()
@@ -237,7 +282,26 @@ window.addEventListener('load', () => {
 
     // Send a Lyrics request to the internal API
     fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          if (response.status === 500) {
+            generalServerError();
+            console.log("Internal Server Error (500)");
+          } else if (response.status === 403) {
+            invalidToken(); 
+            console.log("Access denied (403)");
+          } else if (response.status === 404) {
+            trackNotFound();
+            console.log("Resource not found (404)");
+          } else if (response.status === 429) {
+            tooManyRequests(); 
+            console.log("Too many requests (429)");
+          } else {
+            console.log(`Unknown error: ${response.status}`);
+          }
+        }
+        return response.json();
+      })
       .then((data) => {
         
         let spotifyData, mxmData;
@@ -263,15 +327,21 @@ window.addEventListener('load', () => {
         
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
+        const releaseDate = spotifyData.album_data.release_date.toString().padStart(10, '0');
+        const dateParts = releaseDate.split('-');
+        const formattedReleaseDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+        
+        
+        /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
         const durationMs = spotifyData.track_data.duration_ms;
         const durationMinutes = Math.floor(durationMs / 60000);
         const durationSeconds = Math.floor((durationMs % 60000) / 1000);
         const duration = `Length: ${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`;
+        */
         const albumPositionN = spotifyData.track_data.disc_position;
         const albumTotalN = spotifyData.album_data.total_tracks;
         const numMarkets = spotifyData.track_data.available_markets.length;
         const popularity = spotifyData.track_data.popularity;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
         const spot_lyrics = spotifyData.track_data.lyrics_stats.has_lyrics;
         const spot_sync = spotifyData.track_data.lyrics_stats.has_sync;
 
@@ -446,7 +516,7 @@ window.addEventListener('load', () => {
         spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
-        durationInput.textContent = duration;
+        releaseDateInput.textContent = `Released on ${formattedReleaseDate}`;
         albumPosition.textContent = `Album Position: ${albumPositionN} of ${albumTotalN}`;
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
