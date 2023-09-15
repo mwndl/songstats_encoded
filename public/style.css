@@ -47,7 +47,7 @@ body{
     left: 0;
     z-index: -1;
     background-size: 500% 500%;
-    background-image: linear-gradient(45deg, #767bff, #6755c7, #554aa7);
+    background-image: linear-gradient(45deg, rgb(55, 94, 102), rgb(178, 114, 92), rgb(204, 173, 148), rgb(195, 188, 172), rgb(156, 44, 4));
 }
 
 .circles{
@@ -606,7 +606,7 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   height: 120px;
-  margin: 0px 0px 15px;
+  margin: 0px 0px 20px;
 }
 
 .main {
