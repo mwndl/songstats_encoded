@@ -259,9 +259,36 @@ input:-webkit-autofill::selection {
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    max-width: 1450px;
+    max-width: 1550px;
     height: 95vh;
     margin: 5px auto;
+}
+
+.container_base_1 {
+  position: relative;
+  width: 720px;
+  height: 740px;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+}
+
+.container_base_2 {
+  position: relative;
+  width: 720px;
+  height: 740px;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+}
+
+.container_base_3 {
+  position: relative;
+  width: 720px;
+  height: 740px;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
 }
 
 .container_1 {
@@ -306,7 +333,7 @@ input:-webkit-autofill::selection {
   right: 10px;
   width: 40px;
   height: 40px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(32, 32, 32);
   box-shadow: rgba(0, 0, 0, 0.494) 1px 3px 12px;
   display: flex;
   cursor: pointer;
@@ -318,7 +345,7 @@ input:-webkit-autofill::selection {
 }
 
 .close_button:hover {
-  background-color: rgb(51, 51, 51);
+  background-color: rgb(73 73 73);
 }
 
 .close_button::before {
@@ -352,7 +379,7 @@ input:-webkit-autofill::selection {
   position: absolute;
   width: 20px;
   height: 2px;
-  background-color: #282828;
+  background-color: #ffffff;
 }
 
 .refresh_button {
@@ -368,8 +395,12 @@ input:-webkit-autofill::selection {
   border-radius: 50%;
   border-width: 0.1px;
   border-style: solid;
-  border-color: rgba(134, 134, 134, 0.475);
+  border-color: rgba(198, 197, 197, 0.475);
   border-image: initial;
+}
+
+.refresh_button:hover {
+  background-color: rgb(210, 210, 210);
 }
 
 .refresh_symbol {
