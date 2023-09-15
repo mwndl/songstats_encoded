@@ -389,9 +389,9 @@ window.addEventListener('load', () => {
             spotify_sync.className = "status-2 status-red";
         }
 
-        mxm_lyrics_url.setAttribute("value", `https://mxmt.ch/t/${mxm_lyrics_id}`);
-        mxm_artist_url.setAttribute("value", `https://mxmt.ch/a/${mxm_artist_id}`);
-        mxm_album_url.setAttribute("value", `https://mxmt.ch/r/${mxm_album_id}`);
+        mxm_lyrics_url.setAttribute("value", `mxmt.ch/t/${mxm_lyrics_id}`);
+        mxm_artist_url.setAttribute("value", `mxmt.ch/a/${mxm_artist_id}`);
+        mxm_album_url.setAttribute("value", `mxmt.ch/r/${mxm_album_id}`);
         abstrack_mxm.setAttribute("value", `${mxm_abstrack}`);
 
         mxm_lyricsname.title = mxm_lyrics_name
