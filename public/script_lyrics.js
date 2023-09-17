@@ -78,18 +78,18 @@ window.addEventListener('load', () => {
   const saveCountry = (countryCode) => {
     if (countryCode && countryCode.length === 2) {
       localStorage.setItem('selected_country', countryCode);
-      notificationCountrySaved();
+      notification1("Perfect! Your country is now local saved 🌍");
       search_input.value = ""
     } else {
-      notificationCountryError('Invalid command, try again');
+      notification1('Invalid command, try again');
       search_input.value = ""
     }
   };
 
   // Notifications
 
-  function trackNotFound() {
-      message.textContent = "We couldn't find the track you are looking for 😥";
+  function notification1(customMessage) {
+      message.textContent = customMessage;
       notification.style.opacity = 1;
       notification.classList.remove("hidden");
       setTimeout(() => {
@@ -99,106 +99,6 @@ window.addEventListener('load', () => {
           }, 500);
       }, 4000); // Tempo de exibição
   };
-
-  function notificationInvalidPatern() {
-      message.textContent = "Please enter a valid Spotify track URL or ID 🎶";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500);
-      }, 4000); // Tempo de exibição
-  };
-  function notificationIsrcUnavailable() {
-      message.textContent = "Oops! ISRC search is not a feature at the moment 👀";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function notificationCountrySaved() {
-      message.textContent = "Perfect! Your country is now local saved 🌍";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function notificationCountryError() {
-      message.textContent = "Invalid command, please try again";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function generalServerError() {
-      message.textContent = "Sorry, we can't process your request at the moment 😥";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function invalidToken() {
-      message.textContent = "The token you're using is invalid or has expired 🔑";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function tooManyRequests() {
-      message.textContent = "Too many requests, please try again later ⛔";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function startingServerNotification() {
-      message.textContent = "Our server was sleeping. Wait a just few seconds while we wake him up for you! 😴";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
-  function unavailableFeature() {
-      message.textContent = "This feature is currently unavailable or under development 🔧";
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
-      setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500); 
-      }, 4000); // Tempo de exibição
-  }
 
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
   // Function to handle search
@@ -245,7 +145,7 @@ window.addEventListener('load', () => {
       search_input.value = "";
       return;
     } else if (inputVal === lyricsIframe) {
-      unavailableFeature()
+      notification1("This feature is currently unavailable or under development 🔧")
       /* DEVELOPMENT
       lyrics_container.style = "";
       lyrics_preview.src = mxm_preview;
@@ -254,17 +154,17 @@ window.addEventListener('load', () => {
       */
       return;
     } else if (inputVal === openStudio) {
-      unavailableFeature()
+      notification1("This feature is currently unavailable or under development 🔧")
       return;
     } else if (inputVal === openMxm) {
-      unavailableFeature()
+      notification1("This feature is currently unavailable or under development 🔧")
       return;
     } else if (isrcRegex.test(inputVal)) {
-      notificationIsrcUnavailable();
+      notification1("Oops! ISRC search is not a feature at the moment 👀");
       search_input.value = "";
       return;
     } else {
-      notificationInvalidPatern()
+      notification1("Please enter a valid Spotify track URL or ID 🎶")
       return;
     }
 
@@ -285,18 +185,19 @@ window.addEventListener('load', () => {
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
-            generalServerError();
+            notification1("Sorry, we can't process your request at the moment 😥");
             console.log("Internal Server Error (500)");
           } else if (response.status === 403) {
-            invalidToken(); 
+            notification1("The token you're using is invalid or has expired 🔑"); 
             console.log("Access denied (403)");
           } else if (response.status === 404) {
-            trackNotFound();
+            notification1("We couldn't find the track you are looking for 😥");
             console.log("Resource not found (404)");
           } else if (response.status === 429) {
-            tooManyRequests(); 
+            notification1("Too many requests, please try again later ⛔"); 
             console.log("Too many requests (429)");
           } else {
+            notification1("Sorry, we can't process your request at the moment 😥");
             console.log(`Unknown error: ${response.status}`);
           }
         }
