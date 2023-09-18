@@ -232,7 +232,6 @@ window.addEventListener('load', () => {
         
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(10, '0');
         const releaseDate = spotifyData.album_data.release_date.toString();
 
         let formattedReleaseDate = '';
