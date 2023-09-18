@@ -106,6 +106,7 @@ window.addEventListener('load', () => {
     const inputVal = search_input.value.trim();
 
     const trackUrlRegex = /^(https?:\/\/open\.spotify\.com\/(?:intl-[a-z]{2}\/)?)?track\/(.+)$/;
+    const shortSpotifyregex = /https?:\/\/spotify\.link\/[\w-]+/;
     const studioUrlRegex = /(?:&|\?)player=spotify&(?:.*&)?track_id=([^&\s]+)/;
     const idRegex = /^[a-zA-Z0-9]{22}$/;
     const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}\d{2}\d{5}$/;
