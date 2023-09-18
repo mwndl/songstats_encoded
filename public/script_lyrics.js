@@ -232,9 +232,20 @@ window.addEventListener('load', () => {
         
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(10, '0');
-        const dateParts = releaseDate.split('-');
-        const formattedReleaseDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+        const releaseDate = spotifyData.album_data.release_date.toString();
+
+        let formattedReleaseDate = '';
+        
+        if (releaseDate.includes('-')) {
+          // Data completa (ano, mês, dia)
+          const dateParts = releaseDate.split('-');
+          formattedReleaseDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+          release_date_line = `Released on ${formattedReleaseDate}`;
+        } else {
+          // Formato desconhecido ou inválido
+          formattedReleaseDate = releaseDate;
+          release_date_line = `Released in ${formattedReleaseDate}`;
+        }
         
         
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
@@ -421,7 +432,7 @@ window.addEventListener('load', () => {
         spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
-        releaseDateInput.textContent = `Released on ${formattedReleaseDate}`;
+        releaseDateInput.textContent = release_date_line;
         albumPosition.textContent = `Album Position: ${albumPositionN} of ${albumTotalN}`;
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
