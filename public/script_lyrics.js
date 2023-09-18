@@ -133,7 +133,7 @@ window.addEventListener('load', () => {
 
     } else if (shortSpotifyregex.test(inputVal)) {
       notification1("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
-
+      return; // remove after shortened links integration
     } else if (studioUrlRegex.test(inputVal)) {
       const match = inputVal.match(studioUrlRegex);
       if (match) {
