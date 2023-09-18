@@ -130,6 +130,9 @@ window.addEventListener('load', () => {
       const url = new URL(inputVal);
       trackId = url.pathname.split('/').pop();
 
+    } else if (shortSpotifyregex.test(inputVal)) {
+      notification1("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
+
     } else if (studioUrlRegex.test(inputVal)) {
       const match = inputVal.match(studioUrlRegex);
       if (match) {
