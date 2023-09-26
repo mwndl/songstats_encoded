@@ -142,6 +142,7 @@ window.addEventListener('load', () => {
       notification1("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+
       return; // remove after shortened links integration
     } else if (studioUrlRegex.test(inputVal)) {
       const match = inputVal.match(studioUrlRegex);
@@ -164,6 +165,7 @@ window.addEventListener('load', () => {
       loading_spinner.style = "display:none";
       searchBtn.style = "";
 
+
       /* DEVELOPMENT
       lyrics_container.style = "";
       lyrics_preview.src = mxm_preview;
@@ -173,6 +175,7 @@ window.addEventListener('load', () => {
       return;
     } else if (inputVal === openStudio) {
       notification1("This feature is currently unavailable or under development 🔧")
+
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       return;
@@ -185,12 +188,21 @@ window.addEventListener('load', () => {
       notification1("Oops! ISRC search is not a feature at the moment 👀");
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+
+      return;
+    } else if (inputVal === openMxm) {
+      notification1("This feature is currently unavailable or under development 🔧")
+      return;
+    } else if (isrcRegex.test(inputVal)) {
+      notification1("Oops! ISRC search is not a feature at the moment 👀");
+
       search_input.value = "";
       return;
     } else {
       notification1("Please enter a valid Spotify track URL or ID 🎶")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+
       return;
     }
 
@@ -280,7 +292,6 @@ window.addEventListener('load', () => {
           formattedReleaseDate = releaseDate;
           release_date_line = `Released in ${formattedReleaseDate}`;
         }
-        
         
         
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
