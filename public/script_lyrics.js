@@ -580,6 +580,17 @@ window.addEventListener('load', () => {
         }
   });
 
+  document.getElementById('mxm_abstrack_input').addEventListener('click', function() {
+        var inputElement = document.getElementById('mxm_abstrack');
+        var inputValue = inputElement.value;
+
+        if (inputValue.trim() !== "") {
+            inputElement.select();
+            document.execCommand('copy');
+            notification1("Copied to your clipboard ✨");
+        }
+  });
+
   // Scripts para abrir links da mxm em nova aba
 
   document.getElementById('mxm_lyrics_input').addEventListener('click', function() {
