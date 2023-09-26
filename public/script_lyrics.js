@@ -598,6 +598,7 @@ window.addEventListener('load', () => {
         var url = inputElement.value;
 
         if (url.trim() !== "") {
+            inputElement.select();
             var fullUrl = 'http://' + url;
             window.open(fullUrl, '_blank');
         }
@@ -608,6 +609,7 @@ window.addEventListener('load', () => {
         var url = inputElement.value;
 
         if (url.trim() !== "") {
+            inputElement.select();
             var fullUrl = 'http://' + url;
             window.open(fullUrl, '_blank');
         }
@@ -618,6 +620,7 @@ window.addEventListener('load', () => {
         var url = inputElement.value;
 
         if (url.trim() !== "") {
+            inputElement.select();
             var fullUrl = 'http://' + url;
             window.open(fullUrl, '_blank');
         }
