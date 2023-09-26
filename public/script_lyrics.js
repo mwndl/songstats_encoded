@@ -545,5 +545,59 @@ window.addEventListener('load', () => {
     }
   });
 
-  // ...
+  // Scripts para copiar IDs
+
+  document.getElementById('spotify_id_input').addEventListener('click', function() {
+        var inputElement = document.getElementById('track-input');
+        var inputValue = inputElement.value;
+
+        if (inputValue.trim() !== "") {
+            inputElement.select();
+            document.execCommand('copy');
+            notification1("Copied to your clipboard ✨");
+        }
+  });
+
+  document.getElementById('isrc_value_input').addEventListener('click', function() {
+        var inputElement = document.getElementById('isrc-input');
+        var inputValue = inputElement.value;
+
+        if (inputValue.trim() !== "") {
+            inputElement.select();
+            document.execCommand('copy');
+            notification1("Copied to your clipboard ✨");
+        }
+  });
+
+  // Scripts para abrir links da mxm em nova aba
+
+  document.getElementById('mxm_lyrics_input').addEventListener('click', function() {
+        var inputElement = document.getElementById('mxm_lyrics_url');
+        var url = inputElement.value;
+
+        if (url.trim() !== "") {
+            var fullUrl = 'http://' + url;
+            window.open(fullUrl, '_blank');
+        }
+  });
+
+  document.getElementById('mxm_artist_input').addEventListener('click', function() {
+        var inputElement = document.getElementById('mxm_artist_url');
+        var url = inputElement.value;
+
+        if (url.trim() !== "") {
+            var fullUrl = 'http://' + url;
+            window.open(fullUrl, '_blank');
+        }
+  });
+
+  document.getElementById('mxm_album_input').addEventListener('click', function() {
+        var inputElement = document.getElementById('mxm_album_url');
+        var url = inputElement.value;
+
+        if (url.trim() !== "") {
+            var fullUrl = 'http://' + url;
+            window.open(fullUrl, '_blank');
+        }
+  });
 });
