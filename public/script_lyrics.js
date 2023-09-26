@@ -4,6 +4,8 @@ window.addEventListener('load', () => {
 
   const searchBtn = document.querySelector('#search-btn');
   const search_input = document.querySelector('#search_input');
+  const loading_spinner = document.querySelector('#loading_spinner')
+
 
   /* DESATIVADO MOMENTANEAMENTE
   const div_country_local = document.querySelector('#div_country_local');
@@ -103,6 +105,9 @@ window.addEventListener('load', () => {
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
   // Function to handle search
   const handleSearch = () => {
+    searchBtn.style = "display:none";
+    loading_spinner.style = "";
+
     const inputVal = search_input.value.trim();
 
     const trackUrlRegex = /^(https?:\/\/open\.spotify\.com\/(?:intl-[a-z]{2}\/)?)?track\/(.+)$/;
@@ -124,6 +129,8 @@ window.addEventListener('load', () => {
     if (setCountryMatch) {
       const countryCode = setCountryMatch[1];
       saveCountry(countryCode);
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
       return;
     }
 
@@ -133,6 +140,8 @@ window.addEventListener('load', () => {
 
     } else if (shortSpotifyregex.test(inputVal)) {
       notification1("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
       return; // remove after shortened links integration
     } else if (studioUrlRegex.test(inputVal)) {
       const match = inputVal.match(studioUrlRegex);
@@ -147,9 +156,14 @@ window.addEventListener('load', () => {
       lyrics_pusher.src = `https://musixmatch.typeform.com/to/tFQDvIsp?typeform-s`;
       lyrics_container.style = "display:none";
       search_input.value = "";
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
       return;
     } else if (inputVal === lyricsIframe) {
       notification1("This feature is currently unavailable or under development 🔧")
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
+
       /* DEVELOPMENT
       lyrics_container.style = "";
       lyrics_preview.src = mxm_preview;
@@ -159,16 +173,24 @@ window.addEventListener('load', () => {
       return;
     } else if (inputVal === openStudio) {
       notification1("This feature is currently unavailable or under development 🔧")
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
       return;
     } else if (inputVal === openMxm) {
       notification1("This feature is currently unavailable or under development 🔧")
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
       return;
     } else if (isrcRegex.test(inputVal)) {
       notification1("Oops! ISRC search is not a feature at the moment 👀");
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
       search_input.value = "";
       return;
     } else {
       notification1("Please enter a valid Spotify track URL or ID 🎶")
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
       return;
     }
 
@@ -191,24 +213,36 @@ window.addEventListener('load', () => {
           if (response.status === 500) {
             notification1("Sorry, we can't process your request at the moment 😥");
             console.log("Internal Server Error (500)");
+            loading_spinner.style = "display:none";
+            searchBtn.style = "";
           } else if (response.status === 403) {
             notification1("The token you're using is invalid or has expired 🔑"); 
             console.log("Access denied (403)");
+            loading_spinner.style = "display:none";
+            searchBtn.style = "";
           } else if (response.status === 404) {
             notification1("We couldn't find the track you are looking for 😥");
             console.log("Resource not found (404)");
+            loading_spinner.style = "display:none";
+            searchBtn.style = "";
           } else if (response.status === 429) {
             notification1("Too many requests, please try again later ⛔"); 
             console.log("Too many requests (429)");
+            loading_spinner.style = "display:none";
+            searchBtn.style = "";
           } else {
             notification1("Sorry, we can't process your request at the moment 😥");
             console.log(`Unknown error: ${response.status}`);
+            loading_spinner.style = "display:none";
+            searchBtn.style = "";
           }
         }
         return response.json();
       })
       .then((data) => {
         
+        loading_spinner.style = "display:none";
+        searchBtn.style = "";
         let spotifyData, mxmData;
         spotifyData = data.message.body.spotify;
         mxmData = data.message.body.musixmatch;
@@ -246,6 +280,7 @@ window.addEventListener('load', () => {
           formattedReleaseDate = releaseDate;
           release_date_line = `Released in ${formattedReleaseDate}`;
         }
+        
         
         
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
@@ -310,9 +345,9 @@ window.addEventListener('load', () => {
         mxm_album_url.setAttribute("value", `mxmt.ch/r/${mxm_album_id}`);
         abstrack_mxm.setAttribute("value", `${mxm_abstrack}`);
 
-        mxm_lyricsname.title = mxm_lyrics_name + '| Musixmatch'
-        mxm_artistname.title = mxm_artist_name + '| Musixmatch'
-        mxm_albumname.title = mxm_album_name + '| Musixmatch'
+        mxm_lyricsname.title = mxm_lyrics_name
+        mxm_artistname.title = mxm_artist_name
+        mxm_albumname.title = mxm_album_name
 
         popularity_mxm.textContent = `Musixmatch Rating: ${mxm_lyrics_rating}%`;
         
@@ -508,62 +543,6 @@ window.addEventListener('load', () => {
       event.preventDefault();
       handleSearch();
     }
-  });
-
-  // Scripts para copiar IDs
-
-  document.getElementById('spotify_id_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('track-input');
-        var inputValue = inputElement.value;
-
-        if (inputValue.trim() !== "") {
-            inputElement.select();
-            document.execCommand('copy');
-            notification1("Copied to your clipboard ✨");
-        }
-  });
-
-  document.getElementById('isrc_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('isrc-input');
-        var inputValue = inputElement.value;
-
-        if (inputValue.trim() !== "") {
-            inputElement.select();
-            document.execCommand('copy');
-            notification1("Copied to your clipboard ✨");
-        }
-  });
-
-  // Scripts para abrir links da mxm em nova aba
-
-  document.getElementById('mxm_lyrics_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_lyrics_url');
-        var url = inputElement.value;
-
-        if (url.trim() !== "") {
-            var fullUrl = 'http://' + url;
-            window.open(fullUrl, '_blank');
-        }
-  });
-
-  document.getElementById('mxm_artist_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_artist_url');
-        var url = inputElement.value;
-
-        if (url.trim() !== "") {
-            var fullUrl = 'http://' + url;
-            window.open(fullUrl, '_blank');
-        }
-  });
-
-  document.getElementById('mxm_album_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_album_url');
-        var url = inputElement.value;
-
-        if (url.trim() !== "") {
-            var fullUrl = 'http://' + url;
-            window.open(fullUrl, '_blank');
-        }
   });
 
   // ...
