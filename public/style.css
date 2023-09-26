@@ -267,7 +267,7 @@ input:-webkit-autofill::selection {
 .container_base_1 {
   position: relative;
   width: 720px;
-  height: 740px;
+  height: 675px;
   flex-direction: row;
   align-items: center;
   margin: auto;
@@ -276,7 +276,7 @@ input:-webkit-autofill::selection {
 .container_base_2 {
   position: relative;
   width: 720px;
-  height: 740px;
+  height: 675px;
   flex-direction: row;
   align-items: center;
   margin: auto;
@@ -285,7 +285,7 @@ input:-webkit-autofill::selection {
 .container_base_3 {
   position: relative;
   width: 720px;
-  height: 740px;
+  height: 675px;
   flex-direction: row;
   align-items: center;
   margin: auto;
@@ -294,7 +294,7 @@ input:-webkit-autofill::selection {
 .container_1 {
   position: relative;
   width: 700px;
-  height: 730px;
+  height: 665px;
   background-color: #222222;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
@@ -306,7 +306,7 @@ input:-webkit-autofill::selection {
 
 .container_2 {
   width: 700px;
-  height: 730px;
+  height: 665px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
@@ -318,7 +318,7 @@ input:-webkit-autofill::selection {
 .container_3 {
   position: relative;
   width: 700px;
-  max-height: 730px;
+  max-height: 665px;
   background-color: #ffffff;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
