@@ -345,9 +345,9 @@ window.addEventListener('load', () => {
         mxm_album_url.setAttribute("value", `mxmt.ch/r/${mxm_album_id}`);
         abstrack_mxm.setAttribute("value", `${mxm_abstrack}`);
 
-        mxm_lyricsname.title = mxm_lyrics_name
-        mxm_artistname.title = mxm_artist_name
-        mxm_albumname.title = mxm_album_name
+        mxm_lyricsname.title = mxm_lyrics_name + ' | Musixmatch'
+        mxm_artistname.title = mxm_artist_name + ' | Musixmatch'
+        mxm_albumname.title = mxm_album_name + ' | Musixmatch'
 
         popularity_mxm.textContent = `Musixmatch Rating: ${mxm_lyrics_rating}%`;
         
