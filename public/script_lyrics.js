@@ -196,6 +196,12 @@ window.addEventListener('load', () => {
     } else if (isrcRegex.test(inputVal)) {
       notification1("Oops! ISRC search is not a feature at the moment 👀");
 
+      return;
+    } else if (inputVal === openMxm) {
+      notification1("This feature is currently unavailable or under development 🔧")
+      return;
+    } else if (isrcRegex.test(inputVal)) {
+      notification1("Oops! ISRC search is not a feature at the moment 👀");
       search_input.value = "";
       return;
     } else {
