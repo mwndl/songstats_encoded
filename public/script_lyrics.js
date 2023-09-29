@@ -233,6 +233,11 @@ window.addEventListener('load', () => {
             console.log("Internal Server Error (500)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
+          } else if (response.status === 503) {
+            notification1("Starting the server, please wait a moment");
+            console.log("Dynamic Hibernate Error (503)");
+            loading_spinner.style = "display:none";
+            searchBtn.style = "";
           } else if (response.status === 403) {
             notification1("The token you're using is invalid or has expired 🔑"); 
             console.log("Access denied (403)");
