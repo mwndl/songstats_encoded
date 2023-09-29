@@ -225,7 +225,7 @@ window.addEventListener('load', () => {
     
 
     // Send a Lyrics request to the internal API
-    fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
+    fetch(`https://songstats-backend.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
