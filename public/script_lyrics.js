@@ -103,8 +103,9 @@ window.addEventListener('load', () => {
   };
 
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
+
   // Function to handle search
-  const handleSearch = () => {
+  const handleSearch = (trackId) => {
     searchBtn.style = "display:none";
     loading_spinner.style = "";
 
@@ -119,7 +120,6 @@ window.addEventListener('load', () => {
     const pushForm = "/push";
     const lyricsIframe = "/lyrics"
     const openStudio = "/studio"
-    const openMxm = "/mxm"
     let trackId = '';
     let isrc = '';
 
@@ -178,11 +178,6 @@ window.addEventListener('load', () => {
     } else if (inputVal === openStudio) {
       notification1("This feature is currently unavailable or under development 🔧")
 
-      loading_spinner.style = "display:none";
-      searchBtn.style = "";
-      return;
-    } else if (inputVal === openMxm) {
-      notification1("This feature is currently unavailable or under development 🔧")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       return;
@@ -527,6 +522,26 @@ window.addEventListener('load', () => {
         console.error(error);
       });
   };
+
+  // Função para iniciar a pesquisa com base na URL atual
+  const startSearchFromURL = () => {
+    // Obtenha a parte da URL após o domínio (por exemplo, "/s/trackId")
+    const currentPathname = window.location.pathname;
+
+    // Verifique se a URL atual corresponde ao padrão "/s/trackId"
+    const urlRegex = /^\/s\/(.+)$/;
+    const match = currentPathname.match(urlRegex);
+
+    if (match) {
+      // Extrai o trackId da URL atual
+      const trackId = match[1];
+
+      // Chama a função handleSearch() com o trackId como argumento
+      handleSearch(trackId);
+    }
+  };
+
+  window.addEventListener('load', startSearchFromURL);
   
     /* DESATIVADO MOMENTANEAMENTE!
     
