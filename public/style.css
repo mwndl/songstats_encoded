@@ -882,16 +882,6 @@ h2 {
     height: 100%;
 }
 
-
-.main_2-2-group::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #282828ad;
-    border-radius: 12px;
-}
-
 .main_2-right {
   background-color: #282828;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
