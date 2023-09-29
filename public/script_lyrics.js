@@ -337,6 +337,8 @@ window.addEventListener('load', () => {
         const mxm_instrumental = mxmData.track_data.stats.instrumental;
         const mxm_explicit = mxmData.track_data.stats.explicit;
         const mxm_restricted = mxmData.track_data.stats.restricted;
+
+        /* Service offline
         
         // Definição de valores
         if (spot_lyrics === false) {
@@ -354,6 +356,8 @@ window.addEventListener('load', () => {
         } else {
             spotify_sync.className = "status-2 status-red";
         }
+
+        */
 
         mxm_lyrics_url.setAttribute("value", `mxmt.ch/t/${mxm_lyrics_id}`);
         mxm_artist_url.setAttribute("value", `mxmt.ch/a/${mxm_artist_id}`);
