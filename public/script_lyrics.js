@@ -105,7 +105,7 @@ window.addEventListener('load', () => {
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
 
   // Function to handle search
-  const handleSearch = (trackId) => {
+  const handleSearch = () => {
     searchBtn.style = "display:none";
     loading_spinner.style = "";
 
