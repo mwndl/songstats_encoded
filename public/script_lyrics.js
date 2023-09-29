@@ -231,34 +231,27 @@ window.addEventListener('load', () => {
           if (response.status === 500) {
             notification1("Sorry, we can't process your request at the moment 😥");
             console.log("Internal Server Error (500)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
+          } else if (response.status === 502) {
+            notification1("Sorry, we can't process your request at the moment 😥");
+            console.log("Bad Gateway (502)");
           } else if (response.status === 503) {
             notification1("Starting the server, please wait a moment");
             console.log("Dynamic Hibernate Error (503)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else if (response.status === 403) {
             notification1("The token you're using is invalid or has expired 🔑"); 
             console.log("Access denied (403)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else if (response.status === 404) {
             notification1("We couldn't find the track you are looking for 😥");
             console.log("Resource not found (404)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else if (response.status === 429) {
             notification1("Too many requests, please try again later ⛔"); 
             console.log("Too many requests (429)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else {
             notification1("Sorry, we can't process your request at the moment 😥");
             console.log(`Unknown error: ${response.status}`);
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           }
+          loading_spinner.style = "display:none";
+          searchBtn.style = "";
         }
         return response.json();
       })
