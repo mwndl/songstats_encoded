@@ -24,7 +24,7 @@ body{
 
 /* INICIO DA ANIMAÇÃO */
 
-
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 .context {
     width: 100%;
     position: absolute;
