@@ -875,16 +875,17 @@ h3 {
 }
 
 .main_2-2-group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  padding: 10px 10px;
-  background-color: #282828;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    padding: 10px 10px;
+    background-color: #282828;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    height: 100%;
 }
 
 .main_2-right {
