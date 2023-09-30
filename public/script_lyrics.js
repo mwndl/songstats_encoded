@@ -615,8 +615,8 @@ window.addEventListener('load', () => {
 
   // Scripts para abrir links da mxm em nova aba
 
-  document.getElementById('mxm_lyrics_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_lyrics_url');
+  document.getElementById('lyrics_finder').addEventListener('click', function() {
+        var inputElement = document.getElementById('lyrics_finder');
         var url = inputElement.value;
 
         if (url.trim() !== "") {
