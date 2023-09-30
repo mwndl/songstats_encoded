@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Stats - Lyrics Finder</title>
+    <title>Song Stats | Lyrics Finder</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <script src="axios.min.js"></script>
     <script src="script_lyrics.js"></script>
   </head>
-  <body>
+  <body">
     <div class="context">
       <style id="background_animation_starter"></style>
       <p id="countries_available"></p>
@@ -91,7 +91,7 @@
                 </div>  
                 <div class="song-stats-div">
                   <div class="song-stats">
-                    <div class="main_2-2-group" title="This function has been disabled for improvements">
+                    <div class="main_2-2-group">
                       <div class="main_2-1">
                         <div class="title-status-pair">
                           <p class="title">Lyrics on Spotify</p>
@@ -164,6 +164,10 @@
             <div class="notification-content">
                 <p id="notification-message"></p>
             </div>
+        </div>
+        <div class="requests_conter">
+            <p id="requests_counter_text">1 of 20</p>
+            <div id="requests_counter_status" class="requests_counter_status status-green" title="The server is online"></div>
         </div>
     </body>
     </div>

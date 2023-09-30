@@ -187,6 +187,9 @@ window.addEventListener('load', () => {
       searchBtn.style = "";
 
       return;
+    } else if (inputVal === openMxm) {
+      notification1("This feature is currently unavailable or under development 🔧")
+      return;
     } else if (isrcRegex.test(inputVal)) {
       notification1("Oops! ISRC search is not a feature at the moment 👀");
 
@@ -311,6 +314,7 @@ window.addEventListener('load', () => {
         const album_color_3 = `rgb(${spotifyData.album_data.color_theme.color_3.join(', ')})`;
         const album_color_4 = `rgb(${spotifyData.album_data.color_theme.color_4.join(', ')})`;
         const album_color_5 = `rgb(${spotifyData.album_data.color_theme.color_5.join(', ')})`;
+        console.log(album_color_1, album_color_2, album_color_3, album_color_3, album_color_4, album_color_5);
         backgroundGradient.style.backgroundImage = `linear-gradient(45deg, ${album_color_1}, ${album_color_2}, ${album_color_3}, ${album_color_4}, ${album_color_5})`;
 
         // Musixmatch Data
@@ -611,8 +615,8 @@ window.addEventListener('load', () => {
 
   // Scripts para abrir links da mxm em nova aba
 
-  document.getElementById('lyrics_finder').addEventListener('click', function() {
-        var inputElement = document.getElementById('lyrics_finder');
+  document.getElementById('mxm_lyrics_input').addEventListener('click', function() {
+        var inputElement = document.getElementById('mxm_lyrics_url');
         var url = inputElement.value;
 
         if (url.trim() !== "") {
