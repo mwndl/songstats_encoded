@@ -647,4 +647,33 @@ window.addEventListener('load', () => {
             window.open(fullUrl, '_blank');
         }
   });
+
+  let clickCounter = 0;
+  let devMode = false;
+
+  const requestsCounterStatus = document.getElementById("requests_counter_status");
+  const modoDevButton = document.getElementById("modo_dev");
+
+  requestsCounterStatus.addEventListener("click", () => {
+      if (devMode) {
+        notification1("Developer mode disabled 🔧")
+          console.log("Developer mode has been disabled by the user");
+          devMode = false;
+      } else {
+          clickCounter++;
+          if (clickCounter === 5) {
+            notification1("Developer mode enabled 🔧")
+              console.log("Developer mode has been enabled by the user");
+              clickCounter = 0;
+              devMode = true;
+          }
+      }
+  });
+
+  modoDevButton.addEventListener("click", () => {
+      if (devMode) {
+          console.log("Developer mode has been disabled by the user");
+          devMode = false;
+      }
+  });
 });

@@ -434,10 +434,31 @@ input:-webkit-autofill::selection {
   height: 100%;
 }
 
-.logo_icon_img {
+.logo_icon_color {
   width: 75%;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(45deg,#ef97ff, #ff985c);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s linear infinite alternate;
+  box-shadow: rgba(48, 46, 46, 0.2) 0px 4px 10px;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.logo_icon_img {
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   box-shadow: rgba(48, 46, 46, 0.2) 0px 4px 10px;
+  transform: scale(1.030);
 }
 
 .search-container {
