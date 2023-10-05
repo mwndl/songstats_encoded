@@ -103,7 +103,6 @@ window.addEventListener('load', () => {
   };
 
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
-
   // Function to handle search
   const handleSearch = () => {
     searchBtn.style = "display:none";
@@ -120,6 +119,7 @@ window.addEventListener('load', () => {
     const pushForm = "/push";
     const lyricsIframe = "/lyrics"
     const openStudio = "/studio"
+    const openMxm = "/mxm"
     let trackId = '';
     let isrc = '';
 
@@ -137,9 +137,7 @@ window.addEventListener('load', () => {
     if (trackUrlRegex.test(inputVal)) {
       const url = new URL(inputVal);
       trackId = url.pathname.split('/').pop();
-      // Modify the URL
-      history.pushState({}, "", `/s/${trackId}`);
-      
+
     } else if (shortSpotifyregex.test(inputVal)) {
       notification1("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
       loading_spinner.style = "display:none";
@@ -181,6 +179,11 @@ window.addEventListener('load', () => {
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       return;
+    } else if (inputVal === openMxm) {
+      notification1("This feature is currently unavailable or under development 🔧")
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
+      return;
     } else if (isrcRegex.test(inputVal)) {
       notification1("Oops! ISRC search is not a feature at the moment 👀");
       loading_spinner.style = "display:none";
@@ -193,6 +196,12 @@ window.addEventListener('load', () => {
     } else if (isrcRegex.test(inputVal)) {
       notification1("Oops! ISRC search is not a feature at the moment 👀");
 
+      return;
+    } else if (inputVal === openMxm) {
+      notification1("This feature is currently unavailable or under development 🔧")
+      return;
+    } else if (isrcRegex.test(inputVal)) {
+      notification1("Oops! ISRC search is not a feature at the moment 👀");
       search_input.value = "";
       return;
     } else {
@@ -216,40 +225,33 @@ window.addEventListener('load', () => {
     
 
     // Send a Lyrics request to the internal API
-    fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
+    fetch(`https://songstats-backend.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
             notification1("Sorry, we can't process your request at the moment 😥");
             console.log("Internal Server Error (500)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
+          } else if (response.status === 502) {
+            notification1("Sorry, we can't process your request at the moment 😥");
+            console.log("Bad Gateway (502)");
           } else if (response.status === 503) {
             notification1("Starting the server, please wait a moment");
             console.log("Dynamic Hibernate Error (503)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else if (response.status === 403) {
             notification1("The token you're using is invalid or has expired 🔑"); 
             console.log("Access denied (403)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else if (response.status === 404) {
             notification1("We couldn't find the track you are looking for 😥");
             console.log("Resource not found (404)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else if (response.status === 429) {
             notification1("Too many requests, please try again later ⛔"); 
             console.log("Too many requests (429)");
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           } else {
             notification1("Sorry, we can't process your request at the moment 😥");
             console.log(`Unknown error: ${response.status}`);
-            loading_spinner.style = "display:none";
-            searchBtn.style = "";
           }
+          loading_spinner.style = "display:none";
+          searchBtn.style = "";
         }
         return response.json();
       })
@@ -335,6 +337,8 @@ window.addEventListener('load', () => {
         const mxm_instrumental = mxmData.track_data.stats.instrumental;
         const mxm_explicit = mxmData.track_data.stats.explicit;
         const mxm_restricted = mxmData.track_data.stats.restricted;
+
+        /* Service offline
         
         // Definição de valores
         if (spot_lyrics === false) {
@@ -352,6 +356,8 @@ window.addEventListener('load', () => {
         } else {
             spotify_sync.className = "status-2 status-red";
         }
+
+        */
 
         mxm_lyrics_url.setAttribute("value", `mxmt.ch/t/${mxm_lyrics_id}`);
         mxm_artist_url.setAttribute("value", `mxmt.ch/a/${mxm_artist_id}`);
@@ -527,26 +533,6 @@ window.addEventListener('load', () => {
         console.error(error);
       });
   };
-
-  // Função para iniciar a pesquisa com base na URL atual
-  const startSearchFromURL = () => {
-    // Obtenha a parte da URL após o domínio (por exemplo, "/s/trackId")
-    const currentPathname = window.location.pathname;
-
-    // Verifique se a URL atual corresponde ao padrão "/s/trackId"
-    const urlRegex = /^\/s\/(.+)$/;
-    const match = currentPathname.match(urlRegex);
-
-    if (match) {
-      // Extrai o trackId da URL atual
-      const trackId = match[1];
-
-      // Chama a função handleSearch() com o trackId como argumento
-      handleSearch(trackId);
-    }
-  };
-
-  window.addEventListener('load', startSearchFromURL);
   
     /* DESATIVADO MOMENTANEAMENTE!
     
@@ -620,7 +606,6 @@ window.addEventListener('load', () => {
         var url = inputElement.value;
 
         if (url.trim() !== "") {
-            inputElement.select();
             var fullUrl = 'http://' + url;
             window.open(fullUrl, '_blank');
         }
@@ -631,7 +616,6 @@ window.addEventListener('load', () => {
         var url = inputElement.value;
 
         if (url.trim() !== "") {
-            inputElement.select();
             var fullUrl = 'http://' + url;
             window.open(fullUrl, '_blank');
         }
@@ -642,38 +626,8 @@ window.addEventListener('load', () => {
         var url = inputElement.value;
 
         if (url.trim() !== "") {
-            inputElement.select();
             var fullUrl = 'http://' + url;
             window.open(fullUrl, '_blank');
         }
-  });
-
-  let clickCounter = 0;
-  let devMode = false;
-
-  const requestsCounterStatus = document.getElementById("requests_counter_status");
-  const modoDevButton = document.getElementById("modo_dev");
-
-  requestsCounterStatus.addEventListener("click", () => {
-      if (devMode) {
-        notification1("Developer mode disabled 🔧")
-          console.log("Developer mode has been disabled by the user");
-          devMode = false;
-      } else {
-          clickCounter++;
-          if (clickCounter === 5) {
-            notification1("Developer mode enabled 🔧")
-              console.log("Developer mode has been enabled by the user");
-              clickCounter = 0;
-              devMode = true;
-          }
-      }
-  });
-
-  modoDevButton.addEventListener("click", () => {
-      if (devMode) {
-          console.log("Developer mode has been disabled by the user");
-          devMode = false;
-      }
   });
 });
