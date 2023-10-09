@@ -1067,7 +1067,6 @@ h3 {
   background-color: #282828; 
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   padding: 15px; 
-  width: 100px;
   height: 40px;
   border-radius: 25px;
   text-align: center;
@@ -1089,6 +1088,7 @@ h3 {
   display: inline-block;
   align-items: right;
   max-width: 10px;
+  margin-left: 5px;
 }
 
 .requests_conter p{
@@ -1235,4 +1235,3 @@ h3 {
   border-radius: 50%;
   box-shadow: -3px 4px 60px rgb(49, 22, 22);
 }
-  
