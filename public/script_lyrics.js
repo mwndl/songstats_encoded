@@ -314,11 +314,8 @@ window.addEventListener('load', () => {
 
         const album_color_1 = `rgb(${spotifyData.album_data.color_theme.color_1.join(', ')})`;
         const album_color_2 = `rgb(${spotifyData.album_data.color_theme.color_2.join(', ')})`;
-        const album_color_3 = `rgb(${spotifyData.album_data.color_theme.color_3.join(', ')})`;
-        const album_color_4 = `rgb(${spotifyData.album_data.color_theme.color_4.join(', ')})`;
-        const album_color_5 = `rgb(${spotifyData.album_data.color_theme.color_5.join(', ')})`;
-        console.log(album_color_1, album_color_2, album_color_3, album_color_3, album_color_4, album_color_5);
-        backgroundGradient.style.backgroundImage = `linear-gradient(45deg, ${album_color_1}, ${album_color_2}, ${album_color_3}, ${album_color_4}, ${album_color_5})`;
+        
+        backgroundGradient.style.backgroundImage = `linear-gradient(45deg, ${album_color_1}, ${album_color_2})`;
 
         // Musixmatch Data
         const mxm_abstrack = mxmData.track_data.commontrack_id;
@@ -407,8 +404,8 @@ window.addEventListener('load', () => {
             stats_mxm_instrumental.className = "status-1 status-red";
         }
 
-        requestsCounter = headerData.user.requests_counter;
-        requestsLimit = headerData.user.requests_limit;
+        const requestsCounter = data.message.header.user.requests_counter;
+        const requestsLimit = data.message.header.user.requests_limit;
 
         /* DESATIVADO MOMENTANEAMENTE!
         
@@ -490,7 +487,7 @@ window.addEventListener('load', () => {
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
 
-        requestsCounter.textContent = `${requestsCounter} of ${requestsLimit}`
+        requestsCounter.textContent = `${requestsCounter} of ${requestsLimit}`;
 
         /* DESATIVADO MOMENTANEAMENTE!
         // Verificar se o país salvo está disponível para a faixa pesquisada
