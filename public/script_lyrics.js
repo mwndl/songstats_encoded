@@ -267,7 +267,8 @@ window.addEventListener('load', () => {
         return response.json();
       })
       .then((data) => {
-        
+
+        requests_counter_status.style = "requests_counter_status status-green";
         loading_spinner.style = "display:none";
         searchBtn.style = "";
         let spotifyData, mxmData;
