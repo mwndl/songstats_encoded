@@ -71,6 +71,8 @@ window.addEventListener('load', () => {
   const notification = document.getElementById("notification");
   const message = document.getElementById("notification-message");
 
+  const requestsCounter = document.getElementById("requests_counter_text")
+
   /* DESATIVADO MOMENTANEAMENTE
   const div_lyrics_preview = document.querySelector('#div_lyrics_preview');
   const mxm_lyrics_preview = document.querySelector('#lyrics_preview');
@@ -216,7 +218,7 @@ window.addEventListener('load', () => {
     
 
     // Send a Lyrics request to the internal API
-    fetch(`https://songstats-backend3.onrender.com/api/spotify/search/${trackId}?token=${accessToken}`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder-beta/spotify/trackId/${trackId}?token=${accessToken}`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
@@ -258,6 +260,7 @@ window.addEventListener('load', () => {
         loading_spinner.style = "display:none";
         searchBtn.style = "";
         let spotifyData, mxmData;
+        headerData = data.message.header;
         spotifyData = data.message.body.spotify;
         mxmData = data.message.body.musixmatch;
 
@@ -404,6 +407,9 @@ window.addEventListener('load', () => {
             stats_mxm_instrumental.className = "status-1 status-red";
         }
 
+        requestsCounter = headerData.user.requests_counter;
+        requestsLimit = headerData.user.requests_limit;
+
         /* DESATIVADO MOMENTANEAMENTE!
         
         // Ativa ou desativa o preview das letras
@@ -474,7 +480,6 @@ window.addEventListener('load', () => {
         releaseDateInput.textContent = releaseDate;
         songPreviewInput.src = songPreview;
         player_button.className = "play-button"
-
         */
         
         spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
@@ -484,6 +489,8 @@ window.addEventListener('load', () => {
         albumPosition.textContent = `Album Position: ${albumPositionN} of ${albumTotalN}`;
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
+
+        requestsCounter.textContent = `${requestsCounter} of ${requestsLimit}`
 
         /* DESATIVADO MOMENTANEAMENTE!
         // Verificar se o país salvo está disponível para a faixa pesquisada
