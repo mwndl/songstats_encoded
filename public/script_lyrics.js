@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
   const notification = document.getElementById("notification");
   const message = document.getElementById("notification-message");
 
-  const requestsCounter = document.getElementById("requests_counter_text")
+  const requests_counter = document.getElementById("requests_counter_text")
 
   /* DESATIVADO MOMENTANEAMENTE
   const div_lyrics_preview = document.querySelector('#div_lyrics_preview');
@@ -487,7 +487,7 @@ window.addEventListener('load', () => {
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
 
-        requestsCounter.textContent = `${requestsCounter} of ${requestsLimit}`;
+        requests_counter.textContent = `${requestsCounter} of ${requestsLimit}`;
 
         /* DESATIVADO MOMENTANEAMENTE!
         // Verificar se o país salvo está disponível para a faixa pesquisada
