@@ -881,14 +881,19 @@ h3 {
   background-color: #393939;
 }
 
+.status-blue {
+  background-color: #0077c2;
+  box-shadow: 0 0 2px #0077c2;
+}
+
 .status-red {
   background-color: red;
   box-shadow: 0 0 2px red;
 }
 
-.status-blue {
-  background-color: #0077c2;
-  box-shadow: 0 0 2px #0077c2;
+.status-yellow {
+  background-color: #edb51a;
+  box-shadow: 0 0 2px #edb51a;
 }
 
 .status-green {
@@ -1230,3 +1235,4 @@ h3 {
   border-radius: 50%;
   box-shadow: -3px 4px 60px rgb(49, 22, 22);
 }
+  
