@@ -1062,23 +1062,21 @@ h3 {
 
 .requests_conter {
   position: fixed;
-  bottom: 1%; 
-  right: 1%; 
-  background-color: #282828; 
+  bottom: 1%;
+  right: 1%;
+  background-color: #282828;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
-  padding: 15px; 
+  padding: 15px;
+  min-width: 100px; 
+  width: auto; 
   height: 40px;
   border-radius: 25px;
   text-align: center;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   user-select: none;
-}
-
-.requests_counter_text {
-  width: 80%
 }
 
 .requests_counter_status {
@@ -1086,14 +1084,15 @@ h3 {
   height: 10px;
   border-radius: 50%;
   display: inline-block;
-  align-items: right;
   max-width: 10px;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .requests_conter p{
   font-size: 12px;
   font-weight: bold;
+  flex-grow: 1; 
+  justify-content: center;
 }
 
 /* Pag inicial */
