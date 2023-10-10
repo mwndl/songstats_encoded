@@ -228,7 +228,7 @@ window.addEventListener('load', () => {
             console.log("Internal Server Error (500)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_light.className = "requests_counter_status status-red";
             requests_counter_text.textContent = "Server error";
             request_counter_div.style = ""
           } else if (response.status === 503) {
@@ -236,7 +236,7 @@ window.addEventListener('load', () => {
             console.log("Dynamic Hibernate Error (503)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_light.style = "requests_counter_status status-yellow";
+            requests_counter_light.className = "requests_counter_status status-yellow";
             requests_counter_text.textContent = "Starting the server";
             request_counter_div.style = ""
           } else if (response.status === 403) {
@@ -244,7 +244,7 @@ window.addEventListener('load', () => {
             console.log("Access denied (403)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_light.className = "requests_counter_status status-red";
             requests_counter_text.textContent = "Unauthorized";
             request_counter_div.style = ""
           } else if (response.status === 404) {
@@ -252,7 +252,7 @@ window.addEventListener('load', () => {
             console.log("Resource not found (404)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_light.className = "requests_counter_status status-red";
             requests_counter_text.textContent = "Not found";
             request_counter_div.style = ""
           } else if (response.status === 429) {
@@ -260,7 +260,7 @@ window.addEventListener('load', () => {
             console.log("Too many requests (429)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_light.className = "requests_counter_status status-red";
             requests_counter_text.textContent = "Too many requests";
             request_counter_div.style = ""
           } else {
@@ -268,7 +268,7 @@ window.addEventListener('load', () => {
             console.log(`Unknown error: ${response.status}`);
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_light.className = "requests_counter_status status-red";
             requests_counter_text.textContent = "Unknown error";
             request_counter_div.style = ""
           }
@@ -508,7 +508,7 @@ window.addEventListener('load', () => {
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
 
-        requests_counter_light.style = "requests_counter_status status-green";
+        requests_counter_light.className = "requests_counter_status status-green";
         request_counter_div.style = ""
         requests_counter_text.textContent = `${requestsCounter} of ${requestsLimit}`;
 
