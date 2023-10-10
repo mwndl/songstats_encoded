@@ -1249,17 +1249,17 @@ h3 {
 .spotify_logo {
   user-select: none;
   position: relative;
-  top: -31.5%;
+  top: 0;
   left: 49.5%;
-  border-radius: 50%;
+  border-radius: 50.5%;
   box-shadow: -3px 4px 60px rgb(26, 57, 28);
 }
 
 .mxm_logo {
   user-select: none;
   position: relative;
-  top: -31.5%;
-  left: 21%;
+  top: 0;
+  left: 21.5%;
   border-radius: 50%;
   box-shadow: -3px 4px 60px rgb(49, 22, 22);
 }
