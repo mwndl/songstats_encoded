@@ -191,9 +191,6 @@ window.addEventListener('load', () => {
       searchBtn.style = "";
 
       return;
-    } else if (inputVal === openMxm) {
-      notification1("This feature is currently unavailable or under development 🔧")
-      return;
     } else if (isrcRegex.test(inputVal)) {
       notification1("Oops! ISRC search is not a feature at the moment 👀");
 
