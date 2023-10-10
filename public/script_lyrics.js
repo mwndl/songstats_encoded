@@ -680,7 +680,7 @@ window.addEventListener('load', () => {
 
   const modoDevButton = document.getElementById("modo_dev");
 
-  requestsCounterStatus.addEventListener("click", () => {
+  requests_counter_light.addEventListener("click", () => {
       if (devMode) {
         notification1("Developer mode disabled 🔧")
           console.log("Developer mode has been disabled by the user");
