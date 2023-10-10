@@ -71,8 +71,9 @@ window.addEventListener('load', () => {
   const notification = document.getElementById("notification");
   const message = document.getElementById("notification-message");
 
-  const requests_counter = document.getElementById("requests_counter_text");
-  const requests_counter_status = document.getElementById("requests_counter_status");
+  const request_counter_div = document.getElementById("requests_conter")
+  const requests_counter_text = document.getElementById("requests_counter_text");
+  const requests_counter_light = document.getElementById("requests_counter_status");
 
   /* DESATIVADO MOMENTANEAMENTE
   const div_lyrics_preview = document.querySelector('#div_lyrics_preview');
@@ -227,48 +228,55 @@ window.addEventListener('load', () => {
             console.log("Internal Server Error (500)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_status.style = "requests_counter_status status-red";
-            requests_counter.textContent = "Server error";
+            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_text.textContent = "Server error";
+            request_counter_div.style = ""
           } else if (response.status === 503) {
             notification1("Starting the server, please wait a moment");
             console.log("Dynamic Hibernate Error (503)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_status.style = "requests_counter_status status-yellow";
-            requests_counter.textContent = "Starting the server";
+            requests_counter_light.style = "requests_counter_status status-yellow";
+            requests_counter_text.textContent = "Starting the server";
+            request_counter_div.style = ""
           } else if (response.status === 403) {
             notification1("The token you're using is invalid or has expired 🔑"); 
             console.log("Access denied (403)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_status.style = "requests_counter_status status-red";
-            requests_counter.textContent = "Unauthorized";
+            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_text.textContent = "Unauthorized";
+            request_counter_div.style = ""
           } else if (response.status === 404) {
             notification1("We couldn't find the track you are looking for 😥");
             console.log("Resource not found (404)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
+            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_text.textContent = "Not found";
+            request_counter_div.style = ""
           } else if (response.status === 429) {
             notification1("Too many requests, please try again later ⛔"); 
             console.log("Too many requests (429)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_status.style = "requests_counter_status status-red";
-            requests_counter.textContent = "Too many requests";
+            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_text.textContent = "Too many requests";
+            request_counter_div.style = ""
           } else {
             notification1("Sorry, we can't process your request at the moment 😥");
             console.log(`Unknown error: ${response.status}`);
             loading_spinner.style = "display:none";
             searchBtn.style = "";
-            requests_counter_status.style = "requests_counter_status status-red";
-            requests_counter.textContent = "Unknown error";
+            requests_counter_light.style = "requests_counter_status status-red";
+            requests_counter_text.textContent = "Unknown error";
+            request_counter_div.style = ""
           }
         }
         return response.json();
       })
       .then((data) => {
 
-        requests_counter_status.style = "requests_counter_status status-green";
         loading_spinner.style = "display:none";
         searchBtn.style = "";
         let spotifyData, mxmData;
@@ -416,6 +424,7 @@ window.addEventListener('load', () => {
             stats_mxm_instrumental.className = "status-1 status-red";
         }
 
+
         const requestsCounter = data.message.header.user.requests_counter;
         const requestsLimit = data.message.header.user.requests_limit;
 
@@ -499,7 +508,9 @@ window.addEventListener('load', () => {
         countriesCounterInput.textContent = `Available in ${numMarkets} markets`;
         popularityInput.textContent = `Spotify Rating: ${popularity}%`;
 
-        requests_counter.textContent = `${requestsCounter} of ${requestsLimit}`;
+        requests_counter_light.style = "requests_counter_status status-green";
+        request_counter_div.style = ""
+        requests_counter_text.textContent = `${requestsCounter} of ${requestsLimit}`;
 
         /* DESATIVADO MOMENTANEAMENTE!
         // Verificar se o país salvo está disponível para a faixa pesquisada
@@ -667,7 +678,6 @@ window.addEventListener('load', () => {
   let clickCounter = 0;
   let devMode = false;
 
-  const requestsCounterStatus = document.getElementById("requests_counter_status");
   const modoDevButton = document.getElementById("modo_dev");
 
   requestsCounterStatus.addEventListener("click", () => {
