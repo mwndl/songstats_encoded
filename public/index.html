@@ -19,15 +19,16 @@
     <div class="containers">
       <div class="container_home">
         <div class="init_top">
-          <h1>Lorem Ipsum</h1>
-          <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h3>
+          <h1>Songstats</h1>
+          <h3>Welcome to Songstats! Please choose one of our services below:</h3>
         </div>
         <div class="button_containers">
           <div class="button_container_left">
             <div class="button_container_1" id="lyrics_finder">
-              <div class="mask-div">
-                <div class="mask-content">
-                  <h2 style="z-index: 1">Lyrics Finder</h2>
+              <div class="button1-mask-div">
+                <div class="button1-mask-content">
+                  <h2>Lyrics Finder</h2>
+                  <p>Get the lyrics of your favorite songs</p>
                   <div class="logo-container">
                     <div class="spotify_logo">
                       <img src="images/spotify_logo.png" style="width: 80%" alt="Spotify Logo" draggable="false">
@@ -40,15 +41,30 @@
               </div>
             </div>
             <div class="button_container_2" id="playlist_data">
-              <h2 style="color: rgba(255, 255, 255, 0.222)">Feature 2</h2>
+              <div class="button2-mask-div">
+                <div class="button2-mask-content">
+                  <h2>Feature 2</h2>
+                  <p>This is a description exemple</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="button_container_left">
+          <div class="button_container_right">
             <div class="button_container_3" id="button_container_3">
-              <h2 style="color: rgba(255, 255, 255, 0.222)">Feature 3</h2>
+              <div class="button3-mask-div">
+                <div class="button3-mask-content">
+                  <h2>Feature 3</h2>
+                  <p>This is a description exemple</p>
+                </div>
+              </div>
             </div>
             <div class="button_container_4" id="button_container_4">
-              <h2 style="color: rgba(255, 255, 255, 0.222)">Feature 4</h2>
+              <div class="button4-mask-div">
+                <div class="button4-mask-content">
+                  <h2>Feature 4</h2>
+                  <p>This is a description exemple</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -90,10 +106,13 @@
     window.location.href = url;
   });
   document.getElementById('playlist_data').addEventListener('click', function () {
-    notification1("This page is under development right now, stay tuned! 🚧")
+    notification1("More services coming soon! 👀")
   });
   document.getElementById('button_container_3').addEventListener('click', function () {
-    notification1("More functions coming soon! 👀")
+    notification1("More services coming soon! 👀")
+  });
+  document.getElementById('button_container_4').addEventListener('click', function () {
+    notification1("More services coming soon! 👀")
   });
 </script>
 
