@@ -1139,6 +1139,7 @@ h3 {
 }
 
 .button_container_1 {
+  min-width: 450px;
   width: 450px;
   height: 140px;
   border-radius: 12px;
@@ -1152,6 +1153,7 @@ h3 {
 }
 
 .button_container_2 {
+  min-width: 450px;
   width: 450px;
   height: 140px;
   border-radius: 12px;
@@ -1165,6 +1167,7 @@ h3 {
 }
 
 .button_container_3 {
+  min-width: 450px;
   width: 450px;
   height: 140px;
   border-radius: 12px;
@@ -1178,6 +1181,7 @@ h3 {
 }
 
 .button_container_4 {
+  min-width: 450px;
   width: 450px;
   height: 140px;
   border-radius: 12px;
