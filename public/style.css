@@ -1160,7 +1160,7 @@ h3 {
   transition: transform 0.2s ease;
   overflow: hidden;
   user-select: none;
-  background: linear-gradient(45deg, #26aeb8, #26aeb8);
+  background: linear-gradient(45deg, #cc395b, #b91c402f);
   margin: 15px;
 }
 
@@ -1173,7 +1173,7 @@ h3 {
   transition: transform 0.2s ease;
   overflow: hidden;
   user-select: none;
-  background: linear-gradient(45deg, #d886ef, #d886ef);
+  background: linear-gradient(45deg, #cc395b, #b91c402f);
   margin: 15px;
 }
 
@@ -1255,6 +1255,7 @@ h3 {
   position: relative;
 }
 
+/* Aplicar sombreamento
 .button2-mask-div::before {
   content: "";
   position: absolute;
@@ -1265,6 +1266,7 @@ h3 {
   background: linear-gradient(to left, #2828284b 60%, rgba(255, 255, 255, 0) 100%);
   z-index: 1; 
 }
+*/
 
 .button2-mask-div .button2-mask-content {
   position: relative;
@@ -1274,6 +1276,7 @@ h3 {
   height: 100%;
   padding: 15px;
 }
+
 
 .button2-mask-div .button2-mask-content h2 {
   z-index: 2;
@@ -1296,6 +1299,7 @@ h3 {
   position: relative;
 }
 
+/* Aplicar sombreamento
 .button3-mask-div::before {
   content: "";
   position: absolute;
@@ -1306,6 +1310,7 @@ h3 {
   background: linear-gradient(to left, #2828284b 60%, rgba(255, 255, 255, 0) 100%);
   z-index: 1; 
 }
+*/
 
 .button3-mask-div .button3-mask-content {
   position: relative;
@@ -1337,7 +1342,8 @@ h3 {
   position: relative;
 }
 
-.button4mask-div::before {
+/* Aplicar sombreamento
+.button4-mask-div::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1347,6 +1353,7 @@ h3 {
   background: linear-gradient(to left, #2828284b 60%, rgba(255, 255, 255, 0) 100%);
   z-index: 1; 
 }
+*/
 
 .button4-mask-div .button4-mask-content {
   position: relative;
