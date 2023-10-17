@@ -152,6 +152,7 @@ window.addEventListener('load', () => {
       notification("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+      search_input.value = "";
 
       return; // remove after shortened links integration
     } else if (studioUrlRegex.test(inputVal)) {
@@ -182,16 +183,19 @@ window.addEventListener('load', () => {
       searchBtn.style = "";
       var studio_url = mxm_edit_lyrics;
       window.open(studio_url, '_blank');
+      search_input.value = "";
       return;
     } else if (isrcRegex.test(inputVal)) {
       notification("Oops! ISRC search is not a feature at the moment 👀");
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+      search_input.value = "";
       return;
     } else {
       notification("Please enter a valid Spotify track URL or ID 🎶")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+      search_input.value = "";
       return;
     }
 
