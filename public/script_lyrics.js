@@ -206,7 +206,6 @@ window.addEventListener('load', () => {
     };
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
-    let mxm_edit_lyrics, mxm_preview
     // Send a Lyrics request to the internal API
     fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=2&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
