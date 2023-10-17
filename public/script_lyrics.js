@@ -131,6 +131,9 @@ window.addEventListener('load', () => {
     let trackId = '';
     let isrc = '';
 
+    const background1Regex = /^\/background=1$/;
+    const background2Regex = /^\/background=2$/;
+
     // Verificar se o comando "set_market_<country_code>" foi digitado
     const setCountryRegex = /^\/set_country\/([A-Z]{2})$/;
     const setCountryMatch = inputVal.match(setCountryRegex);
@@ -191,6 +194,18 @@ window.addEventListener('load', () => {
       searchBtn.style = "";
       search_input.value = "";
       return;
+    } else if (background1Regex.test(inputVal)) {
+      background_mode = 1;
+      saveBackgroundMode(background_mode); // Salve localmente
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
+      return;
+    } else if (background2Regex.test(inputVal)) {
+      background_mode = 2;
+      saveBackgroundMode(background_mode); // Salve localmente
+      loading_spinner.style = "display:none";
+      searchBtn.style = "";
+      return;
     } else {
       notification("Please enter a valid Spotify track URL or ID 🎶")
       loading_spinner.style = "display:none";
@@ -211,7 +226,7 @@ window.addEventListener('load', () => {
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=2&spotify_lyrics=1&mxm_data=1`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
@@ -279,7 +294,7 @@ window.addEventListener('load', () => {
 
         // Spotify data
         const title = spotifyData.track_data.track_name;
-        const artist = spotifyData.artists_data.artists[0].name;
+        const artist = spotifyData.artists_data.artists[2].name;
 
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
         const songURL = `https://open.spotify.com/track/${spotifyID}`;
@@ -292,7 +307,7 @@ window.addEventListener('load', () => {
         const songPreview = spotifyData.track_data.preview_url;
         */
 
-        const image_area = spotifyData.album_data.images[2].url;
+        const image_area = spotifyData.album_data.images[0].url;
 
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
@@ -408,6 +423,12 @@ window.addEventListener('load', () => {
           const album_color_2 = `rgb(${customizationData.album_colors.color_2.join(', ')})`;
   
           backgroundGradient.style.backgroundImage = `linear-gradient(45deg, ${album_color_1}, ${album_color_2})`;
+        } else {
+          const backgroundDiv = document.getElementById("background_div");
+          backgroundDiv.innerHTML = `
+            <div class="blur-overlay"></div>
+            <div class="blur-background" style="background-image: url('${image_area}');"></div>
+          `;
         }
 
         mxm_lyrics_url.setAttribute("value", `mxmt.ch/t/${mxm_lyrics_id}`);
@@ -591,6 +612,17 @@ window.addEventListener('load', () => {
         console.error(error);
       });
   };
+
+  // Função para salvar background_mode localmente
+  function saveBackgroundMode(mode) {
+    localStorage.setItem('background_mode', mode);
+  }
+  
+  // Função para recuperar background_mode localmente
+  function getBackgroundMode() {
+    const mode = localStorage.getItem('background_mode');
+    return mode ? parseInt(mode, 10) : 1; // Valor padrão de 1 se não houver um valor armazenado
+  }
 
   // Função para iniciar a pesquisa com base na URL atual
   const startSearchFromURL = () => {
