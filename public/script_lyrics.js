@@ -110,6 +110,19 @@ window.addEventListener('load', () => {
     }, 4000); // Tempo de exibição
   };
 
+  // Função para salvar background_mode localmente
+  function saveBackgroundMode(mode) {
+    localStorage.setItem('background_mode', mode);
+  }
+  
+  // Função para recuperar background_mode localmente
+  function getBackgroundMode() {
+    const mode = localStorage.getItem('background_mode');
+    return mode ? parseInt(mode, 10) : 1; // Valor padrão de 1 se não houver um valor armazenado
+  }
+
+  let background_mode = getBackgroundMode();
+
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
 
   // Function to handle search
@@ -612,17 +625,6 @@ window.addEventListener('load', () => {
         console.error(error);
       });
   };
-
-  // Função para salvar background_mode localmente
-  function saveBackgroundMode(mode) {
-    localStorage.setItem('background_mode', mode);
-  }
-  
-  // Função para recuperar background_mode localmente
-  function getBackgroundMode() {
-    const mode = localStorage.getItem('background_mode');
-    return mode ? parseInt(mode, 10) : 1; // Valor padrão de 1 se não houver um valor armazenado
-  }
 
   // Função para iniciar a pesquisa com base na URL atual
   const startSearchFromURL = () => {
