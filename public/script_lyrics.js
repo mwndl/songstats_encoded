@@ -17,7 +17,7 @@ window.addEventListener('load', () => {
   const view_lyrics_arrow = document.querySelector('#view_lyrics_arrow');
   const lyrics_container = document.querySelector('#lyrics_container');
   */
-  
+
   const pusher_container = document.querySelector('#pusher_container');
   const lyrics_pusher = document.querySelector('#lyrics_pusher');
   const close_button_pusher = document.querySelector('#close_button_pusher');
@@ -41,6 +41,10 @@ window.addEventListener('load', () => {
   const songPreviewInput = document.querySelector('#song_preview');
   const countriesCounterInput = document.querySelector('#countries_counter');
   const popularityInput = document.querySelector('#popularity');
+
+  const spotLyricsDiv = document.querySelector('#main_2-2-group')
+  const spotLyricsTitle = document.querySelector('#spot_lyrics_title');
+  const spotSyncTitle = document.querySelector('#spot_sync_title');
 
   /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
   const player_button = document.querySelector('#player_button');
@@ -79,31 +83,31 @@ window.addEventListener('load', () => {
   const div_lyrics_preview = document.querySelector('#div_lyrics_preview');
   const mxm_lyrics_preview = document.querySelector('#lyrics_preview');
   */
-  
+
   // Função para salvar o país no navegador
   const saveCountry = (countryCode) => {
     if (countryCode && countryCode.length === 2) {
       localStorage.setItem('selected_country', countryCode);
-      notification1("Perfect! Your country is now local saved 🌍");
+      notification("Perfect! Your country is now local saved 🌍");
       search_input.value = ""
     } else {
-      notification1('Invalid command, try again');
+      notification('Invalid command, try again');
       search_input.value = ""
     }
   };
 
   // Notifications
 
-  function notification1(customMessage) {
-      message.textContent = customMessage;
-      notification.style.opacity = 1;
-      notification.classList.remove("hidden");
+  function notification(customMessage) {
+    message.textContent = customMessage;
+    notification.style.opacity = 1;
+    notification.classList.remove("hidden");
+    setTimeout(() => {
+      notification.style.opacity = 0;
       setTimeout(() => {
-          notification.style.opacity = 0;
-          setTimeout(() => {
-              notification.classList.add("hidden");
-          }, 500);
-      }, 4000); // Tempo de exibição
+        notification.classList.add("hidden");
+      }, 500);
+    }, 4000); // Tempo de exibição
   };
 
   const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
@@ -120,14 +124,14 @@ window.addEventListener('load', () => {
     const studioUrlRegex = /(?:&|\?)player=spotify&(?:.*&)?track_id=([^&\s]+)/;
     const idRegex = /^[a-zA-Z0-9]{22}$/;
     const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}\d{2}\d{5}$/;
-    
+
     const pushForm = "/push";
     const lyricsIframe = "/lyrics"
     const openStudio = "/studio"
     let trackId = '';
     let isrc = '';
 
-   // Verificar se o comando "set_market_<country_code>" foi digitado
+    // Verificar se o comando "set_market_<country_code>" foi digitado
     const setCountryRegex = /^\/set_country\/([A-Z]{2})$/;
     const setCountryMatch = inputVal.match(setCountryRegex);
     if (setCountryMatch) {
@@ -143,9 +147,9 @@ window.addEventListener('load', () => {
       trackId = url.pathname.split('/').pop();
       // Modify the URL
       history.pushState({}, "", `/s/${trackId}`);
-      
+
     } else if (shortSpotifyregex.test(inputVal)) {
-      notification1("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
+      notification("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
 
@@ -167,7 +171,7 @@ window.addEventListener('load', () => {
       searchBtn.style = "";
       return;
     } else if (inputVal === lyricsIframe) {
-      notification1("This feature is currently unavailable or under development 🔧")
+      notification("This feature is currently unavailable or under development 🔧")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
 
@@ -180,24 +184,24 @@ window.addEventListener('load', () => {
       */
       return;
     } else if (inputVal === openStudio) {
-      notification1("This feature is currently unavailable or under development 🔧")
+      notification("This feature is currently unavailable or under development 🔧")
 
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       return;
     } else if (isrcRegex.test(inputVal)) {
-      notification1("Oops! ISRC search is not a feature at the moment 👀");
+      notification("Oops! ISRC search is not a feature at the moment 👀");
       loading_spinner.style = "display:none";
       searchBtn.style = "";
 
       return;
     } else if (isrcRegex.test(inputVal)) {
-      notification1("Oops! ISRC search is not a feature at the moment 👀");
+      notification("Oops! ISRC search is not a feature at the moment 👀");
 
       search_input.value = "";
       return;
     } else {
-      notification1("Please enter a valid Spotify track URL or ID 🎶")
+      notification("Please enter a valid Spotify track URL or ID 🎶")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
 
@@ -207,21 +211,21 @@ window.addEventListener('load', () => {
     /* DESATIVADO MOMENTANEAMENTE
     country_local_status.className = "status-3 status-gray"
     */
-    
+
     search_input.value = "";
     // Botão 'X' do container de push
     const close_lyricspusher = () => {
       pusher_container.style = "display:none";
     };
     close_button_pusher.addEventListener('click', close_lyricspusher);
-    
+
 
     // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder-beta/spotify/trackId/${trackId}?token=${accessToken}`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=2&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
-            notification1("Sorry, we can't process your request at the moment 😥");
+            notification("Sorry, we can't process your request at the moment 😥");
             console.log("Internal Server Error (500)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
@@ -229,7 +233,7 @@ window.addEventListener('load', () => {
             requests_counter_text.textContent = "Server error";
             request_counter_div.style = ""
           } else if (response.status === 503) {
-            notification1("Starting the server, please wait a moment");
+            notification("Starting the server, please wait a moment");
             console.log("Dynamic Hibernate Error (503)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
@@ -237,7 +241,7 @@ window.addEventListener('load', () => {
             requests_counter_text.textContent = "Starting the server";
             request_counter_div.style = ""
           } else if (response.status === 403) {
-            notification1("The token you're using is invalid or has expired 🔑"); 
+            notification("The token you're using is invalid or has expired 🔑");
             console.log("Access denied (403)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
@@ -245,7 +249,7 @@ window.addEventListener('load', () => {
             requests_counter_text.textContent = "Unauthorized";
             request_counter_div.style = ""
           } else if (response.status === 404) {
-            notification1("We couldn't find the track you are looking for 😥");
+            notification("We couldn't find the track you are looking for 😥");
             console.log("Resource not found (404)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
@@ -253,7 +257,7 @@ window.addEventListener('load', () => {
             requests_counter_text.textContent = "Not found";
             request_counter_div.style = ""
           } else if (response.status === 429) {
-            notification1("Too many requests, please try again later ⛔"); 
+            notification("Too many requests, please try again later ⛔");
             console.log("Too many requests (429)");
             loading_spinner.style = "display:none";
             searchBtn.style = "";
@@ -261,7 +265,7 @@ window.addEventListener('load', () => {
             requests_counter_text.textContent = "Too many requests";
             request_counter_div.style = ""
           } else {
-            notification1("Sorry, we can't process your request at the moment 😥");
+            notification("Sorry, we can't process your request at the moment 😥");
             console.log(`Unknown error: ${response.status}`);
             loading_spinner.style = "display:none";
             searchBtn.style = "";
@@ -280,6 +284,8 @@ window.addEventListener('load', () => {
         headerData = data.message.header;
         spotifyData = data.message.body.spotify;
         mxmData = data.message.body.musixmatch;
+        spLyricsData = data.message.body.spotify_lyrics;
+        customizationData = data.message.body.customization
 
         // Spotify data
 
@@ -294,16 +300,14 @@ window.addEventListener('load', () => {
         const albumURL = `https://open.spotify.com/album/${albumID}`;
         const image = spotifyData.album_data.images.url;
         const songPreview = spotifyData.track_data.preview_url;
-        const releaseDate = spotifyData.album_data.release_date.toString().padStart(2, '0');
-
         */
-        
+
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
         const releaseDate = spotifyData.album_data.release_date.toString();
 
         let formattedReleaseDate = '';
-        
+
         if (releaseDate.includes('-')) {
           // Data completa (ano, mês, dia)
           const dateParts = releaseDate.split('-');
@@ -314,8 +318,8 @@ window.addEventListener('load', () => {
           formattedReleaseDate = releaseDate;
           release_date_line = `Released in ${formattedReleaseDate}`;
         }
-        
-        
+
+
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
         const durationMs = spotifyData.track_data.duration_ms;
         const durationMinutes = Math.floor(durationMs / 60000);
@@ -326,12 +330,14 @@ window.addEventListener('load', () => {
         const albumTotalN = spotifyData.album_data.total_tracks;
         const numMarkets = spotifyData.track_data.available_markets.length;
         const popularity = spotifyData.track_data.popularity;
-        const spot_lyrics = spotifyData.track_data.lyrics_stats.has_lyrics;
-        const spot_sync = spotifyData.track_data.lyrics_stats.has_sync;
 
-        const album_color_1 = `rgb(${spotifyData.album_data.color_theme.color_1.join(', ')})`;
-        const album_color_2 = `rgb(${spotifyData.album_data.color_theme.color_2.join(', ')})`;
-        
+        const spot_lyrics_status = spLyricsData.status_code;
+        const spot_lyrics = spLyricsData.has_lyrics;
+        const spot_sync = spotifyData.has_sync;
+
+        const album_color_1 = `rgb(${customizationData.album_colors.color_1.join(', ')})`;
+        const album_color_2 = `rgb(${customizationData.album_colors.color_2.join(', ')})`;
+
         backgroundGradient.style.backgroundImage = `linear-gradient(45deg, ${album_color_1}, ${album_color_2})`;
 
         // Musixmatch Data
@@ -340,7 +346,7 @@ window.addEventListener('load', () => {
         const mxm_artist_id = mxmData.artist_data.artist_id;
         const mxm_album_id = mxmData.album_data.album_id;
         const mxm_lyrics_rating = mxmData.track_data.track_rating;
-        const mxm_preview = mxmData.track_data.lyrics_preview_url;
+        const mxm_preview = mxmData.track_data.lyrics_preview_dark;
 
         const mxm_lyrics_name = mxmData.track_data.track_name;
         const mxm_artist_name = mxmData.artist_data.artist_name;
@@ -352,22 +358,35 @@ window.addEventListener('load', () => {
         const mxm_instrumental = mxmData.track_data.stats.instrumental;
         const mxm_explicit = mxmData.track_data.stats.explicit;
         const mxm_restricted = mxmData.track_data.stats.restricted;
-        
-        // Definição de valores
-        if (spot_lyrics === false) {
+
+        if (spot_lyrics_status === 200) {
+          // Definição de valores
+          if (spot_lyrics === false) {
             spotify_lyrics.className = "status-2 status-gray";
-        } else if (spot_lyrics === true) {
+          } else if (spot_lyrics === true) {
             spotify_lyrics.className = "status-2 status-blue";
-        } else {
-            spotify_lyrics.className = "status-2 status-red";
-        }
-        
-        if (spot_sync === false) {
+          } else {
+            spotLyricsDiv.title = "The feature is currently unavailable"
+            spotify_lyrics.className = "status-2 status-gray";
+            spotLyricsTitle.style = "color: #ffffff45"
+          }
+
+          if (spot_sync === false) {
             spotify_sync.className = "status-2 status-gray";
-        } else if (spot_sync === true) {
+          } else if (spot_sync === true) {
             spotify_sync.className = "status-2 status-blue";
+          } else {
+            spotLyricsDiv.title = "The feature is currently unavailable"
+            spotify_sync.className = "status-2 status-gray";
+            spotSyncTitle.style = "color: #ffffff45"
+          }
         } else {
-            spotify_sync.className = "status-2 status-red";
+          notification("Unable to find lyrics status on Spotify at the moment");
+          spotLyricsDiv.title = "The feature is currently unavailable"
+          spotify_lyrics.className = "status-2 status-gray";
+          spotLyricsTitle.style = "color: #ffffff45"
+          spotify_sync.className = "status-2 status-gray";
+          spotSyncTitle.style = "color: #ffffff45"
         }
 
         mxm_lyrics_url.setAttribute("value", `mxmt.ch/t/${mxm_lyrics_id}`);
@@ -380,45 +399,45 @@ window.addEventListener('load', () => {
         mxm_albumname.title = mxm_album_name + ' | Musixmatch'
 
         popularity_mxm.textContent = `Musixmatch Rating: ${mxm_lyrics_rating}%`;
-        
+
         if (mxm_has_lyrics === 0) {
-            stats_mxm_lyrics.className = "status-1 status-gray";
+          stats_mxm_lyrics.className = "status-1 status-gray";
         } else if (mxm_has_lyrics === 1) {
-            stats_mxm_lyrics.className = "status-1 status-blue";
+          stats_mxm_lyrics.className = "status-1 status-blue";
         } else {
-            stats_mxm_lyrics.className = "status-1 status-red";
+          stats_mxm_lyrics.className = "status-1 status-red";
         }
-        
+
         if (mxm_has_linesync === 0) {
-            stats_mxm_linesync.className = "status-1 status-gray";
+          stats_mxm_linesync.className = "status-1 status-gray";
         } else if (mxm_has_linesync === 1) {
-            stats_mxm_linesync.className = "status-1 status-blue";
+          stats_mxm_linesync.className = "status-1 status-blue";
         } else {
-            stats_mxm_linesync.className = "status-1 status-red";
+          stats_mxm_linesync.className = "status-1 status-red";
         }
-        
+
         if (mxm_has_richsync === 0) {
-            stats_mxm_wordsync.className = "status-1 status-gray";
+          stats_mxm_wordsync.className = "status-1 status-gray";
         } else if (mxm_has_richsync === 1) {
-            stats_mxm_wordsync.className = "status-1 status-blue";
+          stats_mxm_wordsync.className = "status-1 status-blue";
         } else {
-            stats_mxm_wordsync.className = "status-1 status-red";
+          stats_mxm_wordsync.className = "status-1 status-red";
         }
-        
+
         if (mxm_explicit === 0) {
-            stats_mxm_explicit.className = "status-1 status-gray";
+          stats_mxm_explicit.className = "status-1 status-gray";
         } else if (mxm_explicit === 1) {
-            stats_mxm_explicit.className = "status-1 status-blue";
+          stats_mxm_explicit.className = "status-1 status-blue";
         } else {
-            stats_mxm_explicit.className = "status-1 status-red";
+          stats_mxm_explicit.className = "status-1 status-red";
         }
-        
+
         if (mxm_instrumental === 0) {
-            stats_mxm_instrumental.className = "status-1 status-gray";
+          stats_mxm_instrumental.className = "status-1 status-gray";
         } else if (mxm_instrumental === 1) {
-            stats_mxm_instrumental.className = "status-1 status-blue";
+          stats_mxm_instrumental.className = "status-1 status-blue";
         } else {
-            stats_mxm_instrumental.className = "status-1 status-red";
+          stats_mxm_instrumental.className = "status-1 status-red";
         }
 
 
@@ -481,7 +500,7 @@ window.addEventListener('load', () => {
           (artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`
         );
         */
-        
+
         // Update DOM elements with Spotify data
 
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
@@ -496,7 +515,7 @@ window.addEventListener('load', () => {
         songPreviewInput.src = songPreview;
         player_button.className = "play-button"
         */
-        
+
         spotifyPreview.src = `https://open.spotify.com/embed/track/${spotifyID}?utm_source=generator&theme=0`;
         trackIdInput.value = spotifyID;
         isrcInput.value = isrc;
@@ -517,7 +536,7 @@ window.addEventListener('load', () => {
         }
 
         */
-        
+
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
         if (songPreview) {
           songPreviewInput.src = songPreview;
@@ -571,25 +590,25 @@ window.addEventListener('load', () => {
   };
 
   window.addEventListener('load', startSearchFromURL);
+
+  /* DESATIVADO MOMENTANEAMENTE!
   
-    /* DESATIVADO MOMENTANEAMENTE!
-    
-    function toggleLyrics() {
-      if (lyrics_container.style.display === 'none') {
-          lyrics_container.style.display = '';
-          view_lyrics_text.textContent = 'Hide Lyrics';
-          view_lyrics_arrow.textContent = '<'
-          pusher_container.style = "display:none";
-      } else {
-          lyrics_container.style.display = 'none';
-          view_lyrics_text.textContent = 'View Lyrics';
-          view_lyrics_arrow.textContent = '>'
-      }
-    } 
+  function toggleLyrics() {
+    if (lyrics_container.style.display === 'none') {
+        lyrics_container.style.display = '';
+        view_lyrics_text.textContent = 'Hide Lyrics';
+        view_lyrics_arrow.textContent = '<'
+        pusher_container.style = "display:none";
+    } else {
+        lyrics_container.style.display = 'none';
+        view_lyrics_text.textContent = 'View Lyrics';
+        view_lyrics_arrow.textContent = '>'
+    }
+  } 
 
-   view_lyrics_button.addEventListener('click', toggleLyrics);
+ view_lyrics_button.addEventListener('click', toggleLyrics);
 
-   */
+ */
 
   // Add event listener for search button
   searchBtn.addEventListener('click', handleSearch);
@@ -604,72 +623,72 @@ window.addEventListener('load', () => {
 
   // Scripts para copiar IDs
 
-  document.getElementById('spotify_id_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('track-input');
-        var inputValue = inputElement.value;
+  document.getElementById('spotify_id_input').addEventListener('click', function () {
+    var inputElement = document.getElementById('track-input');
+    var inputValue = inputElement.value;
 
-        if (inputValue.trim() !== "") {
-            inputElement.select();
-            document.execCommand('copy');
-            notification1("Copied to your clipboard ✨");
-        }
+    if (inputValue.trim() !== "") {
+      inputElement.select();
+      document.execCommand('copy');
+      notification("Copied to your clipboard ✨");
+    }
   });
 
-  document.getElementById('isrc_value_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('isrc-input');
-        var inputValue = inputElement.value;
+  document.getElementById('isrc_value_input').addEventListener('click', function () {
+    var inputElement = document.getElementById('isrc-input');
+    var inputValue = inputElement.value;
 
-        if (inputValue.trim() !== "") {
-            inputElement.select();
-            document.execCommand('copy');
-            notification1("Copied to your clipboard ✨");
-        }
+    if (inputValue.trim() !== "") {
+      inputElement.select();
+      document.execCommand('copy');
+      notification("Copied to your clipboard ✨");
+    }
   });
 
-  document.getElementById('mxm_abstrack_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_abstrack');
-        var inputValue = inputElement.value;
+  document.getElementById('mxm_abstrack_input').addEventListener('click', function () {
+    var inputElement = document.getElementById('mxm_abstrack');
+    var inputValue = inputElement.value;
 
-        if (inputValue.trim() !== "") {
-            inputElement.select();
-            document.execCommand('copy');
-            notification1("Copied to your clipboard ✨");
-        }
+    if (inputValue.trim() !== "") {
+      inputElement.select();
+      document.execCommand('copy');
+      notification("Copied to your clipboard ✨");
+    }
   });
 
   // Scripts para abrir links da mxm em nova aba
 
-  document.getElementById('mxm_lyrics_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_lyrics_url');
-        var url = inputElement.value;
+  document.getElementById('mxm_lyrics_input').addEventListener('click', function () {
+    var inputElement = document.getElementById('mxm_lyrics_url');
+    var url = inputElement.value;
 
-        if (url.trim() !== "") {
-            inputElement.select();
-            var fullUrl = 'http://' + url;
-            window.open(fullUrl, '_blank');
-        }
+    if (url.trim() !== "") {
+      inputElement.select();
+      var fullUrl = 'http://' + url;
+      window.open(fullUrl, '_blank');
+    }
   });
 
-  document.getElementById('mxm_artist_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_artist_url');
-        var url = inputElement.value;
+  document.getElementById('mxm_artist_input').addEventListener('click', function () {
+    var inputElement = document.getElementById('mxm_artist_url');
+    var url = inputElement.value;
 
-        if (url.trim() !== "") {
-            inputElement.select();
-            var fullUrl = 'http://' + url;
-            window.open(fullUrl, '_blank');
-        }
+    if (url.trim() !== "") {
+      inputElement.select();
+      var fullUrl = 'http://' + url;
+      window.open(fullUrl, '_blank');
+    }
   });
 
-  document.getElementById('mxm_album_input').addEventListener('click', function() {
-        var inputElement = document.getElementById('mxm_album_url');
-        var url = inputElement.value;
+  document.getElementById('mxm_album_input').addEventListener('click', function () {
+    var inputElement = document.getElementById('mxm_album_url');
+    var url = inputElement.value;
 
-        if (url.trim() !== "") {
-            inputElement.select();
-            var fullUrl = 'http://' + url;
-            window.open(fullUrl, '_blank');
-        }
+    if (url.trim() !== "") {
+      inputElement.select();
+      var fullUrl = 'http://' + url;
+      window.open(fullUrl, '_blank');
+    }
   });
 
   let clickCounter = 0;
@@ -678,25 +697,25 @@ window.addEventListener('load', () => {
   const modoDevButton = document.getElementById("modo_dev");
 
   requests_counter_light.addEventListener("click", () => {
-      if (devMode) {
-        notification1("Developer mode disabled 🔧")
-          console.log("Developer mode has been disabled by the user");
-          devMode = false;
-      } else {
-          clickCounter++;
-          if (clickCounter === 5) {
-            notification1("Developer mode enabled 🔧")
-              console.log("Developer mode has been enabled by the user");
-              clickCounter = 0;
-              devMode = true;
-          }
+    if (devMode) {
+      notification("Developer mode disabled 🔧")
+      console.log("Developer mode has been disabled by the user");
+      devMode = false;
+    } else {
+      clickCounter++;
+      if (clickCounter === 5) {
+        notification("Developer mode enabled 🔧")
+        console.log("Developer mode has been enabled by the user");
+        clickCounter = 0;
+        devMode = true;
       }
+    }
   });
 
   modoDevButton.addEventListener("click", () => {
-      if (devMode) {
-          console.log("Developer mode has been disabled by the user");
-          devMode = false;
-      }
+    if (devMode) {
+      console.log("Developer mode has been disabled by the user");
+      devMode = false;
+    }
   });
 });
