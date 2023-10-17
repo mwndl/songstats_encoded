@@ -305,11 +305,12 @@ input:-webkit-autofill::selection {
 .container_2 {
   width: 700px;
   height: 665px;
+  background-color: #1d1b1b;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
   margin: auto;
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
 }
 
