@@ -72,7 +72,7 @@ window.addEventListener('load', () => {
   const stats_mxm_instrumental = document.querySelector('#is_instrumental');
 
   // Get Notification Pop-Up elements
-  const notification = document.getElementById("notification");
+  const notification_div = document.getElementById("notification");
   const message = document.getElementById("notification-message");
 
   const request_counter_div = document.getElementById("requests_conter")
@@ -100,12 +100,12 @@ window.addEventListener('load', () => {
 
   function notification(customMessage) {
     message.textContent = customMessage;
-    notification.style.opacity = 1;
-    notification.classList.remove("hidden");
+    notification_div.style.opacity = 1;
+    notification_div.classList.remove("hidden");
     setTimeout(() => {
-      notification.style.opacity = 0;
+      notification_div.style.opacity = 0;
       setTimeout(() => {
-        notification.classList.add("hidden");
+        notification_div.classList.add("hidden");
       }, 500);
     }, 4000); // Tempo de exibição
   };
