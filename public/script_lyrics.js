@@ -226,7 +226,7 @@ window.addEventListener('load', () => {
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
@@ -294,7 +294,7 @@ window.addEventListener('load', () => {
 
         // Spotify data
         const title = spotifyData.track_data.track_name;
-        const artist = spotifyData.artists_data.artists[2].name;
+        const artist = spotifyData.artists_data.artists[0].name;
 
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
         const songURL = `https://open.spotify.com/track/${spotifyID}`;
@@ -307,7 +307,7 @@ window.addEventListener('load', () => {
         const songPreview = spotifyData.track_data.preview_url;
         */
 
-        const image_area = spotifyData.album_data.images[0].url;
+        const image_area = spotifyData.album_data.images[1].url;
 
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
