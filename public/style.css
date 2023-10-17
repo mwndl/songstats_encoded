@@ -46,6 +46,7 @@ body{
     z-index: -1;
     background-size: 500% 500%;
     background-color: #404040;
+    transition: background-image 3s ease;
 }
 
 /*Back Mode 1 */
@@ -63,6 +64,19 @@ body{
   background-repeat: no-repeat;
   filter: blur(20px);
   transform: scale(1.1);
+}
+
+.fade-background {
+  animation: fadeIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Back Mode 2 */
