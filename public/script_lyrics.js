@@ -72,7 +72,7 @@ window.addEventListener('load', () => {
   const stats_mxm_instrumental = document.querySelector('#is_instrumental');
 
   // Get Notification Pop-Up elements
-  const notification = document.getElementById("notification");
+  const notification_div = document.getElementById("notification");
   const message = document.getElementById("notification-message");
 
   const request_counter_div = document.getElementById("requests_conter")
@@ -100,12 +100,12 @@ window.addEventListener('load', () => {
 
   function notification(customMessage) {
     message.textContent = customMessage;
-    notification.style.opacity = 1;
-    notification.classList.remove("hidden");
+    notification_div.style.opacity = 1;
+    notification_div.classList.remove("hidden");
     setTimeout(() => {
-      notification.style.opacity = 0;
+      notification_div.style.opacity = 0;
       setTimeout(() => {
-        notification.classList.add("hidden");
+        notification_div.classList.add("hidden");
       }, 500);
     }, 4000); // Tempo de exibição
   };
@@ -159,7 +159,6 @@ window.addEventListener('load', () => {
       if (match) {
         trackId = match[1];
       }
-
     } else if (idRegex.test(inputVal)) {
       trackId = inputVal;
     } else if (inputVal === pushForm) {
@@ -171,40 +170,28 @@ window.addEventListener('load', () => {
       searchBtn.style = "";
       return;
     } else if (inputVal === lyricsIframe) {
-      notification("This feature is currently unavailable or under development 🔧")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
-
-
-      /* DEVELOPMENT
       lyrics_container.style = "";
       lyrics_preview.src = mxm_preview;
       pusher_container.style = "display:none";
       search_input.value = "";
-      */
       return;
     } else if (inputVal === openStudio) {
-      notification("This feature is currently unavailable or under development 🔧")
-
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+      var studio_url = mxm_edit_lyrics;
+      window.open(studio_url, '_blank');
       return;
     } else if (isrcRegex.test(inputVal)) {
       notification("Oops! ISRC search is not a feature at the moment 👀");
       loading_spinner.style = "display:none";
       searchBtn.style = "";
-
-      return;
-    } else if (isrcRegex.test(inputVal)) {
-      notification("Oops! ISRC search is not a feature at the moment 👀");
-
-      search_input.value = "";
       return;
     } else {
       notification("Please enter a valid Spotify track URL or ID 🎶")
       loading_spinner.style = "display:none";
       searchBtn.style = "";
-
       return;
     }
 
@@ -219,7 +206,7 @@ window.addEventListener('load', () => {
     };
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
-
+    let mxm_edit_lyrics, mxm_preview
     // Send a Lyrics request to the internal API
     fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=2&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
@@ -346,7 +333,8 @@ window.addEventListener('load', () => {
         const mxm_artist_id = mxmData.artist_data.artist_id;
         const mxm_album_id = mxmData.album_data.album_id;
         const mxm_lyrics_rating = mxmData.track_data.track_rating;
-        const mxm_preview = mxmData.track_data.lyrics_preview_dark;
+        mxm_preview = mxmData.track_data.lyrics_preview_dark;
+        mxm_edit_lyrics = mxmData.track_data.studio_url;
 
         const mxm_lyrics_name = mxmData.track_data.track_name;
         const mxm_artist_name = mxmData.artist_data.artist_name;
