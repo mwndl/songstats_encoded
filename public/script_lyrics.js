@@ -174,8 +174,6 @@ window.addEventListener('load', () => {
     if (trackUrlRegex.test(inputVal)) {
       const url = new URL(inputVal);
       trackId = url.pathname.split('/').pop();
-      // Modify the URL
-      history.pushState({}, "", `/s/${trackId}`);
 
     } else if (shortSpotifyregex.test(inputVal)) {
       notification("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
