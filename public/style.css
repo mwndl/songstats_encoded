@@ -45,7 +45,7 @@ body{
     left: 0;
     z-index: -1;
     background-size: 500% 500%;
-    background-color: rgb(107, 107, 71);
+    background-color: #282828;
 }
 
 .circles{
@@ -1151,6 +1151,7 @@ h3 {
   user-select: none;
   background: linear-gradient(45deg, #245f27, #282828);
   margin: 15px;
+  transform: scale(1.5); /* Define o nível de zoom inicial */
 }
 
 .button_container_2 {
@@ -1196,7 +1197,7 @@ h3 {
 }
 
 .button_container_1:hover {
-  transform: translateY(-3px); 
+  transform: scale(1.6); /* Redefinir para translateY após integrar novos botões */
 }
 
 .button_container_2:hover {
