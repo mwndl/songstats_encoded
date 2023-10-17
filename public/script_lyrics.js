@@ -442,10 +442,31 @@ window.addEventListener('load', () => {
         // Background mode
         if (background_mode === "1") {
           const backgroundDiv = document.getElementById("background_div");
-          backgroundDiv.innerHTML = `
-            <div class="blur-overlay"></div>
-            <div class="blur-background" style="background-image: url('${image_area}');"></div>
-          `;
+        
+          // Crie um novo elemento div para a nova imagem de fundo
+          const newBackgroundDiv = document.createElement("div");
+          newBackgroundDiv.className = "blur-background";
+          newBackgroundDiv.style.backgroundImage = `url('${image_area}')`;
+        
+          // Adicione o novo elemento ao DOM
+          backgroundDiv.appendChild(newBackgroundDiv);
+        
+          // Gradualmente ajuste a opacidade do novo fundo
+          let opacity = 0;
+          const fadeInterval = 30; // Intervalo de tempo em milissegundos
+          const fadeDuration = 3000; // Duração total da transição (3 segundos)
+        
+          const fadeOut = () => {
+            opacity += (fadeInterval / fadeDuration);
+            if (opacity < 1) {
+              // Continue a ajustar a opacidade
+              newBackgroundDiv.style.opacity = opacity;
+              setTimeout(fadeOut, fadeInterval);
+            }
+          };
+        
+          // Inicie a transição
+          fadeOut();
         } else if (background_mode === "2") {
           const backgroundDiv = document.getElementById("background_div");
           backgroundDiv.innerHTML = `
