@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Stats | Lyrics Finder</title>
+    <meta name="google" value="notranslate">
+    <title>Lyrics Finder | Song Stats</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <script src="axios.min.js"></script>
@@ -98,14 +99,14 @@
                 </div>  
                 <div class="song-stats-div">
                   <div class="song-stats">
-                    <div class="main_2-2-group">
+                    <div class="main_2-2-group" id="main_2-2-group" title="">
                       <div class="main_2-1">
                         <div class="title-status-pair">
-                          <p class="title">Lyrics on Spotify</p>
+                          <p class="title" id="spot_lyrics_title">Lyrics on Spotify</p>
                           <p id="spotify_lyrics" class="status-2 status-gray"></p>
                         </div>
                         <div class="title-status-pair">
-                          <p class="title">Sync on Spotify</p>
+                          <p class="title" id="spot_sync_title">Sync on Spotify</p>
                           <p id="spotify_sync" class="status-2 status-gray"></p>
                         </div>
                       </div>
@@ -151,7 +152,7 @@
           <div class="container_2">
             <div id="div-lyrics-preview" style="margin-top:10px;">
               <div class="iframe-mxm">
-                <iframe class="lyrics_preview" id="lyrics_preview" src="" style="border:none;background:transparent;" width="100%" height="665px" style="font-size: 20px"></iframe>
+                <iframe class="lyrics_preview" id="lyrics_preview" src="" style="border:none;background:transparent;" width="100%" height="625px" style="font-size: 20px"></iframe>
               </div>
             </div>
           </div>
