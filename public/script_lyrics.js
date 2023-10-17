@@ -123,7 +123,18 @@ window.addEventListener('load', () => {
 
   let background_mode = getBackgroundMode();
 
-  const accessToken = '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Public token 3 (Limited)
+  // Função para salvar o token localmente
+  function saveCustomToken(token) {
+    localStorage.setItem('token', token);
+  }
+  
+  // Função para recuperar o token localmente
+  function getCustomToken() {
+    const token = localStorage.getItem('token');
+    return token ? token : '8KuA9GwNbaJYvTD8U6h64beb6d6dd56c'; // Get custom token or use the public one as a string
+  }
+
+  let accessToken = getCustomToken();
 
   // Function to handle search
   const handleSearch = () => {
@@ -143,6 +154,8 @@ window.addEventListener('load', () => {
     const openStudio = "/studio"
     let trackId = '';
     let isrc = '';
+
+    const setTokenRegex = /^\/set_token=([A-Za-z0-9_]+)$/;
 
     const background1Regex = /^\/background=1$/;
     const background2Regex = /^\/background=2$/;
@@ -206,6 +219,14 @@ window.addEventListener('load', () => {
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       search_input.value = "";
+      return;
+
+    } else if (setTokenRegex.test(inputVal)) {
+      notification("Personal token registered successfully 🔑");
+      const accessToken = setTokenMatch[1];
+      searchBtn.style = "";
+      search_input.value = "";
+      saveCustomToken(accessToken);
       return;
       
     } else if (background1Regex.test(inputVal)) {
