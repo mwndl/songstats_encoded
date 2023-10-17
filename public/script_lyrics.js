@@ -207,18 +207,24 @@ window.addEventListener('load', () => {
       searchBtn.style = "";
       search_input.value = "";
       return;
+      
     } else if (background1Regex.test(inputVal)) {
+      notification("Background theme set successfully 🖌️");
       background_mode = 1;
       saveBackgroundMode(background_mode); // Salve localmente
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+      search_input.value = "";
       return;
     } else if (background2Regex.test(inputVal)) {
+      notification("Background theme set successfully 🖌️");
       background_mode = 2;
       saveBackgroundMode(background_mode); // Salve localmente
       loading_spinner.style = "display:none";
       searchBtn.style = "";
+      search_input.value = "";
       return;
+      
     } else {
       notification("Please enter a valid Spotify track URL or ID 🎶")
       loading_spinner.style = "display:none";
