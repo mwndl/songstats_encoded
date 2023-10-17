@@ -222,12 +222,16 @@ window.addEventListener('load', () => {
       return;
 
     } else if (setTokenRegex.test(inputVal)) {
-      notification("Personal token registered successfully 🔑");
-      const accessToken = setTokenMatch[1];
-      searchBtn.style = "";
-      search_input.value = "";
-      saveCustomToken(accessToken);
-      return;
+      const setTokenMatch = inputVal.match(setTokenRegex); // Defina setTokenMatch aqui
+      if (setTokenMatch) {
+        notification("Personal token registered successfully 🔑");
+        const accessToken = setTokenMatch[1];
+        loading_spinner.style = "display:none";
+        searchBtn.style = "";
+        search_input.value = "";
+        saveCustomToken(accessToken);
+        return;
+      }
       
     } else if (background1Regex.test(inputVal)) {
       notification("Background theme set successfully 🖌️");
