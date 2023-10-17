@@ -275,11 +275,11 @@ window.addEventListener('load', () => {
         customizationData = data.message.body.customization
 
         // Spotify data
+        const title = spotifyData.track_data.track_name;
+        const artist = spotifyData.artists_data.artists[0].name;
 
         /* DESATIVADO APÓS INTEGRAÇÃO COM PLAYER DO SPOTIFY
-        const title = spotifyData.track_data.track_name;
         const songURL = `https://open.spotify.com/track/${spotifyID}`;
-        const artist = spotifyData.artists_data.artists[0].name;
         const artistID = spotifyData.artists_data.artists[0].artist_id;
         const artistURL = `https://open.spotify.com/artist/${artistID}`;
         const album = spotifyData.album_data.album_id;
@@ -347,6 +347,8 @@ window.addEventListener('load', () => {
         const mxm_explicit = mxmData.track_data.stats.explicit;
         const mxm_restricted = mxmData.track_data.stats.restricted;
 
+        document.title = `${title} by ${artist} | Songstats`;
+
         if (spot_lyrics_status === 200) {
           // Definição de valores
           if (spot_lyrics === false) {
@@ -354,7 +356,7 @@ window.addEventListener('load', () => {
           } else if (spot_lyrics === true) {
             spotify_lyrics.className = "status-2 status-blue";
           } else {
-            spotLyricsDiv.title = "The feature is currently unavailable"
+            spotLyricsDiv.title = "Feature disabled for this song due to restrictions"
             spotify_lyrics.className = "status-2 status-gray";
             spotLyricsTitle.style = "color: #ffffff45"
           }
@@ -364,13 +366,12 @@ window.addEventListener('load', () => {
           } else if (spot_sync === true) {
             spotify_sync.className = "status-2 status-blue";
           } else {
-            spotLyricsDiv.title = "The feature is currently unavailable"
+            spotLyricsDiv.title = "Feature disabled for this song due to restrictions"
             spotify_sync.className = "status-2 status-gray";
             spotSyncTitle.style = "color: #ffffff45"
           }
         } else {
-          notification("Unable to find lyrics status on Spotify at the moment");
-          spotLyricsDiv.title = "The feature is currently unavailable"
+          spotLyricsDiv.title = "Feature disabled for this song due to restrictions"
           spotify_lyrics.className = "status-2 status-gray";
           spotLyricsTitle.style = "color: #ffffff45"
           spotify_sync.className = "status-2 status-gray";
