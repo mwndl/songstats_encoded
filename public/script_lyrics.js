@@ -292,6 +292,8 @@ window.addEventListener('load', () => {
         const songPreview = spotifyData.track_data.preview_url;
         */
 
+        const image_area = spotifyData.album_data.images[2].url;
+
         const spotifyID = spotifyData.track_data.track_id;
         const isrc = spotifyData.track_data.isrc;
         const releaseDate = spotifyData.album_data.release_date.toString();
@@ -325,10 +327,7 @@ window.addEventListener('load', () => {
         const spot_lyrics = spLyricsData.has_lyrics;
         const spot_sync = spotifyData.has_sync;
 
-        const album_color_1 = `rgb(${customizationData.album_colors.color_1.join(', ')})`;
-        const album_color_2 = `rgb(${customizationData.album_colors.color_2.join(', ')})`;
-
-        backgroundGradient.style.backgroundImage = `linear-gradient(45deg, ${album_color_1}, ${album_color_2})`;
+        const background_mode = customizationData.background;
 
         // Musixmatch Data
         const mxm_abstrack = mxmData.track_data.commontrack_id;
@@ -379,6 +378,36 @@ window.addEventListener('load', () => {
           spotLyricsTitle.style = "color: #ffffff45"
           spotify_sync.className = "status-2 status-gray";
           spotSyncTitle.style = "color: #ffffff45"
+        }
+
+        // Background mode
+        if (background_mode === "1") {
+          const backgroundDiv = document.getElementById("background_div");
+          backgroundDiv.innerHTML = `
+            <div class="blur-overlay"></div>
+            <div class="blur-background" style="background-image: url('${image_area}');"></div>
+          `;
+        } else if (background_mode === "2") {
+          const backgroundDiv = document.getElementById("background_div");
+          backgroundDiv.innerHTML = `
+            <ul class="circles">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          `;
+
+          const album_color_1 = `rgb(${customizationData.album_colors.color_1.join(', ')})`;
+          const album_color_2 = `rgb(${customizationData.album_colors.color_2.join(', ')})`;
+  
+          backgroundGradient.style.backgroundImage = `linear-gradient(45deg, ${album_color_1}, ${album_color_2})`;
         }
 
         mxm_lyrics_url.setAttribute("value", `mxmt.ch/t/${mxm_lyrics_id}`);
