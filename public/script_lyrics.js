@@ -60,6 +60,11 @@ window.addEventListener('load', () => {
   const not_imported_message = document.querySelector('#not_imported_message');
   const loading_spinner_mxm = document.querySelector('#loading_spinner_mxm');
 
+  const mxm_lyrics_title = document.querySelector('#mxm_lyrics_title');
+  const mxm_artist_title = document.querySelector('#mxm_artist_title');
+  const mxm_album_title = document.querySelector('#mxm_album_title');
+  const mxm_abstrack_title = document.querySelector('#mxm_abstrack_title');
+
   const mxm_lyrics_url = document.querySelector('#mxm_lyrics_url');
   const mxm_artist_url = document.querySelector('#mxm_artist_url');
   const mxm_album_url = document.querySelector('#mxm_album_url');
@@ -400,9 +405,9 @@ window.addEventListener('load', () => {
 
         // Musixmatch Data
 
-        const mxm_status = mxmData
+        const mxm_status = mxmData.mxm_header.status_code;
 
-        if (mxm_status !== null) {
+        if (mxm_status === 200) {
           const mxm_abstrack = mxmData.track_data.commontrack_id;
           const mxm_lyrics_id = mxmData.track_data.lyrics_id;
           const mxm_artist_id = mxmData.artist_data.artist_id;
@@ -439,6 +444,11 @@ window.addEventListener('load', () => {
           stats_mxm_wordsync_title.style = ""
           stats_mxm_explicit_title.style = ""
           stats_mxm_instrumental_title.style = ""
+
+          mxm_lyrics_title.style = ""
+          mxm_artist_title.style = ""
+          mxm_album_title.style = ""
+          mxm_abstrack_title.style = ""
 
           mxm_links_content.style = ""
           loading_spinner_mxm.style = "display:none"
@@ -482,7 +492,7 @@ window.addEventListener('load', () => {
           } else {
             stats_mxm_instrumental.className = "status-1 status-red";
           }
-        } else {
+        } else if (mxm_status === 404) {
           mxm_stats_div.title = "This track is not available on Musixmatch"
           stats_mxm_lyrics_title.style = "color: #ffffff45"
           stats_mxm_linesync_title.style = "color: #ffffff45"
@@ -497,7 +507,26 @@ window.addEventListener('load', () => {
 
           mxm_links_content.style = "display:none"
           loading_spinner_mxm.style = ""
+        } else {
+          notification("An error occurred when fetching data from Musixmatch")
+          mxm_stats_div.title = "This track is not available on Musixmatch"
+          stats_mxm_lyrics_title.style = "color: #ffffff45"
+          stats_mxm_linesync_title.style = "color: #ffffff45"
+          stats_mxm_wordsync_title.style = "color: #ffffff45"
+          stats_mxm_explicit_title.style = "color: #ffffff45"
+          stats_mxm_instrumental_title.style = "color: #ffffff45"
+          stats_mxm_lyrics.className = "status-1 status-gray";
+          stats_mxm_linesync.className = "status-1 status-gray";
+          stats_mxm_wordsync.className = "status-1 status-gray";
+          stats_mxm_explicit.className = "status-1 status-gray";
+          stats_mxm_instrumental.className = "status-1 status-gray";
+
+          mxm_lyrics_title.style = "color: #ffffff45"
+          mxm_artist_title.style = "color: #ffffff45"
+          mxm_album_title.style = "color: #ffffff45"
+          mxm_abstrack_title.style = "color: #ffffff45"
         }
+          
 
         document.title = `${title} by ${artist} | Songstats`;
 
