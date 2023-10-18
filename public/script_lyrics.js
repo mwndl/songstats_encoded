@@ -402,7 +402,7 @@ window.addEventListener('load', () => {
 
         const mxm_status = mxmData
 
-        if (mxm_status === !null) {
+        if (mxm_status !== null) {
           const mxm_abstrack = mxmData.track_data.commontrack_id;
           const mxm_lyrics_id = mxmData.track_data.lyrics_id;
           const mxm_artist_id = mxmData.artist_data.artist_id;
@@ -432,6 +432,16 @@ window.addEventListener('load', () => {
           mxm_albumname.title = mxm_album_name + ' | Musixmatch'
   
           popularity_mxm.textContent = `Musixmatch Rating: ${mxm_lyrics_rating}%`;
+
+          mxm_stats_div.title = ""
+          stats_mxm_lyrics_title.style = ""
+          stats_mxm_linesync_title.style = ""
+          stats_mxm_wordsync_title.style = ""
+          stats_mxm_explicit_title.style = ""
+          stats_mxm_instrumental_title.style = ""
+
+          mxm_links_content.style = ""
+          loading_spinner_mxm.style = "display:none"
   
           if (mxm_has_lyrics === 0) {
             stats_mxm_lyrics.className = "status-1 status-gray";
@@ -486,7 +496,6 @@ window.addEventListener('load', () => {
           stats_mxm_instrumental.className = "status-1 status-gray";
 
           mxm_links_content.style = "display:none"
-          mxm_links_content.textContent = ""
           loading_spinner_mxm.style = ""
         }
 
