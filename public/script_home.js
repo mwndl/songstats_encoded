@@ -51,8 +51,8 @@ window.addEventListener('load', () => {
                 top_img_div.style = "";
                 new_img_div.style = "";
 
-                top_tracks_title = `Top Tracks - ${user_country_name}`
-                new_releases_title = `New Releases - ${user_country_name}`
+                top_tracks_title.textContent = `Top Tracks - ${user_country_name}`;
+                new_releases_title.textContent = `New Releases - ${user_country_name}`;
                 
                 top_cover1.title = topTrackName1;
                 top_cover1.alt = topTrackName1;
