@@ -22,22 +22,26 @@ window.addEventListener('load', () => {
             .then(data => {
 
                 user_country_name = data.header.user_country_name;
-
-                topTrackName1 = data.data.top_tracks.name[0];
-                topTrackName2 = data.data.top_tracks.name[1];
-                topTrackName3 = data.data.top_tracks.name[2];
-
-                topCover1 = data.data.top_tracks.album_cover[0];
-                topCover2 = data.data.top_tracks.album_cover[1];
-                topCover3 = data.data.top_tracks.album_cover[2];
-                
-                newTrackName1 = data.data.new_releases.name[0];
-                newTrackName2 = data.data.new_releases.name[1];
-                newTrackName3 = data.data.new_releases.name[2];
-                
-                newCover1 = data.data.new_releases.album_cover[0];
-                newCover2 = data.data.new_releases.album_cover[1];
-                newCover3 = data.data.new_releases.album_cover[2];
+            
+                if (data.data.top_tracks && data.data.top_tracks.length >= 3) {
+                    topTrackName1 = data.data.top_tracks[0].name;
+                    topTrackName2 = data.data.top_tracks[1].name;
+                    topTrackName3 = data.data.top_tracks[2].name;
+            
+                    topCover1 = data.data.top_tracks[0].album_cover;
+                    topCover2 = data.data.top_tracks[1].album_cover;
+                    topCover3 = data.data.top_tracks[2].album_cover;
+                }
+            
+                if (data.data.new_releases && data.data.new_releases.length >= 3) {
+                    newTrackName1 = data.data.new_releases[0].name;
+                    newTrackName2 = data.data.new_releases[1].name;
+                    newTrackName3 = data.data.new_releases[2].name;
+            
+                    newCover1 = data.data.new_releases[0].album_cover;
+                    newCover2 = data.data.new_releases[1].album_cover;
+                    newCover3 = data.data.new_releases[2].album_cover;
+                }
 
                 top_img_div.style = "";
                 new_img_div.style = "";
