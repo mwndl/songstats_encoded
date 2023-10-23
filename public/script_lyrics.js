@@ -159,8 +159,7 @@ window.addEventListener('load', () => {
     loading_spinner.style = "";
 
     const inputVal = search_input.value.trim();
-
-    const search_mode = '';
+    let search_mode = "";
 
     const trackUrlRegex = /^(https?:\/\/open\.spotify\.com\/(?:intl-[a-z]{2}\/)?)?track\/(.+)$/;
     const shortSpotifyregex = /https?:\/\/spotify\.link\/[\w-]+/;
