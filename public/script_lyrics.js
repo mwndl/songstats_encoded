@@ -192,7 +192,6 @@ window.addEventListener('load', () => {
 
     if (trackUrlRegex.test(inputVal)) {
       const url = new URL(inputVal);
-      search_mode = `spotify_id=`;
       search_value = url.pathname.split('/').pop();
 
     } else if (shortSpotifyregex.test(inputVal)) {
@@ -257,11 +256,7 @@ window.addEventListener('load', () => {
     } else if (isrcRegex.test(inputVal)) {
       search_mode = `track_isrc=`;
       search_value = inputVal;
-      loading_spinner.style = "display:none";
-      searchBtn.style = "";
       search_input.value = "";
-      console.log(search_mode);
-      console.log(inputVal);
       
 
     } else if (setTokenRegex.test(inputVal)) {
