@@ -192,6 +192,7 @@ window.addEventListener('load', () => {
 
     if (trackUrlRegex.test(inputVal)) {
       const url = new URL(inputVal);
+      search_mode = `spotify_id=`;
       search_value = url.pathname.split('/').pop();
 
     } else if (shortSpotifyregex.test(inputVal)) {
