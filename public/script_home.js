@@ -21,7 +21,12 @@ window.addEventListener('load', () => {
             .then(response => response.json())
             .then(data => {
 
-                user_country_name = data.header.user_country_name;
+                const user_country_name = data.header.user_country_name;
+    
+                let topTrackName1, topTrackName2, topTrackName3;
+                let topCover1, topCover2, topCover3;
+                let newTrackName1, newTrackName2, newTrackName3;
+                let newCover1, newCover2, newCover3;
             
                 if (data.data.top_tracks && data.data.top_tracks.length >= 3) {
                     topTrackName1 = data.data.top_tracks[0].name;
