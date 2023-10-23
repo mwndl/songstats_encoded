@@ -29,23 +29,23 @@ window.addEventListener('load', () => {
                 let newCover1, newCover2, newCover3;
             
                 if (data.data.top_tracks && data.data.top_tracks.length >= 3) {
-                    topTrackName1 = data.data.top_tracks[0].name;
+                    topTrackName1 = data.data.top_tracks[2].name;
                     topTrackName2 = data.data.top_tracks[1].name;
-                    topTrackName3 = data.data.top_tracks[2].name;
+                    topTrackName3 = data.data.top_tracks[0].name;
             
-                    topCover1 = data.data.top_tracks[0].album_cover;
+                    topCover1 = data.data.top_tracks[2].album_cover;
                     topCover2 = data.data.top_tracks[1].album_cover;
-                    topCover3 = data.data.top_tracks[2].album_cover;
+                    topCover3 = data.data.top_tracks[0].album_cover;
                 }
             
                 if (data.data.new_releases && data.data.new_releases.length >= 3) {
-                    newTrackName1 = data.data.new_releases[0].name;
+                    newTrackName1 = data.data.new_releases[2].name;
                     newTrackName2 = data.data.new_releases[1].name;
-                    newTrackName3 = data.data.new_releases[2].name;
+                    newTrackName3 = data.data.new_releases[0].name;
             
-                    newCover1 = data.data.new_releases[0].album_cover;
+                    newCover1 = data.data.new_releases[2].album_cover;
                     newCover2 = data.data.new_releases[1].album_cover;
-                    newCover3 = data.data.new_releases[2].album_cover;
+                    newCover3 = data.data.new_releases[0].album_cover;
                 }
 
                 top_img_div.style = "";
