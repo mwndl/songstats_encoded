@@ -1227,7 +1227,7 @@ h3 {
   user-select: none;
   background: linear-gradient(45deg, #245f27, #282828);
   margin: 15px;
-  transform: scale(1.5); /* Define o nível de zoom inicial */
+  /* transform: scale(1.5); */
 }
 
 .button_container_2 {
@@ -1240,7 +1240,7 @@ h3 {
   transition: transform 0.2s ease;
   overflow: hidden;
   user-select: none;
-  background: linear-gradient(45deg, #cc395b, #b91c402f);
+  background: linear-gradient(45deg, #a0632a, #9957002f);
   margin: 15px;
 }
 
@@ -1254,8 +1254,9 @@ h3 {
   transition: transform 0.2s ease;
   overflow: hidden;
   user-select: none;
-  background: linear-gradient(45deg, #cc395b, #b91c402f);
+  background: linear-gradient(45deg, #0b415a, #2447522f);
   margin: 15px;
+  position: relative;
 }
 
 .button_container_4 {
@@ -1268,12 +1269,13 @@ h3 {
   transition: transform 0.2s ease;
   overflow: hidden;
   user-select: none;
-  background: linear-gradient(45deg, #cc395b, #b91c402f);
+  background: linear-gradient(45deg, #9c1534, #55081a2f);
   margin: 15px;
 }
 
 .button_container_1:hover {
-  transform: scale(1.6); /* Redefinir para translateY após integrar novos botões */
+  /* transform: scale(1.6);  Redefinir para translateY após integrar novos botões */
+  transform: translateY(-3px); 
 }
 
 .button_container_2:hover {
@@ -1460,6 +1462,46 @@ h3 {
 }
 
 /* End of button masks */
+
+/* Padrão de thumbs */
+
+.album-covers {
+  position: absolute;
+  top: 20%;
+  left: 56%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.album-covers img {
+  width: 100px; /* Ajuste o tamanho das imagens conforme necessário */
+  height: 100px;
+  transform: perspective(500px) rotateY(40deg); /* Aplicar a inclinação 3D */
+  transition: transform 0.2s ease;
+  position: absolute;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.712); /* Adicionar um leve sombreamento */
+}
+
+.album-covers img:nth-child(1) {
+  left: 0;
+}
+
+.album-covers img:nth-child(2) {
+  left: 50px; /* Ajuste o valor conforme necessário para controlar a sobreposição */
+}
+
+.album-covers img:nth-child(3) {
+  left: 100px; /* Ajuste o valor conforme necessário para controlar a sobreposição */
+}
+
+.album-covers img:hover {
+  transform: perspective(500px) rotateY(35deg); /* Voltar ao estado original ao passar o mouse */
+}
+
+
+/* Fim do padrão de thumbs */
 
 .logo-container {
   display: flex; 

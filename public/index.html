@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
   <script src="axios.min.js"></script>
-  <script src="script.js"></script>
+  <script src="script_home.js"></script>
 </head>
 
 <body>
@@ -40,29 +40,39 @@
                 </div>
               </div>
             </div>
-            <div class="button_container_2" id="playlist_data" style="display:none">
+            <div class="button_container_2" id="playlist_data" style="">
               <div class="button2-mask-div">
                 <div class="button2-mask-content">
-                  <h2>Feature 2</h2>
-                  <p>This is a description exemple</p>
+                  <h2>Playlist Data Extractor</h2>
+                  <p>Convert playlist data to a JSON or CSV file</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="button_container_right">
-            <div class="button_container_3" id="button_container_3" style="display:none">
+            <div class="button_container_3" id="button_container_3" style="">
               <div class="button3-mask-div">
                 <div class="button3-mask-content">
-                  <h2>Feature 3</h2>
-                  <p>This is a description exemple</p>
+                  <h2 id="top_tracks_title">Top Tracks</h2>
+                  <p>Listen to the most listened to tracks</p>
+                </div>
+                <div class="album-covers" id="top_img_div" style="display:none">
+                  <img id="top_cover1" src="" alt="" title="">
+                  <img id="top_cover2" src="" alt="" title="">
+                  <img id="top_cover3" src="" alt="" title="">
                 </div>
               </div>
             </div>
-            <div class="button_container_4" id="button_container_4" style="display:none">
+            <div class="button_container_4" id="button_container_4" style="">
               <div class="button4-mask-div">
                 <div class="button4-mask-content">
-                  <h2>Feature 4</h2>
-                  <p>This is a description exemple</p>
+                  <h2 id="new_releases_title">New Releases</h2>
+                  <p>Stay up to date with the best releases</p>
+                </div>
+                <div class="album-covers" id="new_img_div" style="display:none">
+                  <img id="new_cover1" src="" alt="" title="">
+                  <img id="new_cover2" src="" alt="" title="">
+                  <img id="new_cover3" src="" alt="" title="">
                 </div>
               </div>
             </div>

@@ -1,10 +1,10 @@
 window.addEventListener('load', () => {
-  const animationStarter = document.querySelector('#background_animation_starter')
+  const animationStarter = document.querySelector('#background_animation_starter');
   const backgroundGradient = document.querySelector('.area');
 
   const searchBtn = document.querySelector('#search-btn');
   const search_input = document.querySelector('#search_input');
-  const loading_spinner = document.querySelector('#loading_spinner')
+  const loading_spinner = document.querySelector('#loading_spinner');
 
 
   /* DESATIVADO MOMENTANEAMENTE
@@ -193,19 +193,39 @@ window.addEventListener('load', () => {
       trackId = url.pathname.split('/').pop();
 
     } else if (shortSpotifyregex.test(inputVal)) {
-      notification("Shortened links are not yet supported, please provide an 'https://open.spotify.com/track/' link")
-      loading_spinner.style = "display:none";
-      searchBtn.style = "";
-      search_input.value = "";
-
-      return; // remove after shortened links integration
+      // Envie a URL encurtada para a API
+      const apiUrl = `https://datamatch-backend.onrender.com/unshort?token=${accessToken}url=${inputVal}`;
+    
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.url) {
+            inputVal = data.url;
+            loading_spinner.style = "";
+            searchBtn.style = "";
+            search_input.value = "";
+          } else {
+            notification("The URL provided could not be unshortened");
+            loading_spinner.style = "";
+            searchBtn.style = "";
+            search_input.value = "";
+          }
+        })
+        .catch(error => {
+          console.error("Error unshortening the URL:", error);
+          notification("An error occurred while unshortening this URL. Please use a 'open.spotify.com' link.");
+          loading_spinner.style = "";
+          searchBtn.style = "";
+          search_input.value = "";
+        });
+  
     } else if (studioUrlRegex.test(inputVal)) {
       const match = inputVal.match(studioUrlRegex);
       if (match) {
-        trackId = match[1];
+        query_and_value = `spotify_id=${match[1]}`;
       }
     } else if (idRegex.test(inputVal)) {
-      trackId = inputVal;
+      query_and_value = `spotify_id=${inputVal}`;
     } else if (inputVal === pushForm) {
       pusher_container.style = "";
       lyrics_pusher.src = `https://musixmatch.typeform.com/to/tFQDvIsp?typeform-s`;
@@ -230,7 +250,7 @@ window.addEventListener('load', () => {
       search_input.value = "";
       return;
     } else if (isrcRegex.test(inputVal)) {
-      notification("Oops! ISRC search is not a feature at the moment 👀");
+      query_and_value = `track_isrc=${inputVal}`;
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       search_input.value = "";
@@ -285,7 +305,7 @@ window.addEventListener('load', () => {
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?spotify_id=${trackId}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?${query_and_value}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
