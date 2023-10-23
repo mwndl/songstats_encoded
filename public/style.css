@@ -1142,6 +1142,8 @@ h3 {
   align-items: center;
   justify-content: space-between;
   user-select: none;
+  z-index: 1; 
+  
 }
 
 .requests_counter_status {
