@@ -171,7 +171,8 @@ window.addEventListener('load', () => {
     const openStudio = "/studio"
     let trackId = '';
     let isrc = '';
-    const search_mode = "spotify_id="
+
+    let search_mode;
 
     const setTokenRegex = /^\/set_token=([A-Za-z0-9_]+)$/;
 
@@ -223,7 +224,7 @@ window.addEventListener('load', () => {
     } else if (studioUrlRegex.test(inputVal)) {
       const match = inputVal.match(studioUrlRegex);
       if (match) {
-        inputVal = match[1];
+        search_mode = `spotify_id=`;
       }
     } else if (idRegex.test(inputVal)) {
       search_mode = `spotify_id=`;
@@ -255,6 +256,9 @@ window.addEventListener('load', () => {
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       search_input.value = "";
+      console.log(search_mode);
+      console.log(inputVal);
+      
 
     } else if (setTokenRegex.test(inputVal)) {
       const setTokenMatch = inputVal.match(setTokenRegex); // Defina setTokenMatch aqui
