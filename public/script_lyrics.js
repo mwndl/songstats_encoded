@@ -192,7 +192,7 @@ window.addEventListener('load', () => {
 
     if (trackUrlRegex.test(inputVal)) {
       const url = new URL(inputVal);
-      trackId = url.pathname.split('/').pop();
+      search_value = url.pathname.split('/').pop();
 
     } else if (shortSpotifyregex.test(inputVal)) {
       // Envie a URL encurtada para a API
@@ -225,9 +225,11 @@ window.addEventListener('load', () => {
       const match = inputVal.match(studioUrlRegex);
       if (match) {
         search_mode = `spotify_id=`;
+        search_value = match[1];
       }
     } else if (idRegex.test(inputVal)) {
       search_mode = `spotify_id=`;
+      search_value = inputVal;
     } else if (inputVal === pushForm) {
       pusher_container.style = "";
       lyrics_pusher.src = `https://musixmatch.typeform.com/to/tFQDvIsp?typeform-s`;
@@ -253,6 +255,7 @@ window.addEventListener('load', () => {
       return;
     } else if (isrcRegex.test(inputVal)) {
       search_mode = `track_isrc=`;
+      search_value = inputVal;
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       search_input.value = "";
@@ -309,7 +312,7 @@ window.addEventListener('load', () => {
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?${search_mode}${inputVal}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?${search_mode}${search_value}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
