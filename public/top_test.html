@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .item-container {
+            background-color: #282828;
+            width: 80%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        
+        .item {
+            background-color: #000000;
+            width: 200px;
+            height: 50px;
+            margin: 4px;
+            flex: 0 1 calc(18% - 8px);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .item:hover {
+            transform: translateY(-1px); 
+        }
+
+        .item img {
+            max-width: 50%;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .item-container {
+                width: 98%;
+                flex-direction: column;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+                padding: 5px;
+            }
+
+            .item {
+                width: 88%;
+                margin-bottom: 10px;
+                min-height: 55px;
+                display: flex;
+                flex-direction: row; /* Define a direção da flexbox para "row" */
+                align-items: center; /* Centraliza verticalmente o conteúdo */
+            }
+
+            .item img {
+                max-width: 40%; /* Define a largura da imagem */
+                margin-right: 10px; /* Adiciona algum espaço entre a imagem e os dados */
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div class="item-container"></div>
+    </div>
+
+    <script>
+        // Supondo que você tenha a resposta da API em uma variável chamada apiResponse
+        const apiResponse = {
+            "header": {
+                "status": 200,
+                "executionTime": "0.45500",
+                "user_country_code": "BR",
+                "user_country_name": "Brazil"
+            },
+            "data": [
+            {
+                "position": 1,
+                "name": "Cafézin de Vó (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "4KDxYlnGZEiS60pAnfZf4W",
+                        "name": "Avine Vinny"
+                    },
+                    {
+                        "id": "4JNo6Q5KdcRf1vtSX9mB0S",
+                        "name": "João Gomes"
+                    }
+                ],
+                "album_id": "71WPmaIdErmdczERbxFDRp",
+                "release_date": "2023-10-10",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048518ab549680b6ae45968f07461",
+                    "width": 64
+                }
+            },
+            {
+                "position": 2,
+                "name": "Singular, Vol. 3 (Ao Vivo Em Goiânia)",
+                "artist": [
+                    {
+                        "id": "0NiaKn55OzJswiYevvlKfz",
+                        "name": "Raí Saia Rodada"
+                    }
+                ],
+                "album_id": "6faKhHj1VAsiLCNqU5JoKo",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851f14551b277c3149e9fffe19e",
+                    "width": 64
+                }
+            },
+            {
+                "position": 3,
+                "name": "Boiadeira Internacional: Vol. 2 (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "2CKOmarVWvWqkNWUatHCex",
+                        "name": "Ana Castela"
+                    }
+                ],
+                "album_id": "1fg0TEYbq89Jmirue5wXai",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048517ed0587a5d4c8effa92ec224",
+                    "width": 64
+                }
+            },
+            {
+                "position": 4,
+                "name": "Mais Um Voo",
+                "artist": [
+                    {
+                        "id": "68YeXpLt3jB7JHQS5ZjMGo",
+                        "name": "Teto"
+                    }
+                ],
+                "album_id": "27ZKtXmfYS7OXGb1aKoI7U",
+                "release_date": "2023-10-10",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048512041e7a067948d9ac6b8561b",
+                    "width": 64
+                }
+            },
+            {
+                "position": 5,
+                "name": "A Bolha Ao Vivo em São Paulo, Pt. 2",
+                "artist": [
+                    {
+                        "id": "4FGcERJWMg8ENOLixwF71U",
+                        "name": "Vitor Kley"
+                    }
+                ],
+                "album_id": "5U1XbsQaSTr84Tyy1R36GV",
+                "release_date": "2023-10-11",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851efb7c33ed95e1e4f93da138d",
+                    "width": 64
+                }
+            },
+            {
+                "position": 6,
+                "name": "Além - Vol. 3 (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "2uSwBbWqsXgoMYQjynmwQ7",
+                        "name": "Di Propósito"
+                    }
+                ],
+                "album_id": "2CNMWzDgeaGkEv9bMMxZnN",
+                "release_date": "2023-10-11",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048516d648ca36e6939ff8bb5221c",
+                    "width": 64
+                }
+            },
+            {
+                "position": 7,
+                "name": "Perfume Diferente",
+                "artist": [
+                    {
+                        "id": "2UMj7NCbuqy1yUZmiSYGjJ",
+                        "name": "MC Kevin o Chris"
+                    },
+                    {
+                        "id": "7hLjkyL9Pz9xtQNahzJZki",
+                        "name": "Belo"
+                    },
+                    {
+                        "id": "0QTxqtxb1Ynangd0fpm3PM",
+                        "name": "Mousik"
+                    }
+                ],
+                "album_id": "2DOO1JYlNyuZddB7NIwp4t",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851d4a89f7d84b86b3ab772d43e",
+                    "width": 64
+                }
+            },
+            {
+                "position": 8,
+                "name": "Lasca o Bocão no Litro",
+                "artist": [
+                    {
+                        "id": "7yPoxj2lXWy7J4ixQHVubk",
+                        "name": "Thiago Aquino"
+                    }
+                ],
+                "album_id": "0ti8lliLpOI44j6GF4OuIn",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485110a0b329865baada8222445e",
+                    "width": 64
+                }
+            },
+            {
+                "position": 9,
+                "name": "Catira do Brava Vol. 1 (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "1LGh5vyaoQP9bgTwLSMTyW",
+                        "name": "Thiago Brava"
+                    },
+                    {
+                        "id": "43DRDu6nLSeIedZ7T1A616",
+                        "name": "Xand Avião"
+                    },
+                    {
+                        "id": "57VQCKnZ9nhS7bvoviXuZK",
+                        "name": "Kadu Martins"
+                    }
+                ],
+                "album_id": "4a2jzuO8E9vXmcBnbiF3PU",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048516d1452a8f525cfd34148e174",
+                    "width": 64
+                }
+            },
+            {
+                "position": 10,
+                "name": "Encontro das Vozes: Favela Canta",
+                "artist": [
+                    {
+                        "id": "4IQKOXNGjuRRe0WgOm5YfB",
+                        "name": "Xande De Pilares"
+                    },
+                    {
+                        "id": "19A5pgqDMOLR3hHZ1Piv8d",
+                        "name": "Vinny Santa Fé"
+                    },
+                    {
+                        "id": "2JQXH0oAnBPhRbgfCU6Up5",
+                        "name": "Gold Records"
+                    }
+                ],
+                "album_id": "5BO7ZG3qAxr6y7O7ft7SC8",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851439ab2dd0a0066eb077ccb51",
+                    "width": 64
+                }
+            },
+            {
+                "position": 11,
+                "name": "Assume",
+                "artist": [
+                    {
+                        "id": "66aYJzbeqXd9LyYc1qppzy",
+                        "name": "Grupo Benzadeus"
+                    },
+                    {
+                        "id": "39VceBo0jXir85LCeAmAIs",
+                        "name": "Kamisa 10"
+                    }
+                ],
+                "album_id": "3Rr9SrIZvXGp1BxyrzdNRR",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485174f593b6106d635f71c7ffaf",
+                    "width": 64
+                }
+            },
+            {
+                "position": 12,
+                "name": "Fica do Meu Lado",
+                "artist": [
+                    {
+                        "id": "4QXf68owEt4pbGAUeDaIfp",
+                        "name": "Caju Pra Baixo"
+                    },
+                    {
+                        "id": "5ZfBThYiIIhL7jHMG8gDB2",
+                        "name": "Ferrugem"
+                    }
+                ],
+                "album_id": "3l4DYm57I1ZUPyoA3HItMY",
+                "release_date": "2023-10-13",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851334298dd7b2a4d0e9260e471",
+                    "width": 64
+                }
+            },
+            {
+                "position": 13,
+                "name": "Origens (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "45MLFvHRAGIOvnslTnzS8C",
+                        "name": "Iguinho e Lulinha"
+                    }
+                ],
+                "album_id": "0zw9UknsZjgphgTPyzL4rs",
+                "release_date": "2023-09-06",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485176a6dc24684d652ab460fecd",
+                    "width": 64
+                }
+            },
+            {
+                "position": 14,
+                "name": "5 Da Manhã (Ao Vivo Em Goiânia)",
+                "artist": [
+                    {
+                        "id": "0NiaKn55OzJswiYevvlKfz",
+                        "name": "Raí Saia Rodada"
+                    },
+                    {
+                        "id": "4JNo6Q5KdcRf1vtSX9mB0S",
+                        "name": "João Gomes"
+                    }
+                ],
+                "album_id": "1jElzLi27vaY1p5JPyeVQU",
+                "release_date": "2023-09-07",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851ca964321b6d87cccfd6f07b2",
+                    "width": 64
+                }
+            },
+            {
+                "position": 15,
+                "name": "Campo de Batalha Vol. 03 (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "3CGLLDfrPjF2FJ8HDCKMMv",
+                        "name": "Paulo e Nathan"
+                    }
+                ],
+                "album_id": "6hjM8I6Oys64kviiVFpfj9",
+                "release_date": "2023-09-07",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485160f2d864fd96b701fde40251",
+                    "width": 64
+                }
+            },
+            {
+                "position": 16,
+                "name": "Coisas Banais (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "4KDxYlnGZEiS60pAnfZf4W",
+                        "name": "Avine Vinny"
+                    },
+                    {
+                        "id": "0jD7VeE1m2SdHbOWeCtB9l",
+                        "name": "Naiara Azevedo"
+                    }
+                ],
+                "album_id": "247PIq5nGyhV0Yb4ooRpfv",
+                "release_date": "2023-09-05",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851a45c28db361be5bd64e1c896",
+                    "width": 64
+                }
+            },
+            {
+                "position": 17,
+                "name": "GUTS",
+                "artist": [
+                    {
+                        "id": "1McMsnEElThX1knmY4oliG",
+                        "name": "Olivia Rodrigo"
+                    }
+                ],
+                "album_id": "1xJHno7SmdVtZAtXbdbDZp",
+                "release_date": "2023-09-08",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851e85259a1cae29a8d91f2093d",
+                    "width": 64
+                }
+            },
+            {
+                "position": 18,
+                "name": "Bongos (feat. Megan Thee Stallion)",
+                "artist": [
+                    {
+                        "id": "4kYSro6naA4h99UJvo89HB",
+                        "name": "Cardi B"
+                    },
+                    {
+                        "id": "181bsRPaVXVlUKXrxwZfHK",
+                        "name": "Megan Thee Stallion"
+                    }
+                ],
+                "album_id": "3XYWRia8E82cJI6WrDLTTQ",
+                "release_date": "2023-09-08",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851c4bcdce05e247cef2eed06ac",
+                    "width": 64
+                }
+            },
+            {
+                "position": 19,
+                "name": "Volta Baby",
+                "artist": [
+                    {
+                        "id": "5gz3bqZRtcp0ywe0VvfFAb",
+                        "name": "Deb Lima"
+                    },
+                    {
+                        "id": "007FXgr0jLBJxhPJjacXQH",
+                        "name": "Eric Land"
+                    }
+                ],
+                "album_id": "0JAqOMw3Sngw7ZbnQvHdwM",
+                "release_date": "2023-09-06",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851ef6ac61d34fb77049c84d97f",
+                    "width": 64
+                }
+            },
+            {
+                "position": 20,
+                "name": "Na Minha Pele",
+                "artist": [
+                    {
+                        "id": "6gEzJZrbm0F4ihvE9iXR9z",
+                        "name": "Péricles"
+                    }
+                ],
+                "album_id": "2n8bS3ZKsmWBoCxxzqcWNv",
+                "release_date": "2023-09-08",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851d963551b2b0854d17bd2040e",
+                    "width": 64
+                }
+            },
+            {
+                "position": 21,
+                "name": "Rabisca",
+                "artist": [
+                    {
+                        "id": "0jTDeBJQr3unrK29LklnAv",
+                        "name": "Lexa"
+                    },
+                    {
+                        "id": "70HOdlw2Ud3B4A7W4CI1V6",
+                        "name": "Thiago Pantaleão"
+                    }
+                ],
+                "album_id": "5SOcG7pOSSipVv3QhRE3jg",
+                "release_date": "2023-09-06",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851eb03ffebf2f90e26b0f37d14",
+                    "width": 64
+                }
+            },
+            {
+                "position": 22,
+                "name": "Atmosfera",
+                "artist": [
+                    {
+                        "id": "0vLuOi2k62sHujIfplInlK",
+                        "name": "Hungria Hip Hop"
+                    }
+                ],
+                "album_id": "5o0csE58lgjhza8ry0lNXA",
+                "release_date": "2023-09-08",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851de132306766d34f2acec71be",
+                    "width": 64
+                }
+            },
+            {
+                "position": 23,
+                "name": "Além - Vol. 2 (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "2uSwBbWqsXgoMYQjynmwQ7",
+                        "name": "Di Propósito"
+                    }
+                ],
+                "album_id": "7kWXLVohywfzc5HzbKoS9f",
+                "release_date": "2023-09-06",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851f5d2c8e07c361c44324196a8",
+                    "width": 64
+                }
+            },
+            {
+                "position": 24,
+                "name": "Egípcia",
+                "artist": [
+                    {
+                        "id": "7EyzyrMNgqiK8bMrbkOT9l",
+                        "name": "Sidoka"
+                    }
+                ],
+                "album_id": "2Zzd18NtVk7zDX8oqg6bNh",
+                "release_date": "2023-09-08",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485121ecf54fc1d0d7d26d65fa10",
+                    "width": 64
+                }
+            },
+            {
+                "position": 25,
+                "name": "Lili",
+                "artist": [
+                    {
+                        "id": "6U98XWjrUPnPtPBjEprDmu",
+                        "name": "Don L"
+                    }
+                ],
+                "album_id": "51W9VxFae3lbK4AhwLzB0L",
+                "release_date": "2023-09-07",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851c22f842d7865983b6e7703de",
+                    "width": 64
+                }
+            },
+            {
+                "position": 26,
+                "name": "Ofício de Cantante",
+                "artist": [
+                    {
+                        "id": "0kc1BjcLHaXhZVzCp0HeAl",
+                        "name": "Tassia Reis"
+                    }
+                ],
+                "album_id": "28FxczQCIQtBEn0FGqWtxE",
+                "release_date": "2023-09-05",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851e7288127b4dff31ee039289f",
+                    "width": 64
+                }
+            },
+            {
+                "position": 27,
+                "name": "Other Boys",
+                "artist": [
+                    {
+                        "id": "64KEffDW9EtZ1y2vBYgq8T",
+                        "name": "Marshmello"
+                    },
+                    {
+                        "id": "2W8yFh0Ga6Yf3jiayVxwkE",
+                        "name": "Dove Cameron"
+                    }
+                ],
+                "album_id": "3eb9d46lBCh5p1XBn66jBQ",
+                "release_date": "2023-09-08",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851c14cde1bda4a6577f763cbd4",
+                    "width": 64
+                }
+            },
+            {
+                "position": 28,
+                "name": "夕餉",
+                "artist": [
+                    {
+                        "id": "5lEzAveEBteB85UVvKTanp",
+                        "name": "whaledontsleep"
+                    }
+                ],
+                "album_id": "0pDW3OWNybeh1PRRWb1yXq",
+                "release_date": "2023-08-25",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851fbdedf43e70e4a53c9e0922a",
+                    "width": 64
+                }
+            },
+            {
+                "position": 29,
+                "name": "AFRODHIT",
+                "artist": [
+                    {
+                        "id": "3zgnrYIltMkgeejmvMCnes",
+                        "name": "IZA"
+                    }
+                ],
+                "album_id": "31sonubmJGHeNaAUPrcHj5",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048516fa513be3eb0d4ce759eb1e0",
+                    "width": 64
+                }
+            },
+            {
+                "position": 30,
+                "name": "Dói",
+                "artist": [
+                    {
+                        "id": "1elUiq4X7pxej6FRlrEzjM",
+                        "name": "Jorge & Mateus"
+                    }
+                ],
+                "album_id": "23xCMjuFXyFuQ2k1Q4EXyx",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048518a5a4e113ea3732c65fb0267",
+                    "width": 64
+                }
+            },
+            {
+                "position": 31,
+                "name": "AMBIENTE ERRADO (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "3qvcCP2J0fWi0m0uQDUf6r",
+                        "name": "Luan Santana"
+                    }
+                ],
+                "album_id": "5OyqoxpsEn7XEilamuZcXU",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851b7d4043d6a2f1e15df59ae2c",
+                    "width": 64
+                }
+            },
+            {
+                "position": 32,
+                "name": "O Mais Novo Romântico",
+                "artist": [
+                    {
+                        "id": "68PYmgkbRP1qZnEWOry7sB",
+                        "name": "Chefin"
+                    }
+                ],
+                "album_id": "6bUVIZIeTsNvW9QyWsaqYj",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048513e6bce714609d16a8ef308cd",
+                    "width": 64
+                }
+            },
+            {
+                "position": 33,
+                "name": "Bonde do Pedrinho",
+                "artist": [
+                    {
+                        "id": "1etNnR2SdlelBQAICa2Q5m",
+                        "name": "Mc Pedrinho"
+                    },
+                    {
+                        "id": "0xA8Rmfl9di0sVaPl9AyR9",
+                        "name": "DJ Yuri Martins"
+                    }
+                ],
+                "album_id": "5G2XQuKhvrG0syKNtYhrav",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851f11115787c2317fe939b9a4b",
+                    "width": 64
+                }
+            },
+            {
+                "position": 34,
+                "name": "Essência 3 (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "0CrGLmfVKzk9rAyiNb91ft",
+                        "name": "Diego & Arnaldo"
+                    }
+                ],
+                "album_id": "6KnyqyMBNCckwCsO21sDPU",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851d3a7e2cd667f7165368b53ff",
+                    "width": 64
+                }
+            },
+            {
+                "position": 35,
+                "name": "Quase Não Namoro",
+                "artist": [
+                    {
+                        "id": "5coW9ioCpvEYGx4v1nvWec",
+                        "name": "Juliette"
+                    },
+                    {
+                        "id": "0nFdWpwl7h6fp3ADRyG14L",
+                        "name": "Marina Sena"
+                    }
+                ],
+                "album_id": "2yg5pbW47YD4HVQ34cgfkC",
+                "release_date": "2023-08-04",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048516f5744bfa295d3c5388253c6",
+                    "width": 64
+                }
+            },
+            {
+                "position": 36,
+                "name": "Anota Aí (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "4KDxYlnGZEiS60pAnfZf4W",
+                        "name": "Avine Vinny"
+                    },
+                    {
+                        "id": "1SXhEXzOTF7YeuQX59m7pT",
+                        "name": "NATTAN"
+                    }
+                ],
+                "album_id": "5md8rYv1JhgQEsBMS5WREE",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851df0a74207a7a43b6b858025f",
+                    "width": 64
+                }
+            },
+            {
+                "position": 37,
+                "name": "1% de Fé",
+                "artist": [
+                    {
+                        "id": "5Dz2FizMLqV0Cr3c8uhEcF",
+                        "name": "MC Cebezinho"
+                    },
+                    {
+                        "id": "5qyPbwqvOEp7FvR1EeTQQ2",
+                        "name": "Gabb MC"
+                    },
+                    {
+                        "id": "6sW5k31iA8sTy0i2goUKF9",
+                        "name": "Oldilla"
+                    }
+                ],
+                "album_id": "7JW0HSvdI2LB4nDNmHNzlN",
+                "release_date": "2023-08-01",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485179c0ecaf83fdb73d7c52c3d0",
+                    "width": 64
+                }
+            },
+            {
+                "position": 38,
+                "name": "Vaqueira Testada",
+                "artist": [
+                    {
+                        "id": "45MLFvHRAGIOvnslTnzS8C",
+                        "name": "Iguinho e Lulinha"
+                    },
+                    {
+                        "id": "2LiTVEYDOEckioqrkD83jL",
+                        "name": "Rey Vaqueiro"
+                    }
+                ],
+                "album_id": "3DPHyHGCkEj3aJWX6U6my6",
+                "release_date": "2023-08-04",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851e6189168204e3d49ac12586f",
+                    "width": 64
+                }
+            },
+            {
+                "position": 39,
+                "name": "Rústico - EP 1 (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "1wT33JDD3YLC0fqFnsWo9F",
+                        "name": "ZeZé Di Camargo"
+                    }
+                ],
+                "album_id": "6E9KXABonOSuK2moEnEsCn",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485152ccfa2dc034abcbac436a9f",
+                    "width": 64
+                }
+            },
+            {
+                "position": 40,
+                "name": "Roça no Topo (Deluxe) [Ao Vivo]",
+                "artist": [
+                    {
+                        "id": "7gXnv2nAoF9X0XJQ3AMp7d",
+                        "name": "US Agroboy"
+                    }
+                ],
+                "album_id": "441tRqXneOV36nUgXFIi2N",
+                "release_date": "2023-08-03",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048515643bf4fd8ae835ebb7f6fca",
+                    "width": 64
+                }
+            },
+            {
+                "position": 41,
+                "name": "One in a Million",
+                "artist": [
+                    {
+                        "id": "64M6ah0SkkRsnPGtGiRAbb",
+                        "name": "Bebe Rexha"
+                    },
+                    {
+                        "id": "1Cs0zKBU1kc0i8ypK3B9ai",
+                        "name": "David Guetta"
+                    }
+                ],
+                "album_id": "65L5VcKGKe6sOJIPNFc0Q1",
+                "release_date": "2023-08-04",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851c0c46d4ff076e349b6b95658",
+                    "width": 64
+                }
+            },
+            {
+                "position": 42,
+                "name": "Good Good",
+                "artist": [
+                    {
+                        "id": "23zg3TcAtWQy7J6upgbUnj",
+                        "name": "USHER"
+                    },
+                    {
+                        "id": "57LYzLEk2LcFghVwuWbcuS",
+                        "name": "Summer Walker"
+                    },
+                    {
+                        "id": "1URnnhqYAYcrqrcwql10ft",
+                        "name": "21 Savage"
+                    }
+                ],
+                "album_id": "42dnGUpj3OEU4anDNW69j3",
+                "release_date": "2023-08-04",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048510a5b9c6778c775710b20cb44",
+                    "width": 64
+                }
+            },
+            {
+                "position": 43,
+                "name": "Querendo Mais (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "2uSwBbWqsXgoMYQjynmwQ7",
+                        "name": "Di Propósito"
+                    },
+                    {
+                        "id": "1xKdiuYoOCM2oCMErUjvtq",
+                        "name": "Rodriguinho"
+                    }
+                ],
+                "album_id": "0EprvIKwgELetTgmauNnyp",
+                "release_date": "2023-08-02",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851595a643ab1e3d13aeda52d2a",
+                    "width": 64
+                }
+            },
+            {
+                "position": 44,
+                "name": "Meu Fake Viu (Ao Vivo)",
+                "artist": [
+                    {
+                        "id": "0SPHfj49UeOgHKwSYcn8xZ",
+                        "name": "Bruno Rosa"
+                    },
+                    {
+                        "id": "6Wlvsn3IPHiZwAv02lB5eC",
+                        "name": "Ícaro e Gilmar"
+                    }
+                ],
+                "album_id": "1vqKzMezhZxuMhVTy2T2Vr",
+                "release_date": "2023-08-04",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048511b02ea5cc504c01087e34a40",
+                    "width": 64
+                }
+            },
+            {
+                "position": 45,
+                "name": "Ritmo Do Crime",
+                "artist": [
+                    {
+                        "id": "7gJN8W0589FisSYJS17K54",
+                        "name": "Filipe Ret"
+                    },
+                    {
+                        "id": "4LAFtDzlQM89xov636hMVv",
+                        "name": "Dallass"
+                    },
+                    {
+                        "id": "3CDoRporvSjdzTrm99a3gi",
+                        "name": "LUDMILLA"
+                    }
+                ],
+                "album_id": "3eGzFoARBUyPBPe5rOP9La",
+                "release_date": "2023-07-20",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048517acb6e57869ab62167d35c81",
+                    "width": 64
+                }
+            },
+            {
+                "position": 46,
+                "name": "Baile do Papato",
+                "artist": [
+                    {
+                        "id": "0iZz25uH5PLaShpqq84uYv",
+                        "name": "Papatinho"
+                    }
+                ],
+                "album_id": "2xReweSuwmZbdogHMILeek",
+                "release_date": "2023-07-21",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851fb187365c02ee3bb7d218dd8",
+                    "width": 64
+                }
+            },
+            {
+                "position": 47,
+                "name": "10 Anos (Ao Vivo / Vol.4)",
+                "artist": [
+                    {
+                        "id": "1X6ORK7IekgmyjV6IFPszP",
+                        "name": "Gustavo Mioto"
+                    }
+                ],
+                "album_id": "1WaIfoHKHix2M25FBZqiSW",
+                "release_date": "2023-07-21",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851b4e647448e2903fefe3cb34b",
+                    "width": 64
+                }
+            },
+            {
+                "position": 48,
+                "name": "Deslizes",
+                "artist": [
+                    {
+                        "id": "57VQCKnZ9nhS7bvoviXuZK",
+                        "name": "Kadu Martins"
+                    }
+                ],
+                "album_id": "5dE5HmPgFPuPZFgGcOQr6u",
+                "release_date": "2023-07-21",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851dc02b85cd7c3979097291210",
+                    "width": 64
+                }
+            },
+            {
+                "position": 49,
+                "name": "Não Deixa Eu Saber",
+                "artist": [
+                    {
+                        "id": "5Lv2GUVwqmQBPwrTrxucE5",
+                        "name": "Os Barões Da Pisadinha"
+                    },
+                    {
+                        "id": "3k68C6mNMJL6OaAdWeW2ZF",
+                        "name": "Diego & Victor Hugo"
+                    }
+                ],
+                "album_id": "4VLUQTD9p8yXgqnS8oBqN3",
+                "release_date": "2023-07-20",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485193134f772f9b18a31d835d3b",
+                    "width": 64
+                }
+            },
+            {
+                "position": 50,
+                "name": "Estrela do Mar",
+                "artist": [
+                    {
+                        "id": "5YwzDz4RJfTiMHS4tdR5Lf",
+                        "name": "Xamã"
+                    }
+                ],
+                "album_id": "4g0LAPd9UDGIX2zgeHQXnY",
+                "release_date": "2023-07-21",
+                "album_cover": {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048518a3e43e4f48b317c85eff3f7",
+                    "width": 64
+                }
+            }
+        ]
+        };
+
+        const itemContainer = document.querySelector(".item-container");
+        const data = apiResponse.data;
+
+        for (let i = 0; i < data.length; i++) {
+            const album = data[i];
+
+            const item = document.createElement("div");
+            item.classList.add("item");
+
+            const img = document.createElement("img");
+            img.src = album.album_cover.url;
+
+            const name = document.createElement("p");
+            name.innerText = album.name;
+
+            // Adicione outras informações aqui, como nome do artista, data de lançamento, etc.
+
+            item.appendChild(img);
+            item.appendChild(name);
+
+            itemContainer.appendChild(item);
+        }
+    </script>
+</body>
+</html>

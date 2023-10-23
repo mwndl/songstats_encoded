@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border-style: solid black;
 }
 
 body {
@@ -23,7 +22,6 @@ body{
 /* INICIO DA ANIMAÇÃO */
 
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
-
 
 .context {
     width: 100%;
@@ -47,8 +45,41 @@ body{
     left: 0;
     z-index: -1;
     background-size: 500% 500%;
-    background-image: linear-gradient(45deg, rgb(115, 57, 27), rgb(235, 115, 46), rgb(242, 213, 124), rgb(54, 63, 70), rgb(171, 151, 124));
+    background-color: #404040;
+    transition: background-image 3s ease;
 }
+
+/*Back Mode 1 */
+
+.blur-background {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(20px);
+  transform: scale(1.1);
+}
+
+.fade-background {
+  animation: fadeIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Back Mode 2 */
 
 .circles{
     position: absolute;
@@ -295,7 +326,7 @@ input:-webkit-autofill::selection {
   position: relative;
   width: 700px;
   height: 665px;
-  background-color: #222222;
+  background-color: #1d1b1b;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
@@ -307,11 +338,12 @@ input:-webkit-autofill::selection {
 .container_2 {
   width: 700px;
   height: 665px;
+  background-color: #1d1b1b;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
   flex-direction: row;
   align-items: center;
   margin: auto;
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
 }
 
@@ -421,16 +453,45 @@ input:-webkit-autofill::selection {
 }
 
 /* Barra de pesquisa */
+.logo_and_search {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40px;
+  justify-content: space-between;
+  margin: 0px auto 15px;
+}
+
+.logo_icon {
+  width: 8%;
+  height: 100%;
+}
+
+.logo_icon_color {
+  width: 75%;
+  height: 100%;
+  border-radius: 5px;
+  background-size: 200% 200%;
+  box-shadow: rgba(48, 46, 46, 0.2) 0px 4px 10px;
+}
+
+.logo_icon_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(48, 46, 46, 0.2) 0px 4px 10px;
+  transform: scale(1.030);
+}
+
 .search-container {
   display: flex;
   align-items: center;
   background-color: #404040;
   box-sizing: border-box;
-  width: 100%;
-  height: 40px;
+  width: 92%;
+  height: 100%;
   padding: 10px;
   border-radius: 10px;
-  margin: 0px auto 15px;
   user-select: none;
 }
 
@@ -442,7 +503,6 @@ input:-webkit-autofill::selection {
   color: #ffffff;
 }
 input.search-container::-webkit-autofill {
-  /* Define a cor de fundo de destaque para preenchimento automático */
   background-color: #282828;
 }
 
@@ -532,6 +592,13 @@ input.search-container::-webkit-autofill {
 
 h2 {
   margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.767);
+  z-index: 1;
+}
+
+h3 {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.733);
 }
 
 .div-music-details {
@@ -549,8 +616,8 @@ h2 {
   height: 30px;
   width: 100%;
   display: flex;
-  justify-content: space-between; /* Adicionar espaçamento entre os elementos */
-  align-items: center; /* Alinhar verticalmente ao centro */
+  justify-content: space-between; 
+  align-items: center; 
 }
 
 .view_lyrics_button {
@@ -561,13 +628,13 @@ h2 {
   cursor: pointer;
   color: rgb(136, 136, 136);
   background: none;
-  border: none; /* Simplificar as propriedades de borda */
+  border: none; 
   user-select: none;
 }
 
 .view_lyrics_button span.arrow-symbol {
   font-size: 12px;
-  margin-left: 5px; /* Ajustar a margem à esquerda do símbolo da seta */
+  margin-left: 5px; 
   user-select: none;
 }
 
@@ -578,7 +645,7 @@ h2 {
   font-size: 16px;
   color: rgb(136, 136, 136);
   background: none;
-  border: none; /* Simplificar as propriedades de borda */
+  border: none; 
   user-select: none;
 }
 
@@ -836,14 +903,19 @@ h2 {
   background-color: #393939;
 }
 
+.status-blue {
+  background-color: #0077c2;
+  box-shadow: 0 0 2px #0077c2;
+}
+
 .status-red {
   background-color: red;
   box-shadow: 0 0 2px red;
 }
 
-.status-blue {
-  background-color: #0077c2;
-  box-shadow: 0 0 2px #0077c2;
+.status-yellow {
+  background-color: #edb51a;
+  box-shadow: 0 0 2px #edb51a;
 }
 
 .status-green {
@@ -861,6 +933,7 @@ h2 {
   align-items: center;
   justify-content: center;
   width: 250px;
+  height: 100%;
   padding: 10px 10px;
   background-color: #282828;
   border-radius: 12px;
@@ -892,7 +965,11 @@ h2 {
   padding: 12px 20px;
   border-radius: 12px;
   margin: 0px 0px 0px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .input-group-urls {
   display: flex;
@@ -961,6 +1038,7 @@ h2 {
   align-items: center;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+  z-index: 1;
 }
 
 .notification-content p {
@@ -975,13 +1053,13 @@ h2 {
   display: none;
 }
 
-/* Spinner de loading */
+/* Spinner loading padrão */
 
-@keyframes ldio-hevnxz7k1b {
+@keyframes loading_spinner {
   0% { transform: translate(-50%,-50%) rotate(0deg); }
   100% { transform: translate(-50%,-50%) rotate(360deg); }
 }
-.ldio-hevnxz7k1b div {
+.loading_spinner div {
   position: absolute;
   width: 14px;
   height: 14px;
@@ -989,26 +1067,471 @@ h2 {
   border-top-color: transparent;
   border-radius: 50%;
 }
-.ldio-hevnxz7k1b div {
-  animation: ldio-hevnxz7k1b 0.5291005291005291s linear infinite;
+.loading_spinner div {
+  animation: loading_spinner 0.5291005291005291s linear infinite;
   top: 15px;
   left: 18px
 }
-.loadingio-spinner-rolling-jatoiybap7 {
+.loading_spinner_loop {
   width: 30px;
   height: 30px;
   display: inline-block;
   overflow: hidden;
 }
-.ldio-hevnxz7k1b {
+.loading_spinner {
   width: 100%;
   height: 100%;
   position: relative;
   transform: translateZ(0) scale(1);
   backface-visibility: hidden;
-  transform-origin: 0 0; /* see note above */
+  transform-origin: 0 0; 
 }
-.ldio-hevnxz7k1b div { box-sizing: content-box; }
-  border: none; /* Simplificar as propriedades de borda */
+.loading_spinner div { box-sizing: content-box; }
+
+/* Spinner loading Musixmatch div */
+
+@keyframes loading_spinner_2 {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+.loading_spinner_2 div {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+.loading_spinner_2 div {
+  animation: loading_spinner_2 0.5291005291005291s linear infinite;
+  top: 22px;
+  left: 22px
+}
+.loading_spinner_loop_2 {
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  overflow: hidden;
+}
+.loading_spinner_2 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; 
+}
+.loading_spinner_2 div { box-sizing: content-box; }
+
+/* */
+
+.requests_conter {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  background-color: #282828;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+  padding: 15px;
+  min-width: 100px; 
+  width: auto; 
+  height: 40px;
+  border-radius: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   user-select: none;
+  z-index: 1; 
+  
+}
+
+.requests_counter_status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  max-width: 10px;
+  margin-left: 10px;
+}
+
+.requests_conter p {
+  font-size: 12px;
+  font-weight: bold;
+  flex-grow: 1; 
+  justify-content: center;
+}
+
+/* Pag inicial */
+.container_home {
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+
+.init_top {
+  width: 100%;
+  height: 40%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.init_top h1 {
+  font-size: 80px;
+  font-weight: bolder;
+}
+
+.button_containers {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.button_container_left {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.button_container_right {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.button_container_1 {
+  min-width: 450px;
+  width: 450px;
+  height: 140px;
+  border-radius: 12px;
+  background-color: #282828;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  user-select: none;
+  background: linear-gradient(45deg, #245f27, #282828);
+  margin: 15px;
+  /* transform: scale(1.5); */
+}
+
+.button_container_2 {
+  min-width: 450px;
+  width: 450px;
+  height: 140px;
+  border-radius: 12px;
+  background-color: #282828;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  user-select: none;
+  background: linear-gradient(45deg, #a0632a, #9957002f);
+  margin: 15px;
+}
+
+.button_container_3 {
+  min-width: 450px;
+  width: 450px;
+  height: 140px;
+  border-radius: 12px;
+  background-color: #282828;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  user-select: none;
+  background: linear-gradient(45deg, #0b415a, #2447522f);
+  margin: 15px;
+  position: relative;
+}
+
+.button_container_4 {
+  min-width: 450px;
+  width: 450px;
+  height: 140px;
+  border-radius: 12px;
+  background-color: #282828;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  user-select: none;
+  background: linear-gradient(45deg, #9c1534, #55081a2f);
+  margin: 15px;
+}
+
+.button_container_1:hover {
+  /* transform: scale(1.6);  Redefinir para translateY após integrar novos botões */
+  transform: translateY(-3px); 
+}
+
+.button_container_2:hover {
+  transform: translateY(-3px); 
+}
+
+.button_container_3:hover {
+  transform: translateY(-3px); 
+}
+
+.button_container_4:hover {
+  transform: translateY(-3px); 
+}
+
+/* Button masks */
+
+.button1-mask-div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.button1-mask-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(40, 40, 40, 0.19) 60%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1; 
+}
+
+.button1-mask-div .button1-mask-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+.button1-mask-div .button1-mask-content h2 {
+  z-index: 2;
+  position: absolute;
+  color: white;
+}
+
+.button1-mask-div .button1-mask-content p {
+  z-index: 2;
+  position: absolute;
+  top: 48px;
+  font-size: 13px;
+}
+
+/* Button 2 */
+
+.button2-mask-div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Aplicar sombreamento
+.button2-mask-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #2828284b 60%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1; 
+}
+*/
+
+.button2-mask-div .button2-mask-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+
+.button2-mask-div .button2-mask-content h2 {
+  z-index: 2;
+  position: absolute;
+  color: white;
+}
+
+.button2-mask-div .button2-mask-content p {
+  z-index: 2;
+  position: absolute;
+  top: 48px;
+  font-size: 13px;
+}
+
+/* Button 3 */
+
+.button3-mask-div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Aplicar sombreamento
+.button3-mask-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #2828284b 60%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1; 
+}
+*/
+
+.button3-mask-div .button3-mask-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+.button3-mask-div .button3-mask-content h2 {
+  z-index: 2;
+  position: absolute;
+  color: white;
+}
+
+.button3-mask-div .button3-mask-content p {
+  z-index: 2;
+  position: absolute;
+  top: 48px;
+  font-size: 13px;
+}
+
+/* Button 4 */
+
+.button4-mask-div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Aplicar sombreamento
+.button4-mask-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #2828284b 60%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1; 
+}
+*/
+
+.button4-mask-div .button4-mask-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+.button4-mask-div .button4-mask-content h2 {
+  z-index: 2;
+  position: absolute;
+  color: white;
+}
+
+.button4-mask-div .button4-mask-content p {
+  z-index: 2;
+  position: absolute;
+  top: 48px;
+  font-size: 13px;
+}
+
+/* End of button masks */
+
+/* Padrão de thumbs */
+
+.album-covers {
+  position: absolute;
+  top: 20%;
+  left: 56%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.album-covers img {
+  width: 100px; /* Ajuste o tamanho das imagens conforme necessário */
+  height: 100px;
+  transform: perspective(500px) rotateY(40deg); /* Aplicar a inclinação 3D */
+  transition: transform 0.2s ease;
+  position: absolute;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.712); /* Adicionar um leve sombreamento */
+}
+
+.album-covers img:nth-child(1) {
+  left: 0;
+}
+
+.album-covers img:nth-child(2) {
+  left: 50px; /* Ajuste o valor conforme necessário para controlar a sobreposição */
+}
+
+.album-covers img:nth-child(3) {
+  left: 100px; /* Ajuste o valor conforme necessário para controlar a sobreposição */
+}
+
+.album-covers img:hover {
+  transform: perspective(500px) rotateY(35deg); /* Voltar ao estado original ao passar o mouse */
+}
+
+
+/* Fim do padrão de thumbs */
+
+.logo-container {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  height: 100%;
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+  background: transparent;
+}
+
+.spotify_logo {
+  user-select: none;
+  position: relative;
+  top: 0;
+  left: 50.5%;
+  border-radius: 50.5%;
+  box-shadow: -3px 4px 60px rgb(26, 57, 28);
+}
+
+.mxm_logo {
+  user-select: none;
+  position: relative;
+  top: 0;
+  left: 21.5%;
+  border-radius: 50%;
+  box-shadow: -3px 4px 60px rgb(49, 22, 22);
 }
