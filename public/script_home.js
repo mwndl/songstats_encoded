@@ -74,5 +74,5 @@ window.addEventListener('load', () => {
                 console.error("Something went wrong: " + error);
             });
     }
+    getThumbs(); 
 });
-getThumbs();
