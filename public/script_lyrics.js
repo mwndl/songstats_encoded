@@ -160,7 +160,7 @@ window.addEventListener('load', () => {
 
     const inputVal = search_input.value.trim();
 
-    const query_value = '';
+    const search_mode = '';
 
     const trackUrlRegex = /^(https?:\/\/open\.spotify\.com\/(?:intl-[a-z]{2}\/)?)?track\/(.+)$/;
     const shortSpotifyregex = /https?:\/\/spotify\.link\/[\w-]+/;
@@ -224,10 +224,10 @@ window.addEventListener('load', () => {
     } else if (studioUrlRegex.test(inputVal)) {
       const match = inputVal.match(studioUrlRegex);
       if (match) {
-        query_value = `spotify_id=${match[1]}`;
+        search_mode = `spotify_id=`;
       }
     } else if (idRegex.test(inputVal)) {
-      query_value = `spotify_id=${inputVal}`;
+      search_mode = `spotify_id=`;
     } else if (inputVal === pushForm) {
       pusher_container.style = "";
       lyrics_pusher.src = `https://musixmatch.typeform.com/to/tFQDvIsp?typeform-s`;
@@ -252,7 +252,7 @@ window.addEventListener('load', () => {
       search_input.value = "";
       return;
     } else if (isrcRegex.test(inputVal)) {
-      query_value = `track_isrc=${inputVal}`;
+      search_mode = `track_isrc=`;
       loading_spinner.style = "display:none";
       searchBtn.style = "";
       search_input.value = "";
@@ -307,7 +307,7 @@ window.addEventListener('load', () => {
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?${query_value}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?${search_mode}${inputVal}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
