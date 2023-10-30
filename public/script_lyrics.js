@@ -309,7 +309,7 @@ window.addEventListener('load', () => {
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
     // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder/search?${search_mode}${search_value}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder-beta/search?${search_mode}${search_value}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
@@ -475,7 +475,7 @@ window.addEventListener('load', () => {
           mxm_abstrack_title.style = ""
 
           mxm_links_content.style = ""
-          loading_spinner_mxm.style = "display:none"
+          not_imported_message.style = "display:none"
   
           if (mxm_has_lyrics === 0) {
             stats_mxm_lyrics.className = "status-1 status-gray";
@@ -530,7 +530,7 @@ window.addEventListener('load', () => {
           stats_mxm_instrumental.className = "status-1 status-gray";
 
           mxm_links_content.style = "display:none"
-          loading_spinner_mxm.style = ""
+          not_imported_message.style = ""
         } else {
           notification("An error occurred when fetching data from Musixmatch")
           mxm_stats_div.title = "This track is not available on Musixmatch"
