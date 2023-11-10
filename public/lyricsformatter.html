@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="lyricsformatter_style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics Formatter | Songstats</title>
+</head>
+
+    <body>
+        <div class="top">
+            <div class="return">
+                <img class="return_arrow" id="return_arrow" src="images\arrow.svg" alt="Return Arrow" title="Return to Home" draggable="false">
+            </div>
+            <div class="page_title">Lyrics Formatter</div>
+            <div class="settings"></div>
+        </div>
+        
+        <div class="main">
+            <div class="main_content">
+                <div class="main_left">
+                    <div class="lyrics_box" id="lyrics_box">
+                        <div class="editor-container">
+                            <div class="line_numbers"></div>
+                            <textarea class="editor" id="editor" placeholder="Paste the lyrics here..." oninput="updateLineNumbers();"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_right">
+                    <div class="language_selector"></div>
+                    <div class="improvements_box"></div>
+                    <div class="random_tips"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer_message">Please note that this tool only provides suggestions based on your current transcription. It is still essential to thoroughly review all the content before sending.</div>
+        </div>        
+    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var returnArrow = document.querySelector('#return_arrow');
+
+            returnArrow.addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var lyricsBox = document.getElementById('lyrics_box');
+            var textArea = document.getElementById('editor');
+
+            lyricsBox.addEventListener('click', function() {
+                textArea.focus();
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var textarea = document.querySelector('.editor');
+            var lineNumbers = document.querySelector('.line_numbers');
+
+            textarea.addEventListener('input', updateLineNumbers);
+            textarea.addEventListener('scroll', syncScroll);
+
+            function updateLineNumbers() {
+                var lines = textarea.value.split('\n');
+                lineNumbers.innerHTML = '';
+
+                for (var i = 0; i < lines.length; i++) {
+                    var line = document.createElement('div');
+
+                    // Verifica se a linha está vazia ou contém os termos específicos (insensível a capitalização)
+                    var lowercaseLine = lines[i].trim().toLowerCase(); // Utiliza o trim para remover espaços no início e no final
+
+                    if (lowercaseLine === '' || lowercaseLine.includes("#instrumental") || lowercaseLine.includes("#intro") || lowercaseLine.includes("#verse") || lowercaseLine.includes("#pre-chorus") || lowercaseLine.includes("#chorus") || lowercaseLine.includes("#hook") || lowercaseLine.includes("#bridge") || lowercaseLine.includes("#outro")) {
+                        line.textContent = " ";
+                    } else {
+                        line.textContent = lines[i].trim().length; // Utiliza trim para calcular o comprimento desconsiderando espaços no início e final
+                    }
+
+                    lineNumbers.appendChild(line);
+                }
+            }
+
+            function syncScroll() {
+                lineNumbers.scrollTop = textarea.scrollTop;
+            }
+
+            // Inicializa os números de linha
+            updateLineNumbers();
+        });
+
+    </script>
+
+</html>
