@@ -40,10 +40,10 @@
                 </div>
               </div>
             </div>
-            <div class="button_container_2" id="playlist_data" style="">
+            <div class="button_container_2" id="lyrics_formatter" style="">
               <div class="button2-mask-div">
                 <div class="button2-mask-content">
-                  <h2>Lyrics Formatter</h2>
+                  <h2>Lyrics Formatter (BETA)</h2>
                   <p>Fix lyrics faster based on Musixmatch guidelines</p>
                 </div>
               </div>
@@ -113,8 +113,9 @@
     var url = 'lyricsfinder.html';
     window.location.href = url;
   });
-  document.getElementById('playlist_data').addEventListener('click', function () {
-    notification1("More services coming soon! 👀")
+  document.getElementById('lyrics_formatter').addEventListener('click', function () {
+    var url = 'lyricsformatter.html';
+    window.location.href = url;
   });
   document.getElementById('button_container_3').addEventListener('click', function () {
     notification1("More services coming soon! 👀")
