@@ -1,0 +1,699 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: block;
+    font-family: 'Exo', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');.context {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.context h1, p {
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+}
+
+.context h3, p {
+    text-align: center;
+    color: #fff;
+}
+
+
+.area {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-size: 500% 500%;
+    background-color: #121212;
+    transition: background-image 3s ease;
+}
+
+.containers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1550px;
+    height: 95vh;
+    margin: 5px auto;
+}
+
+.container_home {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.init_top {
+    width: 100%;
+    height: 40%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.init_top h1 {
+    font-size: 80px;
+    font-weight: bolder;
+}
+
+.button_containers {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.button_container_left {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.button_container_right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.button_container_1 {
+    min-width: 450px;
+    width: 450px;
+    height: 140px;
+    border-radius: 12px;
+    background-color: #282828;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    user-select: none;
+    background: linear-gradient(45deg, #026002 , #000000);
+    margin: 15px;
+}
+
+.button_container_2 {
+    min-width: 450px;
+    width: 450px;
+    height: 140px;
+    border-radius: 12px;
+    background-color: #282828;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    user-select: none;
+    background: linear-gradient(45deg, #000981, #030721c5);
+    margin: 15px;
+}
+
+.button_container_3 {
+    min-width: 450px;
+    width: 450px;
+    height: 140px;
+    border-radius: 12px;
+    background-color: #282828;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    user-select: none;
+    background: linear-gradient(45deg, #d13800, #ff98008f);
+    margin: 15px;
+    position: relative;
+}
+
+.button_container_4 {
+    min-width: 450px;
+    width: 450px;
+    height: 140px;
+    border-radius: 12px;
+    background-color: #282828;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    user-select: none;
+    background: linear-gradient(45deg, #ff003a, #55081acf);
+    margin: 15px;
+}
+
+.button_container_1:hover {
+    transform: translateY(-3px);
+}
+
+.button_container_2:hover {
+    transform: translateY(-3px);
+}
+
+.button_container_3:hover {
+    transform: translateY(-3px);
+}
+
+.button_container_4:hover {
+    transform: translateY(-3px);
+}
+
+.button1-mask-div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.button1-mask-div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgb(0 0 0 / 12%) 60%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+}
+
+.button1-mask-div .button1-mask-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+.button1-mask-div .button1-mask-content h2 {
+    z-index: 2;
+    position: absolute;
+    color: white;
+}
+
+.button1-mask-div .button1-mask-content p {
+    z-index: 2;
+    position: absolute;
+    top: 48px;
+    font-size: 13px;
+}
+
+.button2-mask-div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.button2-mask-div .button2-mask-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+.button2-mask-div .button2-mask-content h2 {
+    z-index: 2;
+    position: absolute;
+    color: white;
+}
+
+.button2-mask-div .button2-mask-content p {
+    z-index: 2;
+    position: absolute;
+    top: 48px;
+    font-size: 13px;
+}
+
+.button3-mask-div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.button3-mask-div .button3-mask-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+.button3-mask-div .button3-mask-content h2 {
+    z-index: 2;
+    position: absolute;
+    color: white;
+}
+
+.button3-mask-div .button3-mask-content p {
+    z-index: 2;
+    position: absolute;
+    top: 48px;
+    font-size: 13px;
+}
+
+.button4-mask-div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.button4-mask-div .button4-mask-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+.button4-mask-div .button4-mask-content h2 {
+    z-index: 2;
+    position: absolute;
+    color: white;
+}
+
+.button4-mask-div .button4-mask-content p {
+    z-index: 2;
+    position: absolute;
+    top: 48px;
+    font-size: 13px;
+}
+
+.album-covers {
+    position: absolute;
+    top: 20%;
+    left: 56%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.album-covers img {
+    width: 100px;
+    height: 100px;
+    transform: perspective(500px) rotateY(40deg);
+    transition: transform 0.2s ease;
+    position: absolute;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.712);
+}
+
+.album-covers img:nth-child(1) {
+    left: 0;
+}
+
+.album-covers img:nth-child(2) {
+    left: 50px;
+}
+
+.album-covers img:nth-child(3) {
+    left: 100px;
+}
+
+.album-covers img:hover {
+    transform: perspective(500px) rotateY(35deg);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+    background: transparent;
+}
+
+.spotify_logo {
+    user-select: none;
+    position: relative;
+    top: 0;
+    left: 50.5%;
+    border-radius: 50.5%;
+    box-shadow: -3px 4px 60px rgb(26, 57, 28);
+}
+
+.mxm_logo {
+    user-select: none;
+    position: relative;
+    top: 0;
+    left: 21.5%;
+    border-radius: 50%;
+    box-shadow: -3px 4px 60px rgb(49, 22, 22);
+}
+
+
+/* CELULARES */
+
+/* Estilos para celulares */
+@media (max-width: 760px) {
+
+    .init_top h1 {
+        font-size: 50px;
+        font-weight: bolder;
+    }
+
+    .init_top h3 {
+        font-size: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .button_container_1 .button1-mask-div .button1-mask-content p {
+        font-size: 11px;
+    }
+
+    .button_container_2 .button2-mask-div .button2-mask-content p {
+        font-size: 11px;
+    }
+
+    .button_container_3 .button3-mask-div .button3-mask-content p {
+        font-size: 11px;
+    }
+
+    .button_container_4 .button4-mask-div .button4-mask-content p {
+        font-size: 11px;
+    }
+    
+    .containers {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+        max-width: 1550px;
+        height: 65vh;
+        margin: 5px auto;
+    }
+    
+    
+    .button_container_1 {
+        min-width: 100%;
+        height: 99px;
+        border-radius: 12px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #026002 , #000000);
+        margin: 15px;
+    }
+    
+    .button_container_2 {
+        min-width: 100%;
+        height: 99px;
+        border-radius: 12px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #000981, #030721c5);
+        margin: 15px;
+    }
+    
+    .button_container_3 {
+        min-width: 100%;
+        height: 99px;
+        border-radius: 12px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #d13800, #ff98008f);
+        margin: 15px;
+        position: relative;
+    }
+    
+    .button_container_4 {
+        min-width: 100%;
+        height: 99px;
+        border-radius: 12px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #ff003a, #55081acf);
+        margin: 15px;
+    }
+    
+    .album-covers {
+        position: absolute;
+        top: 20%;
+        left: 56%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .album-covers img {
+        width: 100px;
+        height: 100px;
+        transform: perspective(500px) rotateY(40deg);
+        transition: transform 0.2s ease;
+        position: absolute;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.712);
+    }
+    
+    .album-covers img:nth-child(1) {
+        left: 0;
+    }
+    
+    .album-covers img:nth-child(2) {
+        left: 50px;
+    }
+    
+    .album-covers img:nth-child(3) {
+        left: 100px;
+    }
+    
+    .album-covers img:hover {
+        transform: perspective(500px) rotateY(35deg);
+    }
+    
+    .logo-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+    
+    .logo-container img {
+        width: 100%;
+        height: auto;
+        background: transparent;
+    }
+    
+    .spotify_logo {
+        user-select: none;
+        position: relative;
+        top: 0;
+        left: 50.5%;
+        border-radius: 50.5%;
+        box-shadow: -3px 4px 60px rgb(26, 57, 28);
+    }
+    
+    .mxm_logo {
+        user-select: none;
+        position: relative;
+        top: 0;
+        left: 21.5%;
+        border-radius: 50%;
+        box-shadow: -3px 4px 60px rgb(49, 22, 22);
+    }
+}
+
+
+/* Estilos específicos para tablets (media query para telas entre 768px e 1024px) */
+@media (min-width: 761px) and (max-width: 1024px) {
+    .init_top h1 {
+        font-size: 100px;
+        font-weight: bolder;
+    }
+
+    .init_top h3 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    .button_container_1 .button1-mask-div .button1-mask-content p {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .button_container_2 .button2-mask-div .button2-mask-content p {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .button_container_3 .button3-mask-div .button3-mask-content p {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .button_container_4 .button4-mask-div .button4-mask-content p {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .containers {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+        max-width: 1550px;
+        height: 95vh;
+        margin: 5px auto;
+    }
+    
+    .button_container_1 {
+        min-width: 100%;
+        height: 210px;
+        border-radius: 20px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #026002 , #000000);
+        margin: 15px;
+    }
+    
+    .button_container_2 {
+        min-width: 100%;
+        height: 210px;
+        border-radius: 20px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #000981, #030721c5);
+        margin: 15px;
+    }
+    
+    .button_container_3 {
+        min-width: 100%;
+        height: 210px;
+        border-radius: 20px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #d13800, #ff98008f);
+        margin: 15px;
+        position: relative;
+    }
+    
+    .button_container_4 {
+        min-width: 100%;
+        height: 210px;
+        border-radius: 20px;
+        background-color: #282828;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.655);
+        transition: transform 0.2s ease;
+        overflow: hidden;
+        user-select: none;
+        background: linear-gradient(45deg, #ff003a, #55081acf);
+        margin: 15px;
+    }
+    
+    .album-covers {
+        position: absolute;
+        top: 20%;
+        left: 56%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .album-covers img {
+        width: 100px;
+        height: 100px;
+        transform: perspective(500px) rotateY(40deg);
+        transition: transform 0.2s ease;
+        position: absolute;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.712);
+    }
+    
+    .album-covers img:nth-child(1) {
+        left: 0;
+    }
+    
+    .album-covers img:nth-child(2) {
+        left: 50px;
+    }
+    
+    .album-covers img:nth-child(3) {
+        left: 100px;
+    }
+    
+    .album-covers img:hover {
+        transform: perspective(500px) rotateY(35deg);
+    }
+    
+    .logo-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+    
+    .logo-container img {
+        width: 100%;
+        height: auto;
+        background: transparent;
+    }
+    
+    .spotify_logo {
+        user-select: none;
+        position: relative;
+        top: 0;
+        left: 50.5%;
+        border-radius: 50.5%;
+        box-shadow: -3px 4px 60px rgb(26, 57, 28);
+    }
+    
+    .mxm_logo {
+        user-select: none;
+        position: relative;
+        top: 0;
+        left: 21.5%;
+        border-radius: 50%;
+        box-shadow: -3px 4px 60px rgb(49, 22, 22);
+    }
+}

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="lyricsformatter_style.css">
+    <link rel="stylesheet" href="lyricsformatter.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyrics Formatter | Songstats</title>
 </head>
@@ -14,9 +14,11 @@
                 <img class="return_arrow" id="return_arrow" src="images\arrow.svg" alt="Return Arrow" title="Return to Home" draggable="false">
             </div>
             <div class="page_title">Lyrics Formatter</div>
-            <div class="settings"></div>
+            <div class="settings">
+                <img class="options_dots" id="settings_dots" src="images\options.svg" alt="Options" title="Options" draggable="false">
+            </div>
         </div>
-        
+    
         <div class="main">
             <div class="main_content">
                 <div class="main_left">
@@ -33,10 +35,26 @@
                     <div class="random_tips"></div>
                 </div>
             </div>
+            <div class="mobile_expanded_content" id="mobile_expanded_content">
+                <div class="main_right">
+                    <div class="language_selector"></div>
+                    <div class="improvements_box"></div>
+                    <div class="random_tips"></div>
+                </div>
+            </div>
         </div>
         <div class="footer">
             <div class="footer_message">Please note that this tool only provides suggestions based on your current transcription. It is still essential to thoroughly review all the content before sending.</div>
-        </div>        
+            <div class="mobile_footer_div">
+                <div class="status_light_div">
+                    <div class="status_light status-yellow"></div>
+                </div>
+                <div class="mobile_footer_text">Page under development</div>
+                <div class="mobile_footer_arrow">
+                    <img class="expand_arrow" id="expand_arrow" src="images/expand_arrow.svg" alt="Expand Arrow" title="Tap to check suggestions" draggable="false">
+                </div>
+            </div>
+        </div>       
     </body>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -46,6 +64,7 @@
                 window.location.href = 'index.html';
             });
         });
+
 
         document.addEventListener('DOMContentLoaded', function () {
             var lyricsBox = document.getElementById('lyrics_box');

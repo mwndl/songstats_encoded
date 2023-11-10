@@ -1,0 +1,548 @@
+/* DESKTOP */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: block;
+    font-family: 'Exo', sans-serif;
+    background-color: #282828;
+    height: 100vh;
+}
+
+/* TOP - START */
+
+.top {
+    width: 100%;
+    height: 8%;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.return {
+    width: 8%;
+    height: 100%;
+    margin: auto;
+    display: flex; /* Adiciona display flex para .return */
+    align-items: center; /* Centraliza verticalmente os itens dentro de .return */
+    justify-content: center; /* Centraliza horizontalmente os itens dentro de .return */
+}
+
+.return_arrow {
+    width: 30%;
+    height: 30%;
+    background-size: cover;
+    margin: auto;
+    user-select: none;
+}
+
+.page_title {
+    width: 84%;
+    height: 100%;
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.settings {
+    width: 8%;
+    height: 100%;
+    background-size: cover;
+}
+
+.options_dots {
+    display:none;
+}
+
+/* TOP - END */
+
+/* MAIN - START */
+
+.main {
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+
+.main_content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0px 50px 5px 50px;
+    box-sizing: border-box;
+}
+
+/* MAIN LEFT */
+
+    .main_left {
+        width: 75%;
+        height: 100%;
+        padding: 0 20px 0 0px;
+        box-sizing: border-box;
+    }
+
+    .lyrics_box {
+        width: 100%;
+        height: 100%;
+        border: 3px solid rgb(0, 119, 194);
+        border-radius: 20px;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+        background-color: #181818;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        line-height: 21px;
+        cursor: text;
+    }
+
+    .editor-container {
+        width: 100%;
+        height: 100%;
+        display: inline-flex;
+        gap: 10px;
+        font-family: monospace;
+        line-height: 21px;
+        overflow: auto;
+    }
+
+    .line_numbers {
+        height: 100%;
+        text-align: center;
+        width: 5%;
+        font-size: 16px;
+        color: #8a8a8a;
+        position: relative;
+        pointer-events: none;
+        line-height: 21px;
+        overflow-y: scroll;
+        height: 100%;
+        user-select: none;
+        /* Oculta a barra de rolagem, mas permite rolar */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    /* Estilização para navegadores que não suportam scrollbar-width */
+    .line_numbers::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .editor {
+        line-height: 21px;
+        padding: 0 5px 0 0;
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: white;
+        font-size: 16px;
+        resize: none; /* Impede o redimensionamento do textarea */
+        overflow: auto; /* Permite a rolagem */
+        white-space: nowrap; /* Impede a quebra automática de linha */
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: transparent transparent; /* Firefox */
+        position: relative;
+    }
+
+    .editor::-webkit-scrollbar {
+        width: 0; /* Largura da barra de rolagem WebKit (Chrome, Safari) */
+    }
+
+    .editor::-webkit-scrollbar-thumb {
+        background-color: transparent; /* Cor da "thumb" da barra de rolagem WebKit */
+    }
+
+    .editor::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px; /* Largura do espaço recuado */
+        height: 100%;
+    }
+
+/* MAIN RIGHT */
+
+    .main_right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25%;
+        height: 100%;
+    }
+
+    .language_selector,
+    .improvements_box,
+    .random_tips {
+        width: 100%;
+    }
+
+    .language_selector {
+        height: 10%;
+        background-color: #616161;
+        border-radius: 20px;
+    }
+
+    .improvements_box {
+        height: 63%;
+        background-color: #131313;
+        border-radius: 20px;
+    }
+
+    .random_tips {
+        height: 22%;
+        background-color: #131313;
+        border-radius: 20px;
+    }
+
+/* MAIN - END */
+
+/* FOOTER - START */
+
+.footer {
+    width: 100%;
+    height: 2%;
+}
+
+.footer_message {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60%;
+    user-select: none;
+}
+
+
+/* FOOTER - END */
+
+
+/* Estilos para celulares */
+@media (max-width: 768px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        display: block;
+        font-family: 'Exo', sans-serif;
+        background-color: #181818;
+        height: 100vh;
+    }
+
+    /* TOP - START */
+
+    .top {
+        width: 100%;
+        height: 8%;
+        color: white;
+        display: flex;
+        align-items: center;
+        background-color: #282828;
+    }
+
+    .return {
+        width: 20%;
+        height: 100%;
+        margin: auto;
+        display: flex; /* Adiciona display flex para .return */
+        align-items: center; /* Centraliza verticalmente os itens dentro de .return */
+        justify-content: center; /* Centraliza horizontalmente os itens dentro de .return */
+    }
+
+    .return_arrow {
+        width: 20%;
+        height: 20%;
+        background-size: cover;
+        margin: auto;
+        user-select: none;
+    }
+
+    .page_title {
+        width: 60%;
+        height: 100%;
+        flex-grow: 1;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: bold;
+        user-select: none;
+    }
+
+    .settings {
+        width: 20%;
+        height: 100%;
+        background-size: cover;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .options_dots {
+        display: inline;
+        width: 50%;
+        height: 50%;
+    }
+    
+
+    /* TOP - END */
+
+    /* MAIN - START */
+
+    .main {
+        display: flex;
+        width: 100%;
+        height: 84%;
+        background-color: red;
+    }
+
+    .main_content {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        background-color: green;
+        padding: 0;
+    }
+
+    /* MAIN LEFT */
+
+        .main_left {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            background-color: purple;
+            padding: 0;
+        }
+
+        .lyrics_box {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0px;
+            box-sizing: border-box;
+            box-shadow: none;
+            background-color: #181818;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            line-height: 21px;
+            cursor: text;
+        }
+
+        .editor-container {
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            gap: 10px;
+            font-family: monospace;
+            line-height: 21px;
+            overflow: auto;
+        }
+
+        .line_numbers {
+            height: 100%;
+            text-align: center;
+            width: 5%;
+            font-size: 12px;
+            color: #8a8a8a;
+            position: relative;
+            pointer-events: none;
+            line-height: 21px;
+            overflow-y: scroll;
+            height: 100%;
+            user-select: none;
+            /* Oculta a barra de rolagem, mas permite rolar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        /* Estilização para navegadores que não suportam scrollbar-width */
+        .line_numbers::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .editor {
+            line-height: 21px;
+            padding: 0 5px 0 0;
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            font-size: 12px;
+            resize: none; /* Impede o redimensionamento do textarea */
+            overflow: auto; /* Permite a rolagem */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: transparent transparent; /* Firefox */
+            position: relative;
+        }
+
+        .editor::-webkit-scrollbar {
+            width: 0; /* Largura da barra de rolagem WebKit (Chrome, Safari) */
+        }
+
+        .editor::-webkit-scrollbar-thumb {
+            background-color: transparent; /* Cor da "thumb" da barra de rolagem WebKit */
+        }
+
+        .editor::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px; /* Largura do espaço recuado */
+            height: 100%;
+        }
+
+    /* MAIN RIGHT */
+
+        .main_right {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25%;
+            height: 100%;
+        }
+
+        .language_selector,
+        .improvements_box,
+        .random_tips {
+            width: 100%;
+        }
+
+        .language_selector {
+            height: 10%;
+            background-color: #616161;
+            border-radius: 20px;
+        }
+
+        .improvements_box {
+            height: 63%;
+            background-color: #131313;
+            border-radius: 20px;
+        }
+
+    /* MAIN - END */
+
+    /* FOOTER - START */
+
+    .footer {
+        width: 100%;
+        height: 8%;
+        background-color: #383838;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 2%;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .mobile_footer_div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    .status_light_div {
+        width: 10%;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .status_light {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        align-items: center;
+        max-width: 10px;
+        background-color: #fff;
+    }
+
+    .status-gray {
+        background-color: #7a7a7a;
+    }
+
+    .status-blue {
+        background-color: #0077c2;
+        box-shadow: 0 0 2px #0077c2;
+    }
+    
+    .status-yellow {
+        background-color: #edb51a;
+        box-shadow: 0 0 2px #edb51a;
+    }
+
+    .mobile_footer_text {
+        margin: 0 0 0 5px;
+        width: 75%;
+        height: 100%;
+        color: white; /* Define a cor do texto como branca */
+        font-size: 16px;
+        display: flex; /* Utiliza flexbox */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    .mobile_footer_arrow {
+        width: 15%;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .expand_arrow {
+        width: 35%;
+        height: 35%;
+        background-size: cover;
+        margin: auto;
+        user-select: none;
+    }
+
+    .footer_message {
+        display:none;
+    }
+    
+    .expanded_content {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 0;
+        background-color: #fff; /* Cor de fundo para o conteúdo expandido */
+        border-radius: 20px;
+        transition: height 0.5s;
+    }
+
+    
+
+    /* FOOTER - END */
+}
