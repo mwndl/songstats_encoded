@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
     const new_cover3 = document.querySelector('#new_cover3');
 
     function getThumbs() {
-        const apiUrl = "https://datamatch-backend.onrender.com/charts/thumbs/?token=8KuA9GwNbaJYvTD8U6h64beb6d6dd56c";
+        const apiUrl = "#https://datamatch-backend.onrender.com/charts/thumbs/?token=8KuA9GwNbaJYvTD8U6h64beb6d6dd56c";
 
         // Fazer a solicitação à API usando fetch
         fetch(apiUrl)

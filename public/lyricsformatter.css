@@ -1,3 +1,27 @@
+#notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.notification-content p {
+    width: 100%;
+    color: #2a2a2a;
+    opacity: 100;
+    margin: 15px;
+    user-select: none;
+}
+
 /* DESKTOP */
 
 * {
@@ -119,7 +143,7 @@ body {
         height: 100%;
         text-align: center;
         width: 5%;
-        font-size: 16px;
+        font-size: 12px;
         color: #8a8a8a;
         position: relative;
         pointer-events: none;
@@ -193,7 +217,71 @@ body {
         height: 10%;
         background-color: #616161;
         border-radius: 20px;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
     }
+
+    .lang_selector_div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .language_selector .selected_language {
+        width: 85%;
+        height: 100%;
+        padding: 18px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .lang_expand_arrow {
+        width: 100%;
+        height: 100%;
+        transform: rotate(180deg);
+    }
+    
+    .language_selector .language_list {
+        padding: 10px;
+        list-style: none;
+        padding: 10px 5px;
+        margin: 5px 0 0 0;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #383838;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+    }
+    
+    .language_selector .language_list li {
+        border-radius: 10px;
+        padding: 10px;
+        color: #fff;
+    }
+
+    .language_selector .language_list p {
+        padding: 12px 10px 12px 10px;
+        color: #fff;
+        cursor: auto;
+        user-select: none;
+        font-style: italic;
+    }
+    
+    .language_selector .language_list li:hover {
+        background-color: #2b2b2b;
+    }
+    
 
     .improvements_box {
         height: 63%;
@@ -227,6 +315,10 @@ body {
     justify-content: center;
     font-size: 60%;
     user-select: none;
+}
+
+.mobile_footer_div {
+    display:none;
 }
 
 

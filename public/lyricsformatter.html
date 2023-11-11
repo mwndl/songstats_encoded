@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" value="notranslate">
     <link rel="stylesheet" href="lyricsformatter.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyrics Formatter | Songstats</title>
@@ -30,8 +32,24 @@
                     </div>
                 </div>
                 <div class="main_right">
-                    <div class="language_selector"></div>
-                    <div class="improvements_box"></div>
+                    <div class="language_selector">
+                        <div class="lang_selector_div" title="Tap to see list of supported languages">
+                            <div class="selected_language">Select Language</div>
+                            <div class="mobile_footer_arrow">
+                                <img class="lang_expand_arrow" id="lang_expand_arrow" src="images/expand_arrow.svg" alt="Expand Arrow" draggable="false">
+                            </div>
+                        </div>
+                        <ul class="language_list">
+                            <li data-lang="en">English</li>
+                            <li data-lang="br">Portuguese (BR)</li>
+                            <li data-lang="pt">Portuguese (PT)</li>
+                            <p>More languages soon...</p>
+                        </ul>
+                    </div>
+                    <div class="improvements_box">
+                        <div class="improvements_box_top"></div>
+                        <div class="improvements_box_content"></div>
+                    </div>
                     <div class="random_tips"></div>
                 </div>
             </div>
@@ -109,6 +127,48 @@
             // Inicializa os números de linha
             updateLineNumbers();
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const selector = document.querySelector('.language_selector');
+            const selectedLanguage = document.querySelector('.selected_language');
+            const languageList = document.querySelector('.language_list');
+            const languageArrow = document.querySelector('.lang_expand_arrow');
+            const langButtonContent = document.querySelector('.lang_selector_div');
+
+            selector.addEventListener('click', function(event) {
+                event.stopPropagation(); 
+                
+                if (languageList.style.display === 'block') {
+                    languageList.style.display = 'none';
+                    languageArrow.style.transform = "rotate(180deg)";
+                    langButtonContent.title = "Tap to edit the language";
+                } else {
+                    languageList.style.display = 'block';
+                    languageArrow.style.transform = "rotate(0)";
+                    langButtonContent.title = "Tap to hide the list of supported languages";
+                }
+            });
+
+            languageList.addEventListener('click', function(e) {
+                if (e.target.tagName === 'LI') {
+                    const selected = e.target.dataset.lang;
+                    selectedLanguage.textContent = e.target.textContent;
+                    languageList.style.display = 'none';
+                    // Aqui você pode adicionar o código para alterar o idioma na sua aplicação
+                    // Por exemplo, um switch case para selecionar o idioma no seu aplicativo
+                    // de acordo com o valor de "selected"
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!selector.contains(event.target)) {
+                    languageList.style.display = 'none';
+                    languageArrow.style.transform = "rotate(180deg)";
+                    langButtonContent.title = "Tap to edit the language";
+                }
+            });
+        });
+
 
     </script>
 
