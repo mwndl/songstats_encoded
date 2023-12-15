@@ -116,7 +116,7 @@ body {
     .lyrics_box {
         width: 100%;
         height: 100%;
-        border: 3px solid rgb(0, 119, 194);
+        border: 3px solid #0077c2;
         border-radius: 20px;
         box-sizing: border-box;
         box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
@@ -139,7 +139,7 @@ body {
         overflow: auto;
     }
 
-    .line_numbers {
+    .character_counter {
         height: 100%;
         text-align: center;
         width: 5%;
@@ -157,7 +157,7 @@ body {
     }
     
     /* Estilização para navegadores que não suportam scrollbar-width */
-    .line_numbers::-webkit-scrollbar {
+    .character_counter::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera */
     }
 
@@ -242,6 +242,10 @@ body {
         box-sizing: border-box;
     }
 
+    .language_selector:hover {
+        background-color: #565656; /* Cor alterada no hover */
+    }
+
     .lang_expand_arrow {
         width: 100%;
         height: 100%;
@@ -262,6 +266,7 @@ body {
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
+        z-index: 1;
     }
     
     .language_selector .language_list li {
@@ -332,6 +337,7 @@ body {
             border-style: solid;
             border-color: rgba(198, 197, 197, 0.475);
             border-image: initial;
+            display: none;
         }
         
         .refresh_button:hover {
@@ -348,12 +354,12 @@ body {
         .refresh_symbol {
             width: 14px;
             height: 14px;
+            background-image: url(/images/refresh_symbol.png);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center center;
-            animation: 1s linear 0s infinite normal none running spin;
         }
-
+        
         @keyframes loading_spinner {
             0% {
                 transform: translate(-50%,-50%) rotate(0deg);
@@ -376,7 +382,7 @@ body {
         .loading_spinner div {
             animation: loading_spinner 0.5291005291005291s linear infinite;
             top: 15px;
-            left: 18px;
+            left: 15px;
         }
         
         .loading_spinner_loop {
@@ -445,6 +451,28 @@ body {
         display: flex;
         flex-direction: column;
     }
+
+    .container_no_issues {
+        width: 100%;
+        box-sizing: border-box;
+        color: #fff;
+        background-color: #0077c2;
+        margin-bottom: 10px;
+        overflow: hidden;
+        transition: max-height 0.3s;
+        cursor: pointer;
+        border-radius: 15px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .content_ok {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     
     .container {
         width: 100%;
@@ -457,11 +485,21 @@ body {
         cursor: pointer;
         border-radius: 15px;
     }
+
+    .container:hover {
+        background-color: #212121;
+    }
     
     .container h2 {
         margin: 0;
         padding: 10px;
         font-size: 20px;
+    }
+
+    .container_no_issues h2 {
+        margin: 0;
+        padding: 10px;
+        font-size: 18px;
     }
     
     .container .content {
@@ -494,6 +532,7 @@ body {
         text-decoration: underline;
         display: flex;
         align-items: center;
+        color: inherit; /* ou color: transparent; ou color: initial; ou qualquer outra cor desejada */
     }
     
 
@@ -513,10 +552,13 @@ body {
         align-items: center;
         justify-content: center;
         border-radius: 25px;
-        background-color: black;
+        background-color: rgb(20, 20, 20);
         font-size: 14px;
-        border: 1px solid #000;
         color: white
+    }
+
+    .container .content_ignore_btn:hover {
+        background-color: rgb(6, 6, 6);
     }
 
     .container .content_fix_btn {
@@ -528,9 +570,36 @@ body {
         border-radius: 25px;
         background-color: white;
         font-size: 14px;
-        border: 1px solid #000;
         color: black;
         margin: 0 0 0 8px
+    }
+
+    .container .content_fix_btn:hover {
+        background-color: rgb(210, 210, 210);
+    }
+
+    .container_no_issues .content_copy_btn {
+        width: 20%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+        background-color: white;
+        font-size: 14px;
+        color: black;
+        margin: 0 5px 0 0;
+    }
+
+    .container_no_issues .content_copy_btn:hover {
+        background-color: rgb(210, 210, 210);
+    }
+
+
+    .no_errors_found_div {
+        width: 100%;
+        height: 100%;
+        background-color: #ff0000;
     }
 
     .sp_player_div {
@@ -778,7 +847,7 @@ body {
             overflow: auto;
         }
 
-        .line_numbers {
+        .character_counter {
             height: 100%;
             text-align: center;
             width: 5%;
@@ -791,12 +860,12 @@ body {
             height: 100%;
             user-select: none;
             /* Oculta a barra de rolagem, mas permite rolar */
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none; /* line_numbersFirefox */
             -ms-overflow-style: none; /* IE and Edge */
         }
         
         /* Estilização para navegadores que não suportam scrollbar-width */
-        .line_numbers::-webkit-scrollbar {
+        .character_counter::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
         }
 
@@ -835,6 +904,10 @@ body {
             height: 100%;
         }
 
+        .highlight {
+            background-color: yellow; /* Selecionador de texto dos containers */
+        }
+
     /* MAIN RIGHT */
 
         .main_right {
@@ -856,6 +929,7 @@ body {
             background-color: #616161;
             border-radius: 20px;
         }
+
 
         .improvements_box {
             height: 63%;

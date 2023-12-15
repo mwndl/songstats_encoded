@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script_formatter.js"></script>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-e3b0a8b1e4095176f4a6f42c37b4efb51337fba6c937e281a5f3800f76475893" crossorigin="anonymous">
     <title>Lyrics Formatter | Songstats</title>
 </head>
 
@@ -28,8 +29,9 @@
                 <div class="main_left">
                     <div class="lyrics_box" id="lyrics_box">
                         <div class="editor-container">
-                            <div class="line_numbers"></div>
-                            <textarea class="editor" id="editor" placeholder="Paste the lyrics here..." oninput="updateLineNumbers();"></textarea>
+                            <div class="character_counter"></div>
+                            <div class="stanzas_lines"></div>
+                            <textarea class="editor" id="editor" placeholder="Paste the lyrics here..." oninput="updateCharacterCounter(); checkContent();"></textarea>
                         </div>
                     </div>
                 </div>
@@ -42,8 +44,8 @@
                             </div>
                         </div>
                         <ul class="language_list">
-                            <li data-lang="EN">English (UK)</li>
-                            <li data-lang="EN">English (US)</li>
+                            <li data-lang="UK">English (UK)</li>
+                            <li data-lang="US">English (US)</li>
                             <li data-lang="BR">Portuguese (BR)</li>
                             <li data-lang="PT">Portuguese (PT)</li>
                             <p>More languages soon...</p>
@@ -54,10 +56,10 @@
                             <div class="improvements_box_text">
                                 <p>Suggestions</p>
                             </div>
-                            <div class="improvements_box_refresh" style="display:none">
-                                <button class="refresh_button" id="refresh_button" style="" title="Refresh suggestions">
+                            <div class="improvements_box_refresh" style="">
+                                <button class="refresh_button" id="refresh_button" style="" title="Refresh suggestions" onclick="handleRefreshButtonClick()">
                                     <div class="refresh_symbol"></div>
-                                </button>
+                                  </button>
                                 <div class="loading_spinner_loop" id="loading_spinner" style="display:none">
                                     <div class="loading_spinner">
                                       <div></div>
@@ -66,83 +68,7 @@
                             </div>
                         </div>
                         <div class="improvements_box_content">
-                            <div class="improvements">
-                                <div class="container" onclick="expandContainer(this)">
-                                    <h2>Content test 1</h2>
-                                    <div class="content">
-                                        <p class="content_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                        <p class="content_obs">Obs. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                        <div class="content_options">
-                                            <p class="content_learn_more">Learn more</p>
-                                            <div class="content_buttons">
-                                                <div class="content_ignore_btn">Ignore</div>
-                                                <div class="content_fix_btn">Fix</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container" onclick="expandContainer(this)">
-                                    <h2>Content test 2</h2>
-                                    <div class="content">
-                                        <p class="content_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                        <div class="content_options">
-                                            <p class="content_learn_more">Learn more</p>
-                                            <div class="content_buttons">
-                                                <p>Correção manual necessária</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container" onclick="expandContainer(this)">
-                                    <h2>Content test 3</h2>
-                                    <div class="content">
-                                        <p class="content_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                                        <div class="content_options">
-                                            <p class="content_learn_more"></p>
-                                            <div class="content_buttons">
-                                                <div class="content_ignore_btn">Ignore</div>
-                                                <div class="content_fix_btn">Fix</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container" onclick="expandContainer(this)">
-                                    <h2>Content test 4</h2>
-                                    <div class="content">
-                                        <p class="content_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                                        <div class="content_options">
-                                            <p class="content_learn_more"></p>
-                                            <div class="content_buttons">
-                                                <div class="content_ignore_btn">Ignore</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container" onclick="expandContainer(this)">
-                                    <h2>Content test 5</h2>
-                                    <div class="content">
-                                        <p class="content_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                                        <div class="content_options">
-                                            <p class="content_learn_more"></p>
-                                            <div class="content_buttons">
-                                                <div class="content_fix_btn">Fix</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container" onclick="expandContainer(this)">
-                                    <h2>Content test 6</h2>
-                                    <div class="content">
-                                        <p class="content_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                                        <div class="content_options">
-                                            <p class="content_learn_more"></p>
-                                            <div class="content_buttons">
-                                                <p>Correção manual necessária</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="no_errors_found_div"></div>
+                            <div class="improvements" id="improvements_containers">
                             </div>                            
                         </div>
                     </div>
@@ -196,5 +122,28 @@
                 </div>
             </div>
         </div>       
+        <script>
+        function checkContent() {
+            var editor = document.getElementById('editor');
+            var refreshButton = document.getElementById('refresh_button');
+
+            if (editor.value.trim() === '') {
+                refreshButton.style.display = 'none';
+            } else {
+                refreshButton.style.display = 'block';
+            }
+        }
+
+        function updateCharacterCounter() {
+            // Implement your character counter logic here
+            // This function is called when the textarea content is updated
+        }
+
+        function handleRefreshButtonClick() {
+            // Implement your refresh button click logic here
+        }
+
+        
+        </script>
     </body>
 </html>
