@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
             text: textArea.value,
         };
 
-        fetch(`http://datamatch-backend.onrender.com/formatter/${selectedLanguageCode}`, {
+        fetch(`https://datamatch-backend.onrender.com/formatter/${selectedLanguageCode}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
