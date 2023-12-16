@@ -50,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
             text: textArea.value,
         };
 
-        fetch(`https://datamatch-backend.onrender.com/formatter/${selectedLanguageCode}`, {
+        
+        fetch(`http://localhost:3000/formatter/${selectedLanguageCode}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -356,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const contentText = document.createElement('p');
         contentText.classList.add('content_text');
-        contentText.textContent = containerData.description;
+        contentText.innerHTML = containerData.description;
 
         const contentOptions = document.createElement('div');
         contentOptions.classList.add('content_options');
