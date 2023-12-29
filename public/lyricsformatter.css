@@ -80,11 +80,17 @@ body {
     width: 8%;
     height: 100%;
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .options_dots {
-    display:none;
+    width: 50%;
+    height: 50%;
 }
+
+
 
 /* TOP - END */
 
@@ -103,6 +109,171 @@ body {
     padding: 0px 50px 5px 50px;
     box-sizing: border-box;
 }
+
+    /* Estilos para o pop-up */
+    #popup {
+        width: 500px;
+        border-radius: 20px;;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        padding: 10px;
+        transform: translate(-50%, -50%);
+        background-color: #282828;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        color: white;
+    }
+
+    #closeButton {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #closeButton:hover {
+        background-color: rgb(218, 218, 218);
+    }
+    
+    #closeButton:before,
+    #closeButton:after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        height: 20px;
+        background-color: #282828;
+        border-radius: 5px; /* Borda arredondada para os traços */
+    }
+    
+    #closeButton:before {
+        transform: rotate(45deg);
+    }
+    
+    #closeButton:after {
+        transform: rotate(-45deg);
+    }
+
+    /* Estilos para o fundo embaçado */
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 999;
+    }
+
+            /* Swith */
+
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+        
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        /* Swith end */
+
+    .popup_title {
+        height: 10%;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        text-align: start;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        margin: 0 0 20px 0;
+    }
+
+    .popup_content {
+        height: 90%;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+    }
+
+    .popup_option {
+        height: 20%;
+        width: 100%;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 5px 0 5px 0;
+    }
 
 /* MAIN LEFT */
 
@@ -142,7 +313,7 @@ body {
     .character_counter {
         height: 100%;
         text-align: center;
-        width: 5%;
+        width: 2%;
         font-size: 12px;
         color: #8a8a8a;
         position: relative;
@@ -179,6 +350,14 @@ body {
         scrollbar-color: transparent transparent; /* Firefox */
         position: relative;
     }
+    
+    #editor .selected-line {
+        background-color: yellow; /* Altere para a cor desejada */
+        position: absolute;
+        width: 100%;
+        height: 1.2em; /* Ajuste conforme necessário para o destaque desejado */
+        pointer-events: none; /* Para permitir a interação com o textarea */
+    }
 
     .editor::-webkit-scrollbar {
         width: 0; /* Largura da barra de rolagem WebKit (Chrome, Safari) */
@@ -195,6 +374,61 @@ body {
         left: 0;
         width: 20px; /* Largura do espaço recuado */
         height: 100%;
+    }
+
+    .line_issues {
+        height: 100%;
+        text-align: center;
+        width: 1%;
+        font-size: 12px;
+        position: relative;
+        pointer-events: none;
+        line-height: 21px;
+        overflow-y: scroll;
+        height: 100%;
+        user-select: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        display: flex;
+        flex-direction: column; /* Adicionado para empilhar as linhas verticalmente */
+        align-items: center; /* Adicionado para centralizar as linhas horizontalmente */
+    }
+
+    /* Estilização para navegadores que não suportam scrollbar-width */
+    .line_issues::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .status-1 {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        align-items: right;
+    }
+    
+    .status-gray {
+        background-color: #393939;
+    }
+    
+    .status-blue {
+        background-color: #0077c2;
+        box-shadow: 0 0 2px #0077c2;
+    }
+    
+    .status-red {
+        background-color: red;
+        box-shadow: 0 0 2px red;
+    }
+    
+    .status-yellow {
+        background-color: #edb51a;
+        box-shadow: 0 0 2px #edb51a;
+    }
+    
+    .status-green {
+        background-color: #4CAF50;
+        box-shadow: 0 0 2px #4CAF50;
     }
 
 /* MAIN RIGHT */
@@ -515,6 +749,11 @@ body {
     .hightlight_text {
         font-weight: 750;
         color: #ffffff;
+    }
+
+    .selected-line {
+        background-color: yellow;
+        color: black;
     }
 
     .container .content_obs {

@@ -20,7 +20,7 @@
             </div>
             <div class="page_title">Lyrics Formatter</div>
             <div class="settings">
-                <img class="options_dots" id="settings_dots" src="images\options.svg" alt="Options" title="Options" draggable="false">
+                <img class="options_dots" id="settings_dots" src="images\options.svg" alt="Options" title="Options" draggable="false" style="display:none">
             </div>
         </div>
     
@@ -29,8 +29,8 @@
                 <div class="main_left">
                     <div class="lyrics_box" id="lyrics_box">
                         <div class="editor-container">
+                            <div class="line_issues" id="line_issues"></div>
                             <div class="character_counter"></div>
-                            <div class="stanzas_lines"></div>
                             <textarea class="editor" id="editor" placeholder="Paste the lyrics here..." oninput="updateCharacterCounter(); checkContent();"></textarea>
                         </div>
                     </div>
@@ -143,7 +143,85 @@
             // Implement your refresh button click logic here
         }
 
+        document.addEventListener("DOMContentLoaded", function () {
+        var optionsDots = document.getElementById("settings_dots");
+        var popup = document.getElementById("popup");
+        var overlay = document.getElementById("overlay");
+
+        // Exibir pop-up e overlay ao clicar nos 'options_dots'
+        optionsDots.addEventListener("click", function () {
+            popup.style.display = "block";
+            overlay.style.display = "block";
+        });
+
+        // Ocultar pop-up e overlay ao clicar fora do pop-up
+        overlay.addEventListener("click", function () {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        });
+    });
+
         
+        </script>
+        <div id="overlay"></div>
+
+        <div id="popup">
+            <div id="closeButton" onclick="closePopup()">&#215;</div>
+            <div class="popup_title">
+                <h2>Settings</h2>
+            </div>
+            <div class="popup_content">
+                <div class="popup_option">
+                    <p class="popup_option_title">Character Counter</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="popup_option">
+                    <p class="popup_option_title">Smart Capitalization</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="popup_option">
+                    <p class="popup_option_title">Trim Lines</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="popup_option">
+                    <p class="popup_option_title">Remove Double Spaces and Lines</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="popup_option">
+                    <p class="popup_option_title">Auto Capitalize Tags</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="popup_option">
+                    <p class="popup_option_title">Grammar Check (LanguageTool)</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <script>
+                function closePopup() {
+                    var popup = document.getElementById("popup");
+                    var overlay = document.getElementById("overlay");
+                    popup.style.display = "none";
+                    overlay.style.display = "none";
+                }
         </script>
     </body>
 </html>

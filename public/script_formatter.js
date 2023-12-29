@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Add this function to your existing code
     function handleRefreshButtonClick() {
+        resetLineIssues();
         // Get references to the elements
 
         // Hide the refresh button and show the loading spinner
@@ -193,57 +194,121 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    textarea.addEventListener('input', updateCharacterCounter);
+    textarea.addEventListener('input', updateSidebar);
     textarea.addEventListener('scroll', syncScroll);
 
-    function updateCharacterCounter() {
+    function updateSidebar() {
+
+
+        function updateCharacterCounter() {
         
-        var lines = textarea.value.split('\n');
-        characterCounter.innerHTML = '';
-    
-        for (var i = 0; i < lines.length; i++) {
-            var line = document.createElement('div');
-            var lowercaseLine = lines[i].trim().toLowerCase();
-            var lineLength = lines[i].trim().length;
-    
-            if (lowercaseLine === '' || /^#instrumental$/.test(lowercaseLine) || /^#intro$/.test(lowercaseLine) || /^#verse$/.test(lowercaseLine) || /^#pre-chorus$/.test(lowercaseLine) || /^#chorus$/.test(lowercaseLine) || /^#hook$/.test(lowercaseLine) || /^#bridge$/.test(lowercaseLine) || /^#outro$/.test(lowercaseLine)) {
-                line.textContent = " ";            
-            } else {
-                line.textContent = lineLength;
-
-                var selectedLanguageCode = localStorage.getItem('selectedLanguage');
-                if (selectedLanguageCode === 'BR' || selectedLanguageCode === 'PT') {        
-                    if (lineLength > 50) {
-                        line.style.fontWeight = 'bold';
-                        line.style.color = 'yellow';
-                    }     
-                    if (lineLength > 55) {
-                        line.style.fontWeight = 'bold';
-                        line.style.color = 'red';
-                    }
+            var lines = textarea.value.split('\n');
+            characterCounter.innerHTML = '';
+        
+            for (var i = 0; i < lines.length; i++) {
+                var line = document.createElement('div');
+                var lowercaseLine = lines[i].trim().toLowerCase();
+                var lineLength = lines[i].trim().length;
+        
+                if (lowercaseLine === '' || /^#instrumental$/.test(lowercaseLine) || /^#intro$/.test(lowercaseLine) || /^#verse$/.test(lowercaseLine) || /^#pre-chorus$/.test(lowercaseLine) || /^#chorus$/.test(lowercaseLine) || /^#hook$/.test(lowercaseLine) || /^#bridge$/.test(lowercaseLine) || /^#outro$/.test(lowercaseLine)) {
+                    line.textContent = " ";            
                 } else {
-                    if (lineLength > 65) {
-                        line.style.fontWeight = 'bold';
-                        line.style.color = 'yellow';
-                    }     
-                    if (lineLength > 70) {
-                        line.style.fontWeight = 'bold';
-                        line.style.color = 'red';
-                    }
-                }
-
-            }
+                    line.textContent = lineLength;
     
-            characterCounter.appendChild(line);
+                    var selectedLanguageCode = localStorage.getItem('selectedLanguage');
+                    if (selectedLanguageCode === 'BR' || selectedLanguageCode === 'PT') {        
+                        if (lineLength > 50) {
+                            line.style.fontWeight = 'bold';
+                            line.style.color = 'yellow';
+                        }     
+                        if (lineLength > 55) {
+                            line.style.fontWeight = 'bold';
+                            line.style.color = 'red';
+                        }
+                    } else {
+                        if (lineLength > 65) {
+                            line.style.fontWeight = 'bold';
+                            line.style.color = 'yellow';
+                        }     
+                        if (lineLength > 70) {
+                            line.style.fontWeight = 'bold';
+                            line.style.color = 'red';
+                        }
+                    }
+    
+                }
+        
+                characterCounter.appendChild(line);
+            }
+            resetLineIssues();
+            closeContainers()
+
         }
+
+        updateCharacterCounter();
+
+        function updateLineIssues() {
+            var textarea = document.getElementById('editor');
+            var lineIssuesContainer = document.getElementById('line_issues');
+        
+            if (!textarea || !lineIssuesContainer) {
+                console.error('Textarea or line issues container not found.');
+                return;
+            }
+        
+            // Remova todas as linhas existentes antes de recriar
+            lineIssuesContainer.innerHTML = '';
+        
+            var lines = textarea.value.split('\n');
+            var lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
+        
+            for (var i = 0; i < lines.length; i++) {
+                var lineIssueContainer = document.createElement('div');
+                lineIssueContainer.id = 'L' + (i + 1) + '_container'; // Adicionado '_container' ao ID para distinguir das linhas
+        
+                // Calcule a posição relativa dentro da div mãe
+                var topPosition = i * lineHeight;
+        
+                // Defina o tamanho da div para coincidir com o tamanho da linha do textarea
+                lineIssueContainer.style.width = '100%';
+                lineIssueContainer.style.height = lineHeight + 'px';
+        
+                // Defina a posição relativa dentro da div mãe
+                lineIssueContainer.style.top = topPosition + 'px';
+        
+                // Adicione a div ao container de line_issues
+                lineIssuesContainer.appendChild(lineIssueContainer);
+        
+                // Adicione as classes de estilo diretamente à div interna
+                var lineIssue = document.createElement('div');
+                lineIssue.className = 'status-1';
+                lineIssue.style.width = (1/3) * lineHeight + 'px';
+                lineIssue.style.height = (1/3) * lineHeight + 'px';
+                lineIssue.style.margin = 'auto'; // Centraliza horizontalmente e verticalmente
+        
+                // Adicione a div interna ao container de line_issues
+                lineIssueContainer.appendChild(lineIssue);
+            }
+        }
+        
+        // Exemplo de uso
+        updateLineIssues();
+
     }
+    
+    updateSidebar();
     
 
     function syncScroll() {
-        characterCounter.scrollTop = textarea.scrollTop;
+        var textarea = document.getElementById('editor'); // Substitua 'editor' pelo ID correto
+        var characterCounter = document.querySelector('.character_counter'); // Use o seletor correto
+        var lineIssues = document.querySelector('.line_issues'); // Use o seletor correto
+    
+        if (textarea && characterCounter && lineIssues) {
+            characterCounter.scrollTop = textarea.scrollTop;
+            lineIssues.scrollTop = textarea.scrollTop;
+        }
     }
-
-    updateCharacterCounter();
 
 
    // Função para verificar e definir o idioma padrão ao carregar a página
@@ -319,6 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var container = button.closest('.container');
         container.style.display = 'none';
         checkAndShowPlaceholder();
+        resetLineIssues()
     }
     
     var ignoreButtons = document.querySelectorAll('.content_ignore_btn');
@@ -333,6 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var container = button.closest('.container');
         container.style.display = 'none';
         checkAndShowPlaceholder();
+        resetLineIssues()
     }
     
     var fixButtons = document.querySelectorAll('.content_fix_btn');
@@ -348,6 +415,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const container = document.createElement('div');
         container.classList.add('container');
         container.setAttribute('onclick', 'expandContainer(this)');
+
+        // Adiciona os atributos de dados ao container
+        container.setAttribute('data-color', containerData.position.color);
+        container.setAttribute('data-lines', JSON.stringify(containerData.position.lines));
 
         const title = document.createElement('h2');
         title.textContent = containerData.title;
@@ -484,23 +555,115 @@ document.addEventListener('DOMContentLoaded', function () {
         improvementsContainers.appendChild(noIssuesDiv);
     }
     checkAndShowPlaceholder();
+
+    function selectText(linesToSelect) { // SELECIONA LINHAS ESPECIFICAS
+        // Selecionar todo o texto no textarea
+        textArea.select();
+    
+        // Desfazer a seleção para que possamos selecionar apenas as linhas desejadas
+        document.execCommand('unselect', false, null);
+    
+        var lines = textArea.value.split('\n');
+        var selectedRanges = [];
+    
+        // Calcular a posição inicial e final para cada linha desejada
+        for (var i = 0; i < linesToSelect.length; i++) {
+            var lineIndex = linesToSelect[i] - 1; // Ajuste para começar do índice 0
+    
+            if (lineIndex >= 0 && lineIndex < lines.length) {
+                var start = 0;
+    
+                for (var j = 0; j < lineIndex; j++) {
+                    start += lines[j].length + 1; // +1 para a quebra de linha
+                }
+    
+                var end = start + lines[lineIndex].length;
+    
+                selectedRanges.push({ start, end });
+            }
+        }
+    
+        // Selecionar o texto no textarea para cada intervalo desejado
+        if (selectedRanges.length > 0) {
+            // Use o primeiro intervalo como o intervalo inicial
+            var initialRange = selectedRanges[0];
+            textArea.setSelectionRange(initialRange.start, initialRange.end);
+    
+            // Adicione os intervalos restantes como seleções adicionais
+            for (var i = 1; i < selectedRanges.length; i++) {
+                var range = selectedRanges[i];
+                textArea.addRange(new Range(range.start, range.end));
+            }
+        }
+    }
 });
+
+function closeContainers() {
+    const allContainers = document.querySelectorAll('.container');
+    allContainers.forEach((container) => {
+        container.classList.remove('expanded');
+        container.querySelector('.content').style.display = 'none';
+    });
+
+    resetLineIssues();
+}
 
 function expandContainer(container) {
     const content = container.querySelector('.content');
 
     if (container.classList.contains('expanded')) {
-        // The div is already expanded, do nothing.
+        // O contêiner já está expandido, não fazer nada.
     } else {
-        const allContainers = document.querySelectorAll('.container');
-        allContainers.forEach((c) => {
-            if (c !== container) {
-                c.classList.remove('expanded');
-                c.querySelector('.content').style.display = 'none';
-            }
-        });
+        closeContainers(); // Fecha todos os containers antes de expandir o novo
 
         container.classList.add('expanded');
         content.style.display = 'block';
+
+        // Adiciona console.log para exibir 'color' e 'lines'
+        const color = container.getAttribute('data-color');
+        const lines = JSON.parse(container.getAttribute('data-lines'));
+        resetLineIssues();
+        updateLineIssues(color, lines);
     }
 }
+
+function updateLineIssues(color, lines) {
+    // Itera sobre as linhas fornecidas
+    lines.forEach((line) => {
+        // Obtém o ID da div da linha
+        const lineId = `L${line}_container`;
+
+        // Obtém a div da linha pelo ID
+        const lineDiv = document.getElementById(lineId);
+
+        if (lineDiv) {
+            // Atualiza a classe da div da linha com base na cor fornecida
+            switch (color) {
+                case 'red':
+                    lineDiv.querySelector('.status-1').className = 'status-1 status-red';
+                    break;
+                case 'blue':
+                    lineDiv.querySelector('.status-1').className = 'status-1 status-blue';
+                    break;
+                case 'yellow':
+                    lineDiv.querySelector('.status-1').className = 'status-1 status-yellow';
+                    break;
+                default:
+                    // Se a cor não for reconhecida, mantenha a classe padrão
+                    lineDiv.querySelector('.status-1').className = 'status-1 status-blue';
+                    break;
+            }
+        }
+    });
+}
+
+function resetLineIssues() {
+    // Obtém todas as divs das linhas dentro do elemento com ID 'line_issues'
+    const lineDivs = document.querySelectorAll('.line_issues > div');
+
+    // Itera sobre todas as divs das linhas e redefine a classe para 'status-1 status-gray'
+    lineDivs.forEach((lineDiv) => {
+        lineDiv.querySelector('.status-1').className = 'status-1';
+    });
+}
+
