@@ -44,10 +44,10 @@
                             </div>
                         </div>
                         <ul class="language_list">
-                            <li data-lang="UK">English (UK)</li>
-                            <li data-lang="US">English (US)</li>
-                            <li data-lang="BR">Portuguese (BR)</li>
-                            <li data-lang="PT">Portuguese (PT)</li>
+                            <li data-lang="EN-UK">English (UK)</li>
+                            <li data-lang="EN-US">English (US)</li>
+                            <li data-lang="PT-BR">Portuguese (BR)</li>
+                            <li data-lang="PT-PT">Portuguese (PT)</li>
                             <p>More languages soon...</p>
                         </ul>
                     </div>
@@ -69,6 +69,9 @@
                         </div>
                         <div class="improvements_box_content">
                             <div class="improvements" id="improvements_containers">
+                                <div class="improvements_placeholder_div" id="improvements_placeholder_div">
+                                    <div class="improvements_placeholder" id="improvements_placeholder">Type something or paste your transcription to start...</div>
+                                </div>
                             </div>                            
                         </div>
                     </div>
@@ -126,11 +129,17 @@
         function checkContent() {
             var editor = document.getElementById('editor');
             var refreshButton = document.getElementById('refresh_button');
+            var improvementsPlaceholder = document.getElementById('improvements_placeholder')
 
             if (editor.value.trim() === '') {
                 refreshButton.style.display = 'none';
+                improvementsPlaceholder.textContent = 'Type something or paste your transcription to start...';
+                improvementsPlaceholder.onclick = '';
+
             } else {
                 refreshButton.style.display = 'block';
+                improvementsPlaceholder.innerHTML = 'Tap the <span class="hightlight_text">Refresh</span> icon to update the suggestions.';
+                improvementsPlaceholder.onclick = handleRefreshButtonClick;
             }
         }
 
