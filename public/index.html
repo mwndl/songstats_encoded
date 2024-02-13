@@ -43,7 +43,7 @@
             <div class="button_container_2" id="lyrics_formatter" style="">
               <div class="button2-mask-div">
                 <div class="button2-mask-content">
-                  <h2>Lyrics Formatter (BETA)</h2>
+                  <h2>Lyrics Formatter</h2>
                   <p>Quickly align lyrics to Musixmatch guidelines</p>
                 </div>
               </div>
@@ -114,8 +114,8 @@
     window.location.href = url;
   });
   document.getElementById('lyrics_formatter').addEventListener('click', function () {
-    var url = 'lyricsformatter.html';
-    window.location.href = url;
+      var url = 'https://lyricsformatter.onrender.com/';
+      window.open(url, '_blank');
   });
   document.getElementById('button_container_3').addEventListener('click', function () {
     notification1("Sorry, this tool is not yet available 🚧")
