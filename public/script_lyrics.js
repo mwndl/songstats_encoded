@@ -423,9 +423,11 @@ window.addEventListener('load', () => {
         const numMarkets = spotifyData.track_data.available_markets.length;
         const popularity = spotifyData.track_data.popularity;
 
+        /*
         const spot_lyrics_status = spLyricsData.status_code;
         const spot_lyrics = spLyricsData.has_lyrics;
         const spot_sync = spotifyData.has_sync;
+        */
 
         const background_mode = customizationData.background;
 
@@ -556,6 +558,7 @@ window.addEventListener('load', () => {
 
         document.title = `${title} by ${artist} | Songstats`;
 
+        /*
         if (spot_lyrics_status === 200) {
           // Definição de valores
           if (spot_lyrics === false) {
@@ -578,12 +581,15 @@ window.addEventListener('load', () => {
             spotSyncTitle.style = "color: #ffffff45"
           }
         } else {
+        */
           spotLyricsDiv.title = "Feature disabled for this song due to restrictions"
           spotify_lyrics.className = "status-2 status-gray";
           spotLyricsTitle.style = "color: #ffffff45"
           spotify_sync.className = "status-2 status-gray";
           spotSyncTitle.style = "color: #ffffff45"
+        /*
         }
+        */
 
         // Background mode
         if (background_mode === "1") {
