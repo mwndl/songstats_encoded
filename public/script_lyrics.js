@@ -310,8 +310,8 @@ window.addEventListener('load', () => {
     };
     close_button_pusher.addEventListener('click', close_lyricspusher);
 
-    // Send a Lyrics request to the internal API
-    fetch(`https://datamatch-backend.onrender.com/lyricsfinder-beta/search?${search_mode}${search_value}&token=${accessToken}&background_mode=${background_mode}&spotify_lyrics=1&mxm_data=1`)
+    // Send a Lyrics request to the internal API  (&spotify_lyrics=1 removed due to process bug)
+    fetch(`https://datamatch-backend.onrender.com/lyricsfinder-beta/search?${search_mode}${search_value}&token=${accessToken}&background_mode=${background_mode}&mxm_data=1`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 500) {
